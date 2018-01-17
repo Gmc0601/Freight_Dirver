@@ -29,7 +29,7 @@
         
     }
 
-    self.view.backgroundColor = ViewController_BackGround;
+    self.view.backgroundColor = [UIColor whiteColor];
     
     //导航栏 返回 按钮
     NSArray *viewControllers = self.navigationController.viewControllers;

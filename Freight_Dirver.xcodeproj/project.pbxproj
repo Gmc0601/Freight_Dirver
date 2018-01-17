@@ -61,6 +61,9 @@
 		427C69BC200F214A006A9EBB /* CCWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69BA200F2149006A9EBB /* CCWebViewViewController.m */; };
 		427C69BF200F2C69006A9EBB /* AddInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69BE200F2C69006A9EBB /* AddInfoTableViewCell.m */; };
 		427C69C5200F4D20006A9EBB /* AddPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69C4200F4D20006A9EBB /* AddPhotoCollectionViewCell.m */; };
+		427C69C8200F7696006A9EBB /* TrasformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69C7200F7696006A9EBB /* TrasformViewController.m */; };
+		427C69CB200F779F006A9EBB /* TransformTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69CA200F779F006A9EBB /* TransformTableViewCell.m */; };
+		427C69CE200F842C006A9EBB /* HeadInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69CD200F842C006A9EBB /* HeadInfoView.m */; };
 		50F8DD520205113BF895A5AD /* libPods-Freight_Dirver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACE7D39BF32338CD27E5381 /* libPods-Freight_Dirver.a */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +171,12 @@
 		427C69BE200F2C69006A9EBB /* AddInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddInfoTableViewCell.m; sourceTree = "<group>"; };
 		427C69C3200F4D20006A9EBB /* AddPhotoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPhotoCollectionViewCell.h; sourceTree = "<group>"; };
 		427C69C4200F4D20006A9EBB /* AddPhotoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		427C69C6200F7696006A9EBB /* TrasformViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrasformViewController.h; sourceTree = "<group>"; };
+		427C69C7200F7696006A9EBB /* TrasformViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrasformViewController.m; sourceTree = "<group>"; };
+		427C69C9200F779F006A9EBB /* TransformTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransformTableViewCell.h; sourceTree = "<group>"; };
+		427C69CA200F779F006A9EBB /* TransformTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransformTableViewCell.m; sourceTree = "<group>"; };
+		427C69CC200F842C006A9EBB /* HeadInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadInfoView.h; sourceTree = "<group>"; };
+		427C69CD200F842C006A9EBB /* HeadInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeadInfoView.m; sourceTree = "<group>"; };
 		47B33472A29F780D401EA8AD /* Pods-Freight_Dirver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freight_Dirver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Freight_Dirver/Pods-Freight_Dirver.debug.xcconfig"; sourceTree = "<group>"; };
 		7FE7F51ACDFC22A381A54FE2 /* Pods-Freight_Dirver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freight_Dirver.release.xcconfig"; path = "Pods/Target Support Files/Pods-Freight_Dirver/Pods-Freight_Dirver.release.xcconfig"; sourceTree = "<group>"; };
 		AACE7D39BF32338CD27E5381 /* libPods-Freight_Dirver.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Freight_Dirver.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -351,6 +360,8 @@
 				427C687A200C5D16006A9EBB /* MeViewController.m */,
 				427C687C200C80E2006A9EBB /* UserInfoViewController.h */,
 				427C687D200C80E2006A9EBB /* UserInfoViewController.m */,
+				427C69C6200F7696006A9EBB /* TrasformViewController.h */,
+				427C69C7200F7696006A9EBB /* TrasformViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -358,6 +369,10 @@
 		42400D7A200C4AA000B6C87E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				427C69C9200F779F006A9EBB /* TransformTableViewCell.h */,
+				427C69CA200F779F006A9EBB /* TransformTableViewCell.m */,
+				427C69CC200F842C006A9EBB /* HeadInfoView.h */,
+				427C69CD200F842C006A9EBB /* HeadInfoView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -698,6 +713,7 @@
 				427C6898200C899D006A9EBB /* TBNavigationController.m in Sources */,
 				427C68B3200C8A20006A9EBB /* UINavigation+SXFixSpace.m in Sources */,
 				427C6881200C867B006A9EBB /* NextViewController.m in Sources */,
+				427C69CB200F779F006A9EBB /* TransformTableViewCell.m in Sources */,
 				42400D53200C484100B6C87E /* Freight_Dirver.xcdatamodeld in Sources */,
 				427C6894200C899D006A9EBB /* TBTabBarController.m in Sources */,
 				42400DAC200C4D5500B6C87E /* ConfigModel.m in Sources */,
@@ -727,6 +743,8 @@
 				427C68B0200C8A20006A9EBB /* TBTabBar.m in Sources */,
 				42400DA8200C4D5500B6C87E /* MainApi.m in Sources */,
 				427C68B6200C8A20006A9EBB /* NSObject+SXRuntime.m in Sources */,
+				427C69C8200F7696006A9EBB /* TrasformViewController.m in Sources */,
+				427C69CE200F842C006A9EBB /* HeadInfoView.m in Sources */,
 				42400D99200C4D4D00B6C87E /* DIc.m in Sources */,
 				427C69A8200DA755006A9EBB /* ChoseMembersViewController.m in Sources */,
 				427C69B9200F2019006A9EBB /* LoginViewController.m in Sources */,
