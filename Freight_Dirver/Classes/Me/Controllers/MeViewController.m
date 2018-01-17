@@ -7,11 +7,14 @@
 //
 
 #import "MeViewController.h"
+#import "ChoseMembersViewController.h"
 
 @interface MeViewController ()<UITableViewDelegate, UITableViewDataSource>{
     NSString *phone;
 }
 @property (nonatomic, retain) UITableView *noUseTableView;
+@property (nonatomic, retain) NSArray *titleArr, *picArr;
+
 @end
 
 @implementation MeViewController
@@ -33,6 +36,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+//    ChoseMembersViewController *vc = [[ChoseMembersViewController alloc] init];
+//    vc.backBlock = ^{
+//        self.tabBarController.selectedIndex = 0;
+//    };
+//
+//    UINavigationController *na = [[UINavigationController alloc] initWithRootViewController:vc];
+//    [self presentViewController:na animated:YES completion:nil];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -49,17 +60,18 @@
     UITableViewCell *cell = [self.noUseTableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
-//        if (indexPath.row == 2) {
-//            logo = [[UIImageView alloc] initWithFrame:FRAME(kScreenW - 35, SizeHeight(12), 20, 20)];
-//            logo.backgroundColor = [UIColor clearColor];
-//            logo.image = [UIImage imageNamed:@"wd_icon_dh"];
-//            [cell.contentView addSubview:logo];
-//            [cell.contentView addSubview:self.phoneLab];
-//        }
     }
+    NSString *imagestr = self.picArr[indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:imagestr];
+    [cell.imageView sizeToFit];
 
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text = self.titleArr[indexPath.row];
     
+    if (indexPath.row == 1) {
+        cell.detailTextLabel.text = @"0571—110110110";
+    }
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
@@ -69,21 +81,18 @@
     return SizeHeight(55);
 }
 
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    if (indexPath.row == 0) {
-//        [self.navigationController pushViewController:[MyFavoritesViewController new] animated:YES];
-//    }
-//    if (indexPath.row == 1) {
-//        [self.navigationController pushViewController:[DeviceCommandViewController new] animated:YES];
-//    }
-//    if (indexPath.row == 2) {
-//        NSMutableString* str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",phone];
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-//
-//    }
+    if (indexPath.row == 0) {
+        
+    }
+    if (indexPath.row == 1) {
+        NSMutableString* str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",phone];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];    }
+    if (indexPath.row == 2) {
+        
+
+    }
 }
 - (UITableView *)noUseTableView {
     if (!_noUseTableView) {
@@ -93,12 +102,12 @@
         _noUseTableView.dataSource = self;
         _noUseTableView.tableHeaderView = ({
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, SizeHeight(325))];
-            view.backgroundColor = [UIColor blueColor];
+            view.backgroundColor = UIColorFromHex(0x1C9BFA);
             view;
         });
         _noUseTableView.tableFooterView = ({
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW,  SizeHeight(60))];
-            UIButton *logoutBtn = [[UIButton alloc] initWithFrame:FRAME(5, SizeHeight(10), kScreenW - 10, SizeHeight(50))];
+            UIButton *logoutBtn = [[UIButton alloc] initWithFrame:FRAME(10, SizeHeight(10), kScreenW - 20, SizeHeight(50))];
             logoutBtn.backgroundColor = RGB(239, 240, 241);
             [logoutBtn setTitleColor:UIColorFromHex(0x999999) forState:UIControlStateNormal];
             [logoutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
@@ -118,6 +127,20 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+
+- (NSArray *)titleArr {
+    if (!_titleArr) {
+        _titleArr = @[@"收支明细", @"平台客服", @"用户协议"];
+    }
+    return _titleArr;
+}
+- (NSArray *)picArr {
+    if (!_picArr) {
+        _picArr = @[@"wd_icon_szmx", @"wd_icon_ptkf", @"wd_icon_yhxy"];
+    }
+    return _picArr;
 }
 
 

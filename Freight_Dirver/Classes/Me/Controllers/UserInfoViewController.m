@@ -32,7 +32,7 @@
     [logoutBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     [logoutBtn addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
 //    logoutBtn.titleLabel.font = BOLDSYSTEMFONT(18);
-    [self.view addSubview:logoutBtn];
+//    [self.view addSubview:logoutBtn];
     
 }
 
@@ -214,7 +214,7 @@
         _headImage.backgroundColor = [UIColor clearColor];
         _headImage.layer.masksToBounds =  YES;
         _headImage.layer.cornerRadius = SizeWidth(20);
-        _headImage.image = [UIImage imageNamed:@"-s-xq_bg_tx"];
+        _headImage.image = [UIImage imageNamed:@"wd_icon_140 (1)"];
 //        [_headImage sd_setImageWithURL:[NSURL URLWithString:[ConfigModel getStringforKey:User_headimage]] placeholderImage:[UIImage imageNamed:@"-s-xq_bg_tx"]];
     }
     return _headImage;

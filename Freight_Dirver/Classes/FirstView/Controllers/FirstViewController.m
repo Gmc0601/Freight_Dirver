@@ -34,7 +34,7 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 
     
-    [self addLeftBarButtonWithImage:[UIImage imageNamed:@"wd_icon_ptkf"] action:@selector(backAction)];
+    [self addLeftBarButtonWithImage:[UIImage imageNamed:@"nav_icon_kf"] action:@selector(backAction)];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 20)];
     UIImageView *img = [[UIImageView alloc] initWithFrame:view.frame];
     img.image = [UIImage imageNamed:@"icon_jyb"];

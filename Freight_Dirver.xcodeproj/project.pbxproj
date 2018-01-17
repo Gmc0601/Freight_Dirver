@@ -50,6 +50,17 @@
 		427C68B5200C8A20006A9EBB /* UIView+TBFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C68AB200C8A20006A9EBB /* UIView+TBFrame.m */; };
 		427C68B6200C8A20006A9EBB /* NSObject+SXRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C68AC200C8A20006A9EBB /* NSObject+SXRuntime.m */; };
 		427C68B7200C8A20006A9EBB /* UIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C68AD200C8A20006A9EBB /* UIFactory.m */; };
+		427C69A4200DA717006A9EBB /* PerfectInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69A3200DA717006A9EBB /* PerfectInfoViewController.m */; };
+		427C69A8200DA755006A9EBB /* ChoseMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69A6200DA755006A9EBB /* ChoseMembersViewController.m */; };
+		427C69A9200DA755006A9EBB /* ChoseMembersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427C69A7200DA755006A9EBB /* ChoseMembersViewController.xib */; };
+		427C69B5200F2019006A9EBB /* NODataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69AE200F2018006A9EBB /* NODataView.m */; };
+		427C69B6200F2019006A9EBB /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427C69B0200F2019006A9EBB /* LoginViewController.xib */; };
+		427C69B7200F2019006A9EBB /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427C69B1200F2019006A9EBB /* ReviewViewController.xib */; };
+		427C69B8200F2019006A9EBB /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69B3200F2019006A9EBB /* ReviewViewController.m */; };
+		427C69B9200F2019006A9EBB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69B4200F2019006A9EBB /* LoginViewController.m */; };
+		427C69BC200F214A006A9EBB /* CCWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69BA200F2149006A9EBB /* CCWebViewViewController.m */; };
+		427C69BF200F2C69006A9EBB /* AddInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69BE200F2C69006A9EBB /* AddInfoTableViewCell.m */; };
+		427C69C5200F4D20006A9EBB /* AddPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69C4200F4D20006A9EBB /* AddPhotoCollectionViewCell.m */; };
 		50F8DD520205113BF895A5AD /* libPods-Freight_Dirver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACE7D39BF32338CD27E5381 /* libPods-Freight_Dirver.a */; };
 /* End PBXBuildFile section */
 
@@ -138,6 +149,25 @@
 		427C68AB200C8A20006A9EBB /* UIView+TBFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TBFrame.m"; sourceTree = "<group>"; };
 		427C68AC200C8A20006A9EBB /* NSObject+SXRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SXRuntime.m"; sourceTree = "<group>"; };
 		427C68AD200C8A20006A9EBB /* UIFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIFactory.m; sourceTree = "<group>"; };
+		427C69A2200DA717006A9EBB /* PerfectInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerfectInfoViewController.h; sourceTree = "<group>"; };
+		427C69A3200DA717006A9EBB /* PerfectInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PerfectInfoViewController.m; sourceTree = "<group>"; };
+		427C69A5200DA755006A9EBB /* ChoseMembersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoseMembersViewController.h; sourceTree = "<group>"; };
+		427C69A6200DA755006A9EBB /* ChoseMembersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoseMembersViewController.m; sourceTree = "<group>"; };
+		427C69A7200DA755006A9EBB /* ChoseMembersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoseMembersViewController.xib; sourceTree = "<group>"; };
+		427C69AD200F2018006A9EBB /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
+		427C69AE200F2018006A9EBB /* NODataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NODataView.m; sourceTree = "<group>"; };
+		427C69AF200F2019006A9EBB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		427C69B0200F2019006A9EBB /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		427C69B1200F2019006A9EBB /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
+		427C69B2200F2019006A9EBB /* NODataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NODataView.h; sourceTree = "<group>"; };
+		427C69B3200F2019006A9EBB /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
+		427C69B4200F2019006A9EBB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		427C69BA200F2149006A9EBB /* CCWebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCWebViewViewController.m; sourceTree = "<group>"; };
+		427C69BB200F214A006A9EBB /* CCWebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCWebViewViewController.h; sourceTree = "<group>"; };
+		427C69BD200F2C69006A9EBB /* AddInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddInfoTableViewCell.h; sourceTree = "<group>"; };
+		427C69BE200F2C69006A9EBB /* AddInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddInfoTableViewCell.m; sourceTree = "<group>"; };
+		427C69C3200F4D20006A9EBB /* AddPhotoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		427C69C4200F4D20006A9EBB /* AddPhotoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		47B33472A29F780D401EA8AD /* Pods-Freight_Dirver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freight_Dirver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Freight_Dirver/Pods-Freight_Dirver.debug.xcconfig"; sourceTree = "<group>"; };
 		7FE7F51ACDFC22A381A54FE2 /* Pods-Freight_Dirver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freight_Dirver.release.xcconfig"; path = "Pods/Target Support Files/Pods-Freight_Dirver/Pods-Freight_Dirver.release.xcconfig"; sourceTree = "<group>"; };
 		AACE7D39BF32338CD27E5381 /* libPods-Freight_Dirver.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Freight_Dirver.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -433,6 +463,8 @@
 		427C682D200C5B4D006A9EBB /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
+				427C69BB200F214A006A9EBB /* CCWebViewViewController.h */,
+				427C69BA200F2149006A9EBB /* CCWebViewViewController.m */,
 				427C6832200C5B4D006A9EBB /* BaseViewController.h */,
 				427C682F200C5B4D006A9EBB /* BaseViewController.m */,
 				427C6833200C5B4D006A9EBB /* BaseTableView.h */,
@@ -462,6 +494,23 @@
 		427C6882200C891E006A9EBB /* Login&Regist */ = {
 			isa = PBXGroup;
 			children = (
+				427C69BD200F2C69006A9EBB /* AddInfoTableViewCell.h */,
+				427C69BE200F2C69006A9EBB /* AddInfoTableViewCell.m */,
+				427C69AF200F2019006A9EBB /* LoginViewController.h */,
+				427C69B4200F2019006A9EBB /* LoginViewController.m */,
+				427C69B0200F2019006A9EBB /* LoginViewController.xib */,
+				427C69B2200F2019006A9EBB /* NODataView.h */,
+				427C69AE200F2018006A9EBB /* NODataView.m */,
+				427C69AD200F2018006A9EBB /* ReviewViewController.h */,
+				427C69B3200F2019006A9EBB /* ReviewViewController.m */,
+				427C69B1200F2019006A9EBB /* ReviewViewController.xib */,
+				427C69A5200DA755006A9EBB /* ChoseMembersViewController.h */,
+				427C69A6200DA755006A9EBB /* ChoseMembersViewController.m */,
+				427C69A7200DA755006A9EBB /* ChoseMembersViewController.xib */,
+				427C69A2200DA717006A9EBB /* PerfectInfoViewController.h */,
+				427C69A3200DA717006A9EBB /* PerfectInfoViewController.m */,
+				427C69C3200F4D20006A9EBB /* AddPhotoCollectionViewCell.h */,
+				427C69C4200F4D20006A9EBB /* AddPhotoCollectionViewCell.m */,
 			);
 			path = "Login&Regist";
 			sourceTree = "<group>";
@@ -573,11 +622,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				427C69B6200F2019006A9EBB /* LoginViewController.xib in Resources */,
 				42400DAF200C530E00B6C87E /* Info.plist in Resources */,
+				427C69B7200F2019006A9EBB /* ReviewViewController.xib in Resources */,
 				427C6870200C5C64006A9EBB /* arrowup@2x.png in Resources */,
 				427C6871200C5C64006A9EBB /* arrowdown@2x.png in Resources */,
 				42400D58200C484100B6C87E /* LaunchScreen.storyboard in Resources */,
 				42400D55200C484100B6C87E /* Assets.xcassets in Resources */,
+				427C69A9200DA755006A9EBB /* ChoseMembersViewController.xib in Resources */,
 				42400D50200C484100B6C87E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +701,8 @@
 				42400D53200C484100B6C87E /* Freight_Dirver.xcdatamodeld in Sources */,
 				427C6894200C899D006A9EBB /* TBTabBarController.m in Sources */,
 				42400DAC200C4D5500B6C87E /* ConfigModel.m in Sources */,
+				427C69B8200F2019006A9EBB /* ReviewViewController.m in Sources */,
+				427C69A4200DA717006A9EBB /* PerfectInfoViewController.m in Sources */,
 				427C6835200C5B4D006A9EBB /* BaseViewController.m in Sources */,
 				42400D9A200C4D4D00B6C87E /* NSString+MD5.m in Sources */,
 				427C686E200C5C64006A9EBB /* TBRefreshHeadView.m in Sources */,
@@ -662,15 +716,21 @@
 				427C687E200C80E2006A9EBB /* UserInfoViewController.m in Sources */,
 				427C68B7200C8A20006A9EBB /* UIFactory.m in Sources */,
 				42400D97200C4D4D00B6C87E /* SBJSON.m in Sources */,
+				427C69BF200F2C69006A9EBB /* AddInfoTableViewCell.m in Sources */,
 				427C68AE200C8A20006A9EBB /* UIButton+SSEdgeInsets.m in Sources */,
 				42400D96200C4D4D00B6C87E /* NSObject+SBJSON.m in Sources */,
 				427C68B5200C8A20006A9EBB /* UIView+TBFrame.m in Sources */,
 				427C6834200C5B4D006A9EBB /* CCBaseViewController.m in Sources */,
 				427C6875200C5CF9006A9EBB /* FirstViewController.m in Sources */,
+				427C69C5200F4D20006A9EBB /* AddPhotoCollectionViewCell.m in Sources */,
+				427C69B5200F2019006A9EBB /* NODataView.m in Sources */,
 				427C68B0200C8A20006A9EBB /* TBTabBar.m in Sources */,
 				42400DA8200C4D5500B6C87E /* MainApi.m in Sources */,
 				427C68B6200C8A20006A9EBB /* NSObject+SXRuntime.m in Sources */,
 				42400D99200C4D4D00B6C87E /* DIc.m in Sources */,
+				427C69A8200DA755006A9EBB /* ChoseMembersViewController.m in Sources */,
+				427C69B9200F2019006A9EBB /* LoginViewController.m in Sources */,
+				427C69BC200F214A006A9EBB /* CCWebViewViewController.m in Sources */,
 				427C68B1200C8A20006A9EBB /* UIViewController+BarButton.m in Sources */,
 				427C6829200C5838006A9EBB /* AppDelegate.m in Sources */,
 				42400D98200C4D4D00B6C87E /* NSString+SBJSON.m in Sources */,
