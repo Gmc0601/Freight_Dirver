@@ -19,7 +19,6 @@
     return self;
 }
 
-
 - (void)setTitle:(NSString *)title {
     self.titleLab.text = title;
 }
@@ -34,11 +33,18 @@
     return _titleLab;
 }
 
+- (void)textchange {
+    if (self.textBlock) {
+        self.textBlock(nil, self.text.text);
+    }
+}
+
 - (UITextField *)text {
     if (!_text) {
         _text = [[UITextField alloc] initWithFrame:FRAME(self.titleLab.right, 0, kScreenW - SizeWidth(130), SizeHeight(20))];
         _text.centerY = self.contentView.centerY;
         _text.font = [UIFont systemFontOfSize:14];
+        [_text addTarget:self action:@selector(textchange) forControlEvents:UIControlEventEditingChanged];
     }
     return _text;
 }

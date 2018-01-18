@@ -10,8 +10,9 @@
 
 @implementation HeadInfoView
 
-- (instancetype)initWithFrame:(CGRect)frame title1:(NSString *)title1 title2:(NSString *)title2 {
+- (instancetype)initWithFrame:(CGRect)frame title1:(NSString *)title1 title2:(NSString *)title2 color:(UIColor *)color{
     if (self == [super initWithFrame:frame]) {
+        self.backgroundColor = color;
         [self addSubview:self.titleLab1];
         [self addSubview:self.titleLab2];
         [self addSubview:self.infoLab1];

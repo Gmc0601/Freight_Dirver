@@ -108,7 +108,7 @@
         _noUseTableView.dataSource = self;
         _noUseTableView.tableHeaderView = ({
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, SizeHeight(325))];
-            view.backgroundColor = UIColorFromHex(0x1C9BFA);
+            view.backgroundColor = UIColorFromHex(0x018BF2);
             [self addheadView:view];
             view;
         });
@@ -166,10 +166,11 @@
     [view addSubview:btn];
 
     
-    HeadInfoView *info1 = [[HeadInfoView alloc] initWithFrame:FRAME(0, SizeHeight(215), kScreenW, SizeHeight(55)) title1:@"累计接单(单)" title2:@"累计收入(元)"];
+    HeadInfoView *info1 = [[HeadInfoView alloc] initWithFrame:FRAME(0, SizeHeight(215), kScreenW, SizeHeight(55)) title1:@"累计接单(单)" title2:@"累计收入(元)" color:UIColorFromHex(0x1C9BFA)];
+    
     [view addSubview:info1];
     
-    HeadInfoView *info2 = [[HeadInfoView alloc] initWithFrame:FRAME(0, SizeHeight(215 + 55), kScreenW, SizeHeight(55)) title1:@"本月接单(单)" title2:@"本月收入(元)"];
+    HeadInfoView *info2 = [[HeadInfoView alloc] initWithFrame:FRAME(0, SizeHeight(215 + 55), kScreenW, SizeHeight(55)) title1:@"本月接单(单)" title2:@"本月收入(元)" color:UIColorFromHex(0x3CA9FB)];
     [view addSubview:info2];
     
 }
@@ -179,7 +180,13 @@
 }
 
 - (void)logout {
+        ChoseMembersViewController *vc = [[ChoseMembersViewController alloc] init];
+        vc.backBlock = ^{
+            self.tabBarController.selectedIndex = 0;
+        };
     
+        UINavigationController *na = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:na animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

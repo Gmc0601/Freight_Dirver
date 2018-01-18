@@ -16,5 +16,7 @@
 
 @property (nonatomic, retain) UITextField *text;
 
+@property (nonatomic, copy) void(^textBlock)(NSIndexPath *index, NSString *text);
+
 
 @end

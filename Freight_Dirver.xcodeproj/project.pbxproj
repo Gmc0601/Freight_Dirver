@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42399A882010442F009263E5 /* AddInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42399A872010442F009263E5 /* AddInfoModel.m */; };
 		42400D50200C484100B6C87E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42400D4E200C484100B6C87E /* Main.storyboard */; };
 		42400D53200C484100B6C87E /* Freight_Dirver.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42400D51200C484100B6C87E /* Freight_Dirver.xcdatamodeld */; };
 		42400D55200C484100B6C87E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42400D54200C484100B6C87E /* Assets.xcassets */; };
@@ -68,6 +69,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42399A862010442F009263E5 /* AddInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddInfoModel.h; sourceTree = "<group>"; };
+		42399A872010442F009263E5 /* AddInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddInfoModel.m; sourceTree = "<group>"; };
 		42400D45200C484000B6C87E /* Freight_Dirver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Freight_Dirver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42400D4F200C484100B6C87E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		42400D52200C484100B6C87E /* Freight_Dirver.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Freight_Dirver.xcdatamodel; sourceTree = "<group>"; };
@@ -526,6 +529,8 @@
 				427C69A3200DA717006A9EBB /* PerfectInfoViewController.m */,
 				427C69C3200F4D20006A9EBB /* AddPhotoCollectionViewCell.h */,
 				427C69C4200F4D20006A9EBB /* AddPhotoCollectionViewCell.m */,
+				42399A862010442F009263E5 /* AddInfoModel.h */,
+				42399A872010442F009263E5 /* AddInfoModel.m */,
 			);
 			path = "Login&Regist";
 			sourceTree = "<group>";
@@ -720,6 +725,7 @@
 				427C69B8200F2019006A9EBB /* ReviewViewController.m in Sources */,
 				427C69A4200DA717006A9EBB /* PerfectInfoViewController.m in Sources */,
 				427C6835200C5B4D006A9EBB /* BaseViewController.m in Sources */,
+				42399A882010442F009263E5 /* AddInfoModel.m in Sources */,
 				42400D9A200C4D4D00B6C87E /* NSString+MD5.m in Sources */,
 				427C686E200C5C64006A9EBB /* TBRefreshHeadView.m in Sources */,
 				427C687B200C5D16006A9EBB /* MeViewController.m in Sources */,

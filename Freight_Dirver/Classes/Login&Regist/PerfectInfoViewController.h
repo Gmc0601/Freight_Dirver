@@ -7,7 +7,7 @@
 //
 
 #import "CCBaseViewController.h"
-
+#import "AddInfoModel.h"
 
 typedef NS_ENUM (NSInteger, AddInfoType)   {
     
@@ -22,5 +22,7 @@ typedef NS_ENUM (NSInteger, AddInfoType)   {
 @interface PerfectInfoViewController : CCBaseViewController
 
 @property (nonatomic, assign) AddInfoType type;
+
+@property (nonatomic, retain) AddInfoModel *model;
 
 @end

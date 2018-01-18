@@ -11,6 +11,7 @@
 #import "ReviewViewController.h"
 #import <YYKit.h>
 #import "AddPhotoCollectionViewCell.h"
+#import "GTMBase64.h"
 
 @interface PerfectInfoViewController ()<UITableViewDelegate,  UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>{
     int num;
@@ -28,6 +29,10 @@
 
 @property (nonatomic, retain) UISwitch *siwtch;
 
+@property (nonatomic, retain) NSIndexPath *index;
+
+@property (nonatomic,retain) NSMutableArray *addarr;
+
 @end
 
 @implementation PerfectInfoViewController
@@ -35,6 +40,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self resetFather];
+    
+    if (!self.model) {
+        self.model = [[AddInfoModel alloc] init];
+    }
     
     if (self.type == AddOne) {
         self.titleArr = @[@"所属运输公司",@"姓名",@"身份证号",@"紧急联络人",@"紧急联络人电话"];
@@ -73,7 +82,32 @@
         cell = [[AddInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
     }
     cell.title = self.titleArr[indexPath.row];
-    
+    cell.textBlock = ^(NSIndexPath *index, NSString *text) {
+        if (self.type == AddOne) {
+            switch (indexPath.row) {
+                case 0:
+                    self.model.companyName = text;
+                    break;
+                case 1:
+                    self.model.userName = text;
+                    break;
+                case 2:
+                    self.model.userId = text;
+                    break;
+                case 3:
+                    self.model.sosconnact = text;
+                    break;
+                case 4:
+                    self.model.sosconnact = text;
+                    break;
+                    
+                default:
+                    break;
+            }
+        }else if (self.type == AddTwo) {
+            self.model.carNum = text;
+        }
+    };
     if (self.type == AddOne) {
         if (indexPath.row == 0) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -95,7 +129,6 @@
             cell.text.hidden = YES;
             self.siwtch.centerY = cell.contentView.centerY;
             [cell.contentView addSubview:self.siwtch];
-            
         }
         
     }
@@ -145,6 +178,8 @@
                 lab.font = [UIFont systemFontOfSize:13];
                 lab.text = @"常跑路线:";
                 UITextField *file = [[UITextField alloc] initWithFrame:FRAME(10, lab.bottom + SizeHeight(10), kScreenW - 20, SizeHeight(20))];
+                file.font = [UIFont systemFontOfSize:13];
+                [file addTarget:self action:@selector(textChage:) forControlEvents:UIControlEventEditingChanged];
                 file.placeholder = @"请填写您的常跑路线，以便我们给您更好的派单";
     
                 UILabel *line = [[UILabel alloc] initWithFrame:FRAME(15, 0, kScreenW, 1)];
@@ -175,6 +210,10 @@
     return _noUseTableView;
 }
 
+- (void)textChage:(UITextField *)sender {
+    self.model.alwaysLine = sender.text;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 5;
 }
@@ -196,11 +235,30 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     
+    self.index =  indexPath;
+    
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"选择图片来源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self takeAlbum];
+    }];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self takePhoto];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        //TODO
+    }];
+    [actionSheet addAction:action1];
+    [actionSheet addAction:action2];
+    [actionSheet addAction:cancelAction];
+    
+    [self.navigationController presentViewController:actionSheet animated:YES completion:nil];
+    
 }
 
 
 #pragma mark -- Photo
 - (void)takeAlbum {
+
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
@@ -225,21 +283,86 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-//    self.logoImage.image = editedImage;
-    [self.noUseTableView reloadData];
+      AddPhotoCollectionViewCell * cell = (AddPhotoCollectionViewCell *)[self.footCollcetion cellForItemAtIndexPath:self.index];
+    [self.addarr replaceObjectAtIndex:self.index.row withObject:@"1"];
+    
+    cell.imageStr = editedImage;
+    
     [picker dismissViewControllerAnimated:YES completion:^{
         
     }];
 }
 - (void)commitClick {
     PerfectInfoViewController *pre = [[PerfectInfoViewController alloc] init];
+    pre.model = self.model;
     if (self.type == AddOne) {
+        if (!self.model.companyName) {
+            [ConfigModel mbProgressHUD:@"请输入所属公司" andView:nil];
+            return;
+        }
+        
+        if (!self.model.userName) {
+            [ConfigModel mbProgressHUD:@"请输入姓名" andView:nil];
+            return;
+        }
+        
         pre.type = AddTwo;
         [self.navigationController pushViewController:pre animated:YES];
     }else if (self.type == AddTwo){
+        
+        if (!self.model.carNum) {
+            [ConfigModel mbProgressHUD:@"请输入车牌号" andView:nil];
+            return;
+        }
+        
         pre.type = AddThree;
         [self.navigationController pushViewController:pre animated:YES];
     }else {
+        
+        for (int i = 0; i < self.addarr.count; i++) {
+            NSString *str = self.addarr[i];
+            if ([str intValue] == 0) {
+                switch (i) {
+                    case 0:
+                        [ConfigModel mbProgressHUD:@"请上传身份证正面照" andView:nil];
+                        break;
+                    case 1:
+                        [ConfigModel mbProgressHUD:@"请上传身份证反面照" andView:nil];
+                        break;
+                    case 2:
+                        [ConfigModel mbProgressHUD:@"请上传行驶证正面照" andView:nil];
+                        break;
+                    case 3:
+                        [ConfigModel mbProgressHUD:@"请上传行驶证正面照" andView:nil];
+                        break;
+                    case 4:
+                        [ConfigModel mbProgressHUD:@"请上传白卡照" andView:nil];
+                        break;
+                        
+                    default:
+                        break;
+                }
+                return;
+            }
+            
+        }
+        NSString *arrimg ;
+        for (int i = 0 ; i < 5; i++) {
+            NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
+            AddPhotoCollectionViewCell * cell = (AddPhotoCollectionViewCell *)[self.footCollcetion cellForItemAtIndexPath:index];
+            
+            UIImage *image = cell.image.image;
+            NSData *imgData = UIImageJPEGRepresentation(image,0.5);
+            NSString *imgStr = [GTMBase64 stringByEncodingData:imgData];
+            if (i == 0) {
+                arrimg = imgStr;
+            }else {
+                NSString *str = [NSString stringWithFormat:@",%@", imgStr];
+                arrimg = [arrimg stringByAppendingString:str];
+            }
+        }
+        self.model.imageStr = arrimg;
+
         ReviewViewController *vc = [[ReviewViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -332,6 +455,14 @@
 //        }
     }
     
+}
+
+- (NSMutableArray *)addarr {
+    if (!_addarr) {
+        NSArray *arr = @[@"0", @"0", @"0", @"0", @"0"];
+        _addarr = [NSMutableArray arrayWithArray:arr];
+    }
+    return _addarr;
 }
 
 
