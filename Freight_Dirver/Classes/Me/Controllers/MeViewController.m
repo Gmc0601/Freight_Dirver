@@ -12,6 +12,7 @@
 #import "UserInfoViewController.h"
 #import <YYKit.h>
 #import "HeadInfoView.h"
+#import "CCWebViewViewController.h"
 
 @interface MeViewController ()<UITableViewDelegate, UITableViewDataSource>{
     NSString *phone;
@@ -96,7 +97,10 @@
         NSMutableString* str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",phone];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];    }
     if (indexPath.row == 2) {
-        
+        CCWebViewViewController *vc = [[CCWebViewViewController alloc] init];
+        vc.titlestr = @"用户协议";
+        vc.UrlStr = @"http://116.62.142.20/Public/zcxy";
+        [self.navigationController pushViewController:vc animated:YES];
 
     }
 }

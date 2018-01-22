@@ -38,7 +38,6 @@
 		427C6878200C5D08006A9EBB /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C6877200C5D08006A9EBB /* MessageViewController.m */; };
 		427C687B200C5D16006A9EBB /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C687A200C5D16006A9EBB /* MeViewController.m */; };
 		427C687E200C80E2006A9EBB /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C687D200C80E2006A9EBB /* UserInfoViewController.m */; };
-		427C6881200C867B006A9EBB /* NextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C6880200C867B006A9EBB /* NextViewController.m */; };
 		427C6894200C899D006A9EBB /* TBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C6886200C899D006A9EBB /* TBTabBarController.m */; };
 		427C6898200C899D006A9EBB /* TBNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C6891200C899D006A9EBB /* TBNavigationController.m */; };
 		427C68AE200C8A20006A9EBB /* UIButton+SSEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C689A200C8A20006A9EBB /* UIButton+SSEdgeInsets.m */; };
@@ -65,6 +64,10 @@
 		427C69C8200F7696006A9EBB /* TrasformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69C7200F7696006A9EBB /* TrasformViewController.m */; };
 		427C69CB200F779F006A9EBB /* TransformTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69CA200F779F006A9EBB /* TransformTableViewCell.m */; };
 		427C69CE200F842C006A9EBB /* HeadInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C69CD200F842C006A9EBB /* HeadInfoView.m */; };
+		42A48C6E2012DF8300B8EC3D /* SystemCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A48C6A2012DF8200B8EC3D /* SystemCellTableViewCell.m */; };
+		42A48C6F2012DF8300B8EC3D /* UILabel+StringFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A48C6C2012DF8200B8EC3D /* UILabel+StringFrame.m */; };
+		42A48C722012DF8D00B8EC3D /* SystemMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A48C702012DF8D00B8EC3D /* SystemMessageViewController.m */; };
+		42A48C75201329A500B8EC3D /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A48C74201329A500B8EC3D /* MessageTableViewCell.m */; };
 		50F8DD520205113BF895A5AD /* libPods-Freight_Dirver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACE7D39BF32338CD27E5381 /* libPods-Freight_Dirver.a */; };
 /* End PBXBuildFile section */
 
@@ -129,8 +132,6 @@
 		427C687A200C5D16006A9EBB /* MeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		427C687C200C80E2006A9EBB /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		427C687D200C80E2006A9EBB /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
-		427C687F200C867B006A9EBB /* NextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NextViewController.h; sourceTree = "<group>"; };
-		427C6880200C867B006A9EBB /* NextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextViewController.m; sourceTree = "<group>"; };
 		427C6886200C899D006A9EBB /* TBTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBTabBarController.m; sourceTree = "<group>"; };
 		427C6888200C899D006A9EBB /* TBNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBNavigationController.h; sourceTree = "<group>"; };
 		427C688E200C899D006A9EBB /* TBTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBTabBarController.h; sourceTree = "<group>"; };
@@ -180,6 +181,14 @@
 		427C69CA200F779F006A9EBB /* TransformTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransformTableViewCell.m; sourceTree = "<group>"; };
 		427C69CC200F842C006A9EBB /* HeadInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadInfoView.h; sourceTree = "<group>"; };
 		427C69CD200F842C006A9EBB /* HeadInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeadInfoView.m; sourceTree = "<group>"; };
+		42A48C6A2012DF8200B8EC3D /* SystemCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemCellTableViewCell.m; sourceTree = "<group>"; };
+		42A48C6B2012DF8200B8EC3D /* UILabel+StringFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+StringFrame.h"; sourceTree = "<group>"; };
+		42A48C6C2012DF8200B8EC3D /* UILabel+StringFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+StringFrame.m"; sourceTree = "<group>"; };
+		42A48C6D2012DF8300B8EC3D /* SystemCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemCellTableViewCell.h; sourceTree = "<group>"; };
+		42A48C702012DF8D00B8EC3D /* SystemMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageViewController.m; sourceTree = "<group>"; };
+		42A48C712012DF8D00B8EC3D /* SystemMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessageViewController.h; sourceTree = "<group>"; };
+		42A48C73201329A500B8EC3D /* MessageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		42A48C74201329A500B8EC3D /* MessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		47B33472A29F780D401EA8AD /* Pods-Freight_Dirver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freight_Dirver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Freight_Dirver/Pods-Freight_Dirver.debug.xcconfig"; sourceTree = "<group>"; };
 		7FE7F51ACDFC22A381A54FE2 /* Pods-Freight_Dirver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freight_Dirver.release.xcconfig"; path = "Pods/Target Support Files/Pods-Freight_Dirver/Pods-Freight_Dirver.release.xcconfig"; sourceTree = "<group>"; };
 		AACE7D39BF32338CD27E5381 /* libPods-Freight_Dirver.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Freight_Dirver.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -324,10 +333,10 @@
 		42400D75200C4AA000B6C87E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				42A48C712012DF8D00B8EC3D /* SystemMessageViewController.h */,
+				42A48C702012DF8D00B8EC3D /* SystemMessageViewController.m */,
 				427C6876200C5D08006A9EBB /* MessageViewController.h */,
 				427C6877200C5D08006A9EBB /* MessageViewController.m */,
-				427C687F200C867B006A9EBB /* NextViewController.h */,
-				427C6880200C867B006A9EBB /* NextViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -335,6 +344,12 @@
 		42400D76200C4AA000B6C87E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				42A48C6D2012DF8300B8EC3D /* SystemCellTableViewCell.h */,
+				42A48C6A2012DF8200B8EC3D /* SystemCellTableViewCell.m */,
+				42A48C6B2012DF8200B8EC3D /* UILabel+StringFrame.h */,
+				42A48C6C2012DF8200B8EC3D /* UILabel+StringFrame.m */,
+				42A48C73201329A500B8EC3D /* MessageTableViewCell.h */,
+				42A48C74201329A500B8EC3D /* MessageTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -716,8 +731,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				427C6898200C899D006A9EBB /* TBNavigationController.m in Sources */,
+				42A48C722012DF8D00B8EC3D /* SystemMessageViewController.m in Sources */,
 				427C68B3200C8A20006A9EBB /* UINavigation+SXFixSpace.m in Sources */,
-				427C6881200C867B006A9EBB /* NextViewController.m in Sources */,
 				427C69CB200F779F006A9EBB /* TransformTableViewCell.m in Sources */,
 				42400D53200C484100B6C87E /* Freight_Dirver.xcdatamodeld in Sources */,
 				427C6894200C899D006A9EBB /* TBTabBarController.m in Sources */,
@@ -749,6 +764,7 @@
 				427C68B0200C8A20006A9EBB /* TBTabBar.m in Sources */,
 				42400DA8200C4D5500B6C87E /* MainApi.m in Sources */,
 				427C68B6200C8A20006A9EBB /* NSObject+SXRuntime.m in Sources */,
+				42A48C6E2012DF8300B8EC3D /* SystemCellTableViewCell.m in Sources */,
 				427C69C8200F7696006A9EBB /* TrasformViewController.m in Sources */,
 				427C69CE200F842C006A9EBB /* HeadInfoView.m in Sources */,
 				42400D99200C4D4D00B6C87E /* DIc.m in Sources */,
@@ -756,12 +772,14 @@
 				427C69B9200F2019006A9EBB /* LoginViewController.m in Sources */,
 				427C69BC200F214A006A9EBB /* CCWebViewViewController.m in Sources */,
 				427C68B1200C8A20006A9EBB /* UIViewController+BarButton.m in Sources */,
+				42A48C6F2012DF8300B8EC3D /* UILabel+StringFrame.m in Sources */,
 				427C6829200C5838006A9EBB /* AppDelegate.m in Sources */,
 				42400D98200C4D4D00B6C87E /* NSString+SBJSON.m in Sources */,
 				427C68B2200C8A20006A9EBB /* UINavigationController+SXFullScreen.m in Sources */,
 				427C6827200C5838006A9EBB /* ViewController.m in Sources */,
 				42400D9B200C4D4D00B6C87E /* DicToString.m in Sources */,
 				427C68B4200C8A20006A9EBB /* UIBarButtonItem+SXCreate.m in Sources */,
+				42A48C75201329A500B8EC3D /* MessageTableViewCell.m in Sources */,
 				427C6828200C5838006A9EBB /* main.m in Sources */,
 				427C686F200C5C64006A9EBB /* TBRefreshFootView.m in Sources */,
 			);
