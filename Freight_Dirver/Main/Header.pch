@@ -8,7 +8,7 @@
 
 #ifndef Header_pch
 #define Header_pch
-
+#ifdef __OBJC__
 #import "CCUrl.h"
 #import "ConfigModel.h"
 #import "MainApi.h"
@@ -105,6 +105,6 @@
 
 #define UserToken @"userToken"
 
-
+#endif
 
 #endif /* Header_pch */

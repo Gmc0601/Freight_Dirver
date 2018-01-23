@@ -9,6 +9,7 @@
 #import "MessageViewController.h"
 #import <YYKit.h>
 #import "SystemMessageViewController.h"
+#import "EaseMessageViewController.h"
 
 @interface MessageViewController ()<UITableViewDelegate,  UITableViewDataSource>
 
@@ -91,6 +92,10 @@
     
     if (tag < 1000) {
         //  message
+        EaseMessageViewController *chatController = [[EaseMessageViewController alloc] initWithConversationChatter:@"8800" conversationType:EMConversationTypeChat];
+        [self.navigationController pushViewController:chatController animated:YES];
+        
+        
     }else {
         //  call
     }
@@ -102,17 +107,6 @@
     return SizeHeight(82);
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return section ? 0.001 :SizeHeight(10);
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *headerView = [[UIView alloc]initWithFrame:FRAME(0, 0, kScreenW, SizeHeight(105))];
-    headerView.backgroundColor = RGB(239, 240, 241);
-    
-    
-    return headerView;
-}
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -129,6 +123,21 @@
         _noUseTableView.backgroundColor = RGBColor(239, 240, 241);
         _noUseTableView.delegate = self;
         _noUseTableView.dataSource = self;
+        _noUseTableView.tableHeaderView = ({
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, SizeHeight(15))];
+            UILabel *lab = [[UILabel alloc] initWithFrame:FRAME(0, 0, kScreenW, SizeHeight(15))];
+            lab.backgroundColor = [UIColor clearColor];
+            lab.font = [UIFont systemFontOfSize:12];
+            lab.textAlignment = NSTextAlignmentCenter;
+            lab.textColor = UIColorFromHex(0x999999);
+            [view addSubview:lab];
+            view;
+        });
+        _noUseTableView.tableFooterView = ({
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW,  0)];
+            
+            view;
+        });
     }
     return _noUseTableView;
 }
