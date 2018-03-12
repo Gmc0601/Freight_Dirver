@@ -9,8 +9,23 @@
 
 #import "LoginViewController.h"
 #import "CCWebViewViewController.h"
+#import <MJExtension.h>
 #import "PerfectInfoViewController.h"
-@interface LoginViewController ()
+#import "ReviewViewController.h"
+#import "AddInfoModel.h"
+
+@implementation UserModel
+
+
+@end
+
+@implementation CompanyInfo
+
+
+@end
+@interface LoginViewController (){
+    NSString *loginUrl , *codeUrl;
+}
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneText;
 @property (weak, nonatomic) IBOutlet UITextField *codeText;
@@ -26,6 +41,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self initUrl];
     self.line.hidden= YES;
     self.rightBar.hidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -38,6 +55,19 @@
     [self.leftBar setImage:[UIImage imageNamed:@"nav_icon_fh"] forState:UIControlStateNormal];
     [self.phoneText addTarget:self action:@selector(textchange) forControlEvents:UIControlEventEditingChanged];
     [self.codeText addTarget:self action:@selector(textchange) forControlEvents:UIControlEventEditingChanged];
+    
+}
+
+- (void)initUrl {
+//     司机端
+    if (self.type == User_Driver) {
+        loginUrl = @"/Driver/Public/login";
+        codeUrl = @"/Driver/Public/sendCode";
+    }
+//    装箱工端
+    if (self.type == User_Worker) {
+        
+    }
     
 }
 
@@ -59,7 +89,6 @@
 
 
 - (IBAction)codeBtnClick:(id)sender {
-//    [ConfigModel mbProgressHUD:@"发送成功" andView:nil];
     
     if (self.phoneText.text.length != 11) {
         [ConfigModel mbProgressHUD:@"请输入11位有效手机号" andView:nil];
@@ -69,7 +98,7 @@
     NSDictionary *dic = @{
                           @"phone" : self.phoneText.text,
                           };
-    [HttpRequest postPath:@"Public/sendCode" params:dic resultBlock:^(id responseObject, NSError *error) {
+    [HttpRequest postPath:codeUrl params:dic resultBlock:^(id responseObject, NSError *error) {
         if([error isEqual:[NSNull null]] || error == nil){
             NSLog(@"success");
         }
@@ -127,11 +156,59 @@
     }
     
     
-    //  登录
-//    [self.navigationController pushViewController:[AddInfoViewController new] animated:YES];
-    PerfectInfoViewController *vc = [[PerfectInfoViewController alloc] init];
-    vc.type = AddOne;
-    [self.navigationController pushViewController:vc animated:YES];
+    NSDictionary *dic = @{
+                          @"phone" :self.phoneText.text,
+                          @"vcode" : self.codeText.text
+                          };
+    
+    [HttpRequest postPath:loginUrl params:dic resultBlock:^(id responseObject, NSError *error) {
+        
+        NSLog(@"%@", responseObject);
+        
+        if([error isEqual:[NSNull null]] || error == nil){
+            NSLog(@"success");
+        }
+        NSDictionary *datadic = responseObject;
+        if ([datadic[@"success"] intValue] == 1) {
+            
+            NSDictionary *data = datadic[@"data"];
+            
+            UserModel *user = [UserModel mj_objectWithKeyValues:data];
+            NSLog(@".........%@", user.car_no);
+            if (IsNULL(user.car_no) || [user.car_no isEqualToString:@""]) {
+                //   车牌号为空 去填写资料
+                PerfectInfoViewController *vc = [[PerfectInfoViewController alloc] init];
+                vc.type = AddOne;
+                AddInfoModel *model = [[AddInfoModel alloc] init];
+                model.driver_id =  user.driver_id;
+                model.fleet_id = user.fleet_id;
+                vc.model =  model;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else {
+                if ([user.status intValue] == 0) {
+                    //  待审核
+                    ReviewViewController *vc = [[ReviewViewController alloc] init];
+                    vc.type =  Reviewing;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }else if([user.status intValue] == 1){
+                    //  审核通过
+                    
+                    [ConfigModel saveString:user.driver_id forKey:DriverId];
+                    [ConfigModel saveBoolObject:YES forKey:IsLogin];
+                    
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }else {
+                    //  审核失败
+                    ReviewViewController *vc = [[ReviewViewController alloc] init];
+                    vc.type =  ReviewError;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+            }
+        }else {
+            NSString *str = datadic[@"msg"];
+            [ConfigModel mbProgressHUD:str andView:nil];
+        }
+    }];
 }
 
 - (IBAction)weichatClick:(id)sender {

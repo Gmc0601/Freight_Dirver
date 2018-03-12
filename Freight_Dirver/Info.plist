@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -28,16 +33,14 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-    
-    <key>NSCameraUsageDescription</key>
-    <string>需要获取您的相册用于“修改头像和发布任务”若不允许则无法设置头像和发布任务</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>需要获取您的位置用于“任务”若不允许则无法获取您周边的内容</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>App需要您的同意,才能访问麦克风</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>需要获取您的相机用于“修改头像和发布任务”若不允许则无法设置头像和发布任务</string>
-    
+	<key>NSCameraUsageDescription</key>
+	<string>需要获取您的相册用于“修改头像和发布任务”若不允许则无法设置头像和发布任务</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>需要获取您的位置用于“任务”若不允许则无法获取您周边的内容</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App需要您的同意,才能访问麦克风</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>需要获取您的相机用于“修改头像和发布任务”若不允许则无法设置头像和发布任务</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

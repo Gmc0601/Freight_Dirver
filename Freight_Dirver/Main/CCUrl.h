@@ -23,7 +23,7 @@
 
 #if HHTest
 
-#define    BaseApi       @"http://116.62.142.20/index.php?s="
+#define    BaseApi       @"http://139.224.70.219/jyb/index.php?s="
 
 #else
 

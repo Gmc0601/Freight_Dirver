@@ -46,10 +46,10 @@
     }
     
     if (self.type == AddOne) {
-        self.titleArr = @[@"所属运输公司",@"姓名",@"身份证号",@"紧急联络人",@"紧急联络人电话"];
+        self.titleArr = @[@"所属运输公司*",@"姓名*",@"身份证号",@"紧急联络人",@"紧急联络人电话"];
         self.pleaceArr = @[@"所属运输公司",@"请填写本人姓名(必填)",@"请填写本人真实身份证号码",@"请填写紧急联络人姓名",@"请填写紧急联络人电话"];
     }else if (self.type == AddTwo){
-        self.titleArr = @[@"车牌号", @"车型桥数", @"是否有白卡"];
+        self.titleArr = @[@"车牌号*", @"车型桥数*", @"是否有白卡*"];
         self.pleaceArr = @[@"请填写车牌号(必填)"];
     }else {
         [self.commitBtn setTitle:@"提交审核" forState:UIControlStateNormal];
@@ -98,7 +98,7 @@
                     self.model.sosconnact = text;
                     break;
                 case 4:
-                    self.model.sosconnact = text;
+                    self.model.sosphone = text;
                     break;
                     
                 default:
@@ -108,12 +108,22 @@
             self.model.carNum = text;
         }
     };
+    
+    if (indexPath.row < 2 && self.type == AddOne ) {
+        [self fuwenbenLabel:cell.titleLab FontNumber:14 AndRange:[self allStr:self.titleArr[indexPath.row] with:@"*"] AndColor:[UIColor redColor]];
+    }
+    
+    if (indexPath.row < 3 && self.type == AddTwo) {
+        [self fuwenbenLabel:cell.titleLab FontNumber:14 AndRange:[self allStr:self.titleArr[indexPath.row] with:@"*"] AndColor:[UIColor redColor]];
+    }
+    
     if (self.type == AddOne) {
         if (indexPath.row == 0) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         cell.text.placeholder = self.pleaceArr[indexPath.row];
     }else if (self.type == AddTwo) {
+        num = 4;
         if (indexPath.row == 0) {
             cell.text.placeholder = self.pleaceArr[indexPath.row];
         }else if (indexPath.row == 1){
@@ -314,30 +324,87 @@
             [ConfigModel mbProgressHUD:@"请输入车牌号" andView:nil];
             return;
         }
-        
+        self.model.carSoure = [NSString stringWithFormat:@"%d", num];
         pre.type = AddThree;
         [self.navigationController pushViewController:pre animated:YES];
     }else {
+//  上传信息
+        [ConfigModel showHud:self];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:self.model.driver_id forKey:@"driver_id"];
+        [dic setValue:self.model.fleet_id forKey:@"fleet_id"];
+        [dic setValue:self.model.userName forKey:@"driver_name"];
+        [dic setValue:self.model.carNum forKey:@"car_no"];
+        [dic setValue:self.model.carSoure forKey:@"car_bridge"];
+        
+        if (self.model.userId) {
+            [dic setValue:self.model.userId forKey:@"driver_identity"];
+        }
+        
+        if (self.model.sosconnact) {
+            [dic setValue:self.model.sosconnact forKey:@"driver_linkman"];
+        }
+        
+        if (self.model.sosphone) {
+            [dic setValue:self.model.sosphone forKey:@"driver_linkman_phone"];
+        }
+        
+        if (self.model.alwaysLine) {
+            [dic setValue:self.model.alwaysLine forKey:@"route_line"];
+        }
+        
         
         for (int i = 0; i < self.addarr.count; i++) {
             NSString *str = self.addarr[i];
-            if ([str intValue] == 0) {
+            if ([str intValue] == 1) {
                 switch (i) {
-                    case 0:
-                        [ConfigModel mbProgressHUD:@"请上传身份证正面照" andView:nil];
+                    case 0:{
+                        NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:0];
+                        AddPhotoCollectionViewCell * cell = (AddPhotoCollectionViewCell *)[self.footCollcetion cellForItemAtIndexPath:index];
+                        UIImage *image = cell.image.image;
+                        NSData *imgData = UIImageJPEGRepresentation(image,0.5);
+                        NSString *imgStr = [GTMBase64 stringByEncodingData:imgData];
+                        [dic setValue:imgStr forKey:@"identity_front"];
                         break;
+                    }
+                        
                     case 1:
-                        [ConfigModel mbProgressHUD:@"请上传身份证反面照" andView:nil];
+                    {
+                        NSIndexPath *index = [NSIndexPath indexPathForRow:1 inSection:0];
+                        AddPhotoCollectionViewCell * cell = (AddPhotoCollectionViewCell *)[self.footCollcetion cellForItemAtIndexPath:index];
+                        UIImage *image = cell.image.image;
+                        NSData *imgData = UIImageJPEGRepresentation(image,0.5);
+                        NSString *imgStr = [GTMBase64 stringByEncodingData:imgData];
+                        [dic setValue:imgStr forKey:@"identity_back"];
                         break;
-                    case 2:
-                        [ConfigModel mbProgressHUD:@"请上传行驶证正面照" andView:nil];
+                    }
+                    case 2:{
+                        NSIndexPath *index = [NSIndexPath indexPathForRow:2 inSection:0];
+                        AddPhotoCollectionViewCell * cell = (AddPhotoCollectionViewCell *)[self.footCollcetion cellForItemAtIndexPath:index];
+                        UIImage *image = cell.image.image;
+                        NSData *imgData = UIImageJPEGRepresentation(image,0.5);
+                        NSString *imgStr = [GTMBase64 stringByEncodingData:imgData];
+                        [dic setValue:imgStr forKey:@"driving_card"];
                         break;
-                    case 3:
-                        [ConfigModel mbProgressHUD:@"请上传行驶证正面照" andView:nil];
+                    }
+                    case 3:{
+                        NSIndexPath *index = [NSIndexPath indexPathForRow:3 inSection:0];
+                        AddPhotoCollectionViewCell * cell = (AddPhotoCollectionViewCell *)[self.footCollcetion cellForItemAtIndexPath:index];
+                        UIImage *image = cell.image.image;
+                        NSData *imgData = UIImageJPEGRepresentation(image,0.5);
+                        NSString *imgStr = [GTMBase64 stringByEncodingData:imgData];
+                        [dic setValue:imgStr forKey:@"driver_card"];
                         break;
-                    case 4:
-                        [ConfigModel mbProgressHUD:@"请上传白卡照" andView:nil];
+                    }
+                    case 4:{
+                        NSIndexPath *index = [NSIndexPath indexPathForRow:4 inSection:0];
+                        AddPhotoCollectionViewCell * cell = (AddPhotoCollectionViewCell *)[self.footCollcetion cellForItemAtIndexPath:index];
+                        UIImage *image = cell.image.image;
+                        NSData *imgData = UIImageJPEGRepresentation(image,0.5);
+                        NSString *imgStr = [GTMBase64 stringByEncodingData:imgData];
+                        [dic setValue:imgStr forKey:@"white_card"];
                         break;
+                    }
                         
                     default:
                         break;
@@ -346,25 +413,26 @@
             }
             
         }
-        NSString *arrimg ;
-        for (int i = 0 ; i < 5; i++) {
-            NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
-            AddPhotoCollectionViewCell * cell = (AddPhotoCollectionViewCell *)[self.footCollcetion cellForItemAtIndexPath:index];
-            
-            UIImage *image = cell.image.image;
-            NSData *imgData = UIImageJPEGRepresentation(image,0.5);
-            NSString *imgStr = [GTMBase64 stringByEncodingData:imgData];
-            if (i == 0) {
-                arrimg = imgStr;
-            }else {
-                NSString *str = [NSString stringWithFormat:@",%@", imgStr];
-                arrimg = [arrimg stringByAppendingString:str];
+        WeakSelf(weak);
+        [HttpRequest postPath:@"/Driver/Driver/updateDriverInfo" params:dic resultBlock:^(id responseObject, NSError *error) {
+            [ConfigModel hideHud:weak];
+            if([error isEqual:[NSNull null]] || error == nil){
+                NSLog(@"success");
             }
-        }
-        self.model.imageStr = arrimg;
-
-        ReviewViewController *vc = [[ReviewViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+            NSDictionary *datadic = responseObject;
+            if ([datadic[@"success"] intValue] == 1) {
+                [ConfigModel mbProgressHUD:@"上传成功" andView:nil];
+                ReviewViewController *vc = [[ReviewViewController alloc] init];
+                vc.type = Reviewing;
+                [weak.navigationController pushViewController:vc animated:YES];
+            }else {
+                NSString *str = datadic[@"msg"];
+                [ConfigModel mbProgressHUD:str andView:nil];
+            }
+        }];
+        
+        
+  
     }
 }
 
@@ -444,17 +512,39 @@
 
 
 - (void)click:(UIButton *)sender {
-    if (!sender.selected) {
-//        sender.selected = !sender.selected;
-//        if (sender.tag == 100) {
-//            self.womam.selected = NO;
-//            isman = YES;
-//        }else {
-//            self.man.selected = NO;
-//            isman = NO;
-//        }
-    }
     
+        if (sender == self.btn1) {
+            sender.selected = YES;
+            self.btn2.selected = NO;
+            self.btn3.selected =  NO;
+            num = 4;
+        }else if (sender == self.btn2) {
+            sender.selected = YES;
+            self.btn1.selected = NO;
+            self.btn3.selected = NO;
+            num = 5;
+        }else if ( sender == self.btn3) {
+            sender.selected = YES;
+            self.btn1.selected = NO;
+            self.btn2.selected = NO;
+            num = 6;
+        }
+}
+
+- (NSRange)allStr:(NSString *)allstr with:(NSString *)str {
+    NSString *tmpStr = allstr;
+    NSRange range;
+    range = [tmpStr rangeOfString:str];
+    return range;
+}
+-(void)fuwenbenLabel:(UILabel *)labell FontNumber:(CGFloat)font AndRange:(NSRange)range AndColor:(UIColor *)vaColor
+{
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:labell.text];
+    //设置字号
+    //[str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:range];
+    //设置文字颜色
+    [str addAttribute:NSForegroundColorAttributeName value:vaColor range:range];
+    labell.attributedText = str;
 }
 
 - (NSMutableArray *)addarr {

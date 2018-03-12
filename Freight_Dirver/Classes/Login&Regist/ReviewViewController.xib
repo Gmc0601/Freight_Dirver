@@ -11,6 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReviewViewController">
             <connections>
+                <outlet property="contentLab" destination="mBX-fE-j9o" id="e7Z-Tc-95A"/>
+                <outlet property="icon" destination="Y43-Ky-iYw" id="3Qe-Dg-etp"/>
+                <outlet property="resetBtn" destination="aq4-Ml-6M4" id="3TH-aw-20C"/>
+                <outlet property="subTitleLab" destination="9wz-29-0bm" id="kxF-W5-Vh6"/>
+                <outlet property="titleLav" destination="6Un-GW-uU5" id="5YA-vh-ive"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -81,7 +86,7 @@
                 <constraint firstItem="mBX-fE-j9o" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="d61-xS-3SL"/>
                 <constraint firstItem="Y43-Ky-iYw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="148" id="msV-0o-uyU"/>
             </constraints>
-            <point key="canvasLocation" x="25.5" y="52.5"/>
+            <point key="canvasLocation" x="-434" y="-12"/>
         </view>
     </objects>
     <resources>

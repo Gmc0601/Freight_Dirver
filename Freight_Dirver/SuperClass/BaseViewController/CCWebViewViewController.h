@@ -29,4 +29,6 @@
 
 @property (nonatomic, copy) NSString *titlestr;
 
+@property (nonatomic, copy) NSString *content;
+
 @end

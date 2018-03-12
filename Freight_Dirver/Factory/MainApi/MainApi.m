@@ -56,35 +56,35 @@ static MainApi *request = nil;
                     parameters:(id)parameters
                    resultBlock:(ResultBlock)resultBlock {
     
-
+    
     NSMutableDictionary *mutArr = [NSMutableDictionary dictionaryWithDictionary:parameters];
-        [mutArr addEntriesFromDictionary:@{@"apiCode":URLString}];
-        if ([ConfigModel getBoolObjectforKey:IsLogin]) {
-//    if (YES) {
-//            NSString *usertoken = [ConfigModel getStringforKey:UserToken];
-//            [mutArr addEntriesFromDictionary:@{@"userToken":@"bfd3673710371d07160258a691e09115"}];
-
+    [mutArr addEntriesFromDictionary:@{@"apiCode":URLString}];
+    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+        //    if (YES) {
+        NSString *usertoken = [ConfigModel getStringforKey:DriverId];
+        [mutArr addEntriesFromDictionary:@{@"driver_id":usertoken}];
+        
 #if UDID
-            KeychainUUID *keychain = [[KeychainUUID alloc] init];
-            id data = [keychain readUDID];
-            NSString *udidStr = data;
-            [mutArr addEntriesFromDictionary:@{@"device_number":udidStr}];
+        KeychainUUID *keychain = [[KeychainUUID alloc] init];
+        id data = [keychain readUDID];
+        NSString *udidStr = data;
+        [mutArr addEntriesFromDictionary:@{@"device_number":udidStr}];
 #else
 #endif
-
-        }
+        
+    }
     NSDictionary *jsStr = [DicToString parametersString:mutArr];
     
     
     if ([method isEqualToString:@"POST"]) {
         
-        NSLog(@"%@==============",jsStr);
+        //        NSLog(@"%@==============",jsStr);
         URLString = [NSString stringWithFormat:@"%@%@",BaseApi,URLString];
-
-        [self.manager POST:URLString parameters:jsStr progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        [self.manager POST:URLString parameters:mutArr progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"Response Object:\n%@", responseObject);
+            //            NSLog(@"Response Object:\n%@", responseObject);
             if (resultBlock) {
                 NSDictionary *datadic = responseObject;
                 
@@ -95,9 +95,6 @@ static MainApi *request = nil;
                         
                     }
                 }
-                
-                
-                    
                 
                 resultBlock(responseObject, nil);
             }
@@ -131,3 +128,4 @@ static MainApi *request = nil;
 
 
 @end
+

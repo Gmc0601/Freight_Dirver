@@ -13,9 +13,13 @@
 #import <YYKit.h>
 #import "HeadInfoView.h"
 #import "CCWebViewViewController.h"
+#import <MJExtension.h>
+#import "LoginViewController.h"
+#import <UIImageView+WebCache.h>
 
 @interface MeViewController ()<UITableViewDelegate, UITableViewDataSource>{
     NSString *phone;
+    NSString *UserAgreeContent;
 }
 @property (nonatomic, retain) UITableView *noUseTableView;
 @property (nonatomic, retain) NSArray *titleArr, *picArr;
@@ -43,13 +47,72 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-//    ChoseMembersViewController *vc = [[ChoseMembersViewController alloc] init];
-//    vc.backBlock = ^{
-//        self.tabBarController.selectedIndex = 0;
-//    };
-//
-//    UINavigationController *na = [[UINavigationController alloc] initWithRootViewController:vc];
-//    [self presentViewController:na animated:YES completion:nil];
+    if (![ConfigModel getBoolObjectforKey:IsLogin]) {
+        ChoseMembersViewController *vc = [[ChoseMembersViewController alloc] init];
+        vc.backBlock = ^{
+            self.tabBarController.selectedIndex = 0;
+        };
+        
+        UINavigationController *na = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:na animated:YES completion:nil];
+        return;
+    }
+    [self getData];
+}
+
+- (void)getData {
+    
+    //     客服电话
+    [HttpRequest postPath:@"/Home/Public/kfdh" params:nil resultBlock:^(id responseObject, NSError *error) {
+        if([error isEqual:[NSNull null]] || error == nil){
+            NSLog(@"success");
+        }
+        NSDictionary *datadic = responseObject;
+        if ([datadic[@"success"] intValue] == 1) {
+            NSString *data = datadic[@"data"];
+            phone = data;
+        }else {
+            NSString *str = datadic[@"msg"];
+            [ConfigModel mbProgressHUD:str andView:nil];
+        }
+    }];
+    //     用户注册协议
+    [HttpRequest postPath:@"/Home/Public/yhxy" params:nil resultBlock:^(id responseObject, NSError *error) {
+        
+        if([error isEqual:[NSNull null]] || error == nil){
+            NSLog(@"success");
+        }
+        NSDictionary *datadic = responseObject;
+        if ([datadic[@"success"] intValue] == 1) {
+            
+            NSString *data = datadic[@"data"];
+            UserAgreeContent = data;
+            
+        }else {
+            NSString *str = datadic[@"msg"];
+            [ConfigModel mbProgressHUD:str andView:nil];
+        }
+    }];
+    
+    WeakSelf(weak);
+    [HttpRequest postPath:@"/Driver/Driver/updateDriverInfo" params:nil resultBlock:^(id responseObject, NSError *error) {
+        if([error isEqual:[NSNull null]] || error == nil){
+            NSLog(@"success");
+        }
+        NSDictionary *datadic = responseObject;
+        if ([datadic[@"success"] intValue] == 1) {
+            NSDictionary *data = datadic[@"data"];
+             UserModel *user = [UserModel mj_objectWithKeyValues:data];
+            
+            [weak.headImage sd_setImageWithURL:[NSURL URLWithString:user.driver_name] placeholderImage:[UIImage imageNamed:@"wd_icon_140 (1)"]];
+            weak.nickNamelab.text =  user.driver_name;
+            
+            
+        }else {
+            NSString *str = datadic[@"msg"];
+            [ConfigModel mbProgressHUD:str andView:nil];
+        }
+    }];
     
 }
 
@@ -75,7 +138,7 @@
     cell.textLabel.text = self.titleArr[indexPath.row];
     
     if (indexPath.row == 1) {
-        cell.detailTextLabel.text = @"0571—110110110";
+        cell.detailTextLabel.text = phone;
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -99,7 +162,7 @@
     if (indexPath.row == 2) {
         CCWebViewViewController *vc = [[CCWebViewViewController alloc] init];
         vc.titlestr = @"用户协议";
-        vc.UrlStr = @"http://116.62.142.20/Public/zcxy";
+        vc.content = UserAgreeContent;
         [self.navigationController pushViewController:vc animated:YES];
 
     }

@@ -8,6 +8,13 @@
 
 #import "CCBaseViewController.h"
 
+typedef enum ReviewType {
+    Reviewing = 0 ,// 审核中
+    ReviewError = 1 // 审核失败
+}ReviewType;
+
 @interface ReviewViewController : CCBaseViewController
+
+@property (nonatomic , assign) ReviewType type;
 
 @end

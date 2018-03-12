@@ -54,11 +54,16 @@
 
 - (void)loadWebView {
     
-    NSLog(@">>>>%@", self.UrlStr);
+    if (self.content) {
+      [self.webView loadHTMLString:self.content baseURL:nil];
+    }else {
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.UrlStr]];
+        [self.webView loadRequest:request];
+        [self.webView reload];
+    }
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.UrlStr]];
-    [self.webView loadRequest:request];
-    [self.webView reload];
+    
+   
 }
 
 

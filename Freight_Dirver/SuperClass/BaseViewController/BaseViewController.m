@@ -26,9 +26,7 @@
     
     if (iOS7) {
         self.automaticallyAdjustsScrollViewInsets = NO;
-        
     }
-
     self.view.backgroundColor = [UIColor whiteColor];
     
     //导航栏 返回 按钮

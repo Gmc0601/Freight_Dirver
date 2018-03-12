@@ -23,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
+    
     [self.leftBar setImage:[UIImage imageNamed:@"dl_icon_sc"] forState:UIControlStateNormal];
     self.line.hidden = YES;
     self.rightBar.hidden = YES;
@@ -47,14 +49,15 @@
 
 
 - (IBAction)dirverView:(id)sender {
-    [self jump];
+    [self jump:User_Driver];
 }
 - (IBAction)connactClick:(id)sender {
-    [self jump];
+    [self jump:User_Worker];
 }
-
-- (void)jump {
-    [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+- (void)jump:(LoginUserType *)type {
+    LoginViewController *vc = [[LoginViewController alloc] init];
+    vc.type = type;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

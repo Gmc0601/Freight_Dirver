@@ -23,7 +23,6 @@
         
     }
     [self registerRemoteNotification];
-//    [self jpush:launchOptions];
     
     //添加监听在线推送消息
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
