@@ -105,8 +105,9 @@
 
 #define UserToken @"userToken"
 
-
 #define DriverId @"DriverId"
+
+#define FleetId @"fleetId"  //  车队 Id
 
 #endif
 

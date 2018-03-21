@@ -187,6 +187,7 @@
 		42D361CB20171674004A16CB /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D361B520171673004A16CB /* MJRefreshAutoFooter.m */; };
 		42D361CC20171674004A16CB /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D361B720171673004A16CB /* MJRefreshComponent.m */; };
 		42D361CF201717C2004A16CB /* AppDelegate+EMOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D361CE201717C2004A16CB /* AppDelegate+EMOptions.m */; };
+		42E6174F2058B98200B01D6D /* ValuePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E6174D2058B98200B01D6D /* ValuePickerView.m */; };
 		50F8DD520205113BF895A5AD /* libPods-Freight_Dirver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACE7D39BF32338CD27E5381 /* libPods-Freight_Dirver.a */; };
 /* End PBXBuildFile section */
 
@@ -560,6 +561,8 @@
 		42D361B920171673004A16CB /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
 		42D361CD201717C2004A16CB /* AppDelegate+EMOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+EMOptions.h"; sourceTree = "<group>"; };
 		42D361CE201717C2004A16CB /* AppDelegate+EMOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+EMOptions.m"; sourceTree = "<group>"; };
+		42E6174D2058B98200B01D6D /* ValuePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValuePickerView.m; sourceTree = "<group>"; };
+		42E6174E2058B98200B01D6D /* ValuePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValuePickerView.h; sourceTree = "<group>"; };
 		47B33472A29F780D401EA8AD /* Pods-Freight_Dirver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freight_Dirver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Freight_Dirver/Pods-Freight_Dirver.debug.xcconfig"; sourceTree = "<group>"; };
 		7FE7F51ACDFC22A381A54FE2 /* Pods-Freight_Dirver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freight_Dirver.release.xcconfig"; path = "Pods/Target Support Files/Pods-Freight_Dirver/Pods-Freight_Dirver.release.xcconfig"; sourceTree = "<group>"; };
 		AACE7D39BF32338CD27E5381 /* libPods-Freight_Dirver.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Freight_Dirver.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -771,6 +774,7 @@
 		42400D7D200C4C9600B6C87E /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				42E6174C2058B98200B01D6D /* Pickers */,
 				42D35FEE201714B0004A16CB /* EaseUI */,
 				427C6864200C5C64006A9EBB /* MJRefresh */,
 				42400D80200C4D4D00B6C87E /* Base64 */,
@@ -1533,6 +1537,15 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		42E6174C2058B98200B01D6D /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				42E6174E2058B98200B01D6D /* ValuePickerView.h */,
+				42E6174D2058B98200B01D6D /* ValuePickerView.m */,
+			);
+			path = Pickers;
+			sourceTree = "<group>";
+		};
 		4D5B330693C3DB779E44A5B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1798,6 +1811,7 @@
 				427C69A8200DA755006A9EBB /* ChoseMembersViewController.m in Sources */,
 				42D3614F201714B0004A16CB /* PSTCollectionViewCell.m in Sources */,
 				42D361BB20171674004A16CB /* MJRefreshConst.m in Sources */,
+				42E6174F2058B98200B01D6D /* ValuePickerView.m in Sources */,
 				42D36144201714B0004A16CB /* MWPhotoBrowser.m in Sources */,
 				42D3617A201714B0004A16CB /* EaseImageView.m in Sources */,
 				427C69B9200F2019006A9EBB /* LoginViewController.m in Sources */,

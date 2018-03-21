@@ -10,4 +10,6 @@
 
 @interface UserInfoViewController : CCBaseViewController
 
+@property (nonatomic , copy) NSString *headImageStr, *nickNameStr;
+
 @end

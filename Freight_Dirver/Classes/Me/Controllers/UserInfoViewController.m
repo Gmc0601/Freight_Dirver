@@ -10,7 +10,9 @@
 #import <UIImageView+WebCache.h>
 #import "GTMBase64.h"
 
-@interface UserInfoViewController ()<UITableViewDelegate, UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface UserInfoViewController ()<UITableViewDelegate, UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
+    BOOL photo;
+}
 
 @property (nonatomic,retain) UITableView *noUseTableView;
 
@@ -24,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    photo = NO;
     [self resetFather];
     [self.view addSubview:self.noUseTableView];
     UIButton *logoutBtn =  [[UIButton alloc] initWithFrame:FRAME(0, kScreenH - SizeHeight(60), kScreenW, SizeHeight(50))];
@@ -70,17 +73,32 @@
 - (void)more:(UIButton *)sender {
     
     [ConfigModel showHud:self];
+    
+    if (!photo && [self.nickNameStr isEqualToString:self.nickName.text]) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
+    [ConfigModel showHud:self];
     NSData *imgData = UIImageJPEGRepresentation(self.headImage.image,0.5);
     NSString *imgStr = [GTMBase64 stringByEncodingData:imgData];
     if (!imgStr) {
         imgStr = nil;
     }
-    NSDictionary *dic = @{
-                          @"face" : imgStr,
-                          @"nickname" : self.nickName.text
-                          };
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    if (photo) {
+        [dic setValue:imgStr forKey:@"driver_face"];
+    }
+    
+    if (![self.nickNameStr isEqualToString:self.nickName.text]) {
+        [dic setValue:self.nickName.text forKey:@"driver_name"];
+    }
+    
+    
+    
     WeakSelf(weak);
-    [HttpRequest postPath:@"Users/setUserInfo" params:dic resultBlock:^(id responseObject, NSError *error) {
+    [HttpRequest postPath:@"/Driver/Driver/updateDriverFaceAndName" params:dic resultBlock:^(id responseObject, NSError *error) {
         if([error isEqual:[NSNull null]] || error == nil){
             NSLog(@"success");
         }
@@ -171,6 +189,7 @@
 {
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     self.headImage.image = editedImage;
+    photo = YES;
     [self.noUseTableView reloadData];
     [picker dismissViewControllerAnimated:YES completion:^{
         
@@ -215,7 +234,7 @@
         _headImage.layer.masksToBounds =  YES;
         _headImage.layer.cornerRadius = SizeWidth(20);
         _headImage.image = [UIImage imageNamed:@"wd_icon_140 (1)"];
-//        [_headImage sd_setImageWithURL:[NSURL URLWithString:[ConfigModel getStringforKey:User_headimage]] placeholderImage:[UIImage imageNamed:@"-s-xq_bg_tx"]];
+        [_headImage sd_setImageWithURL:[NSURL URLWithString:self.headImageStr] placeholderImage:[UIImage imageNamed:@"-s-xq_bg_tx"]];
     }
     return _headImage;
 }
@@ -225,7 +244,7 @@
         _nickName = [[UITextField alloc] initWithFrame:FRAME(kScreenW/2, SizeHeight(15), kScreenW/2 - SizeWidth(30), SizeHeight(25))];
         _nickName.backgroundColor = [UIColor clearColor];
         _nickName.text = @"cc";
-//        _nickName.text = [ConfigModel getStringforKey:User_nickname];
+        _nickName.text = self.nickNameStr;
         _nickName.placeholder = @"请输入昵称";
         _nickName.textColor = UIColorFromHex(0x666666);
         _nickName.textAlignment = NSTextAlignmentRight;

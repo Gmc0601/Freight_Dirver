@@ -56,7 +56,7 @@
 
 - (NODataView *)nodataView {
     if (!_nodataView) {
-        _nodataView = [[NODataView alloc] initWithFrame:FRAME(kScreenW/2 - SizeWidth(100), kScreenH/2, SizeWidth(200), SizeHeight(110)) withimage:@"icon_shz4" andtitle:@"信息审核中，请耐心等待"];
+        _nodataView = [[NODataView alloc] initWithFrame:FRAME(kScreenW/2 - SizeWidth(100), kScreenH/2, SizeWidth(200), SizeHeight(110)) withimage:@"icon_shz" andtitle:@"信息审核中，请耐心等待"];
         _nodataView.clickBlock = ^{
         };
     }

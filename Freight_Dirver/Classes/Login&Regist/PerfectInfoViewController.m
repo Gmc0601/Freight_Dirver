@@ -10,12 +10,19 @@
 #import "AddInfoTableViewCell.h"
 #import "ReviewViewController.h"
 #import <YYKit.h>
+#import <MJExtension.h>
 #import "AddPhotoCollectionViewCell.h"
 #import "GTMBase64.h"
+#import "ValuePickerView.h"
+
+@implementation Fleetmodel
+@end
 
 @interface PerfectInfoViewController ()<UITableViewDelegate,  UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>{
     int num;
 }
+
+@property (nonatomic, strong) ValuePickerView *pickerView;
 
 @property (nonatomic, retain) UIButton *commitBtn;
 
@@ -31,7 +38,8 @@
 
 @property (nonatomic, retain) NSIndexPath *index;
 
-@property (nonatomic,retain) NSMutableArray *addarr;
+@property (nonatomic,retain) NSMutableArray *addarr, *fleedModelArr, *fleedName;
+
 
 @end
 
@@ -40,7 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self resetFather];
-    
+    [self getData];
     if (!self.model) {
         self.model = [[AddInfoModel alloc] init];
     }
@@ -57,6 +65,27 @@
     [self.view addSubview:self.noUseTableView];
     [self.view addSubview:self.commitBtn];
     
+}
+//  获取车队信息
+- (void)getData {
+    [HttpRequest getPath:@"/Driver/Public/fleetList" params:nil resultBlock:^(id responseObject, NSError *error) {
+        if([error isEqual:[NSNull null]] || error == nil){
+            NSLog(@"success");
+        }
+        NSDictionary *datadic = responseObject;
+        if ([datadic[@"success"] intValue] == 1) {
+            
+            NSArray *data = datadic[@"data"];
+            for (NSDictionary *dic in data) {
+                NSString *name = dic[@"fleet_name"];
+                [self.fleedName addObject:name];
+            }
+            self.fleedModelArr = [Fleetmodel mj_objectArrayWithKeyValuesArray:data];
+        }else {
+            NSString *str = datadic[@"msg"];
+            [ConfigModel mbProgressHUD:str andView:nil];
+        }
+    }];
 }
 
 - (void)resetFather {
@@ -80,6 +109,9 @@
     AddInfoTableViewCell *cell = [self.noUseTableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
         cell = [[AddInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+    }
+    if (self.type == AddOne && indexPath.row == 0) {
+        cell.text.userInteractionEnabled =  NO;
     }
     cell.title = self.titleArr[indexPath.row];
     cell.textBlock = ^(NSIndexPath *index, NSString *text) {
@@ -154,6 +186,24 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    AddInfoTableViewCell *cell = [self.noUseTableView cellForRowAtIndexPath:indexPath];
+    if (indexPath.row == 0 && self.type == AddOne) {
+        //   选择车队
+        self.pickerView.dataSource = self.fleedName;
+        self.pickerView.pickerTitle = @"请选择车队";
+        WeakSelf(weak);
+        self.pickerView.valueDidSelect = ^(NSString *value){
+            //
+            cell.text.text = value;
+            for (int i = 0; i < self.fleedModelArr.count; i++) {
+                Fleetmodel *model = weak.fleedModelArr[i];
+                if ([model.fleet_name isEqualToString:value]) {
+                    weak.model.companyName = model.fleet_id;
+                }
+            }
+        };
+        [self.pickerView show];
+    }
     
 }
 - (UITableView *)noUseTableView {
@@ -332,7 +382,7 @@
         [ConfigModel showHud:self];
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setValue:self.model.driver_id forKey:@"driver_id"];
-        [dic setValue:self.model.fleet_id forKey:@"fleet_id"];
+        [dic setValue:self.model.companyName forKey:@"fleet_id"];
         [dic setValue:self.model.userName forKey:@"driver_name"];
         [dic setValue:self.model.carNum forKey:@"car_no"];
         [dic setValue:self.model.carSoure forKey:@"car_bridge"];
@@ -555,6 +605,26 @@
     return _addarr;
 }
 
+- (ValuePickerView *)pickerView {
+    if (!_pickerView) {
+        _pickerView = [[ValuePickerView alloc] init];
+    }
+    return _pickerView;
+}
 
+
+- (NSMutableArray *)fleedModelArr {
+    if (!_fleedModelArr) {
+        _fleedModelArr = [NSMutableArray new];
+    }
+    return _fleedModelArr;
+}
+
+- (NSMutableArray *)fleedName {
+    if (!_fleedName) {
+        _fleedName = [NSMutableArray new];
+    }
+    return _fleedName;
+}
 
 @end

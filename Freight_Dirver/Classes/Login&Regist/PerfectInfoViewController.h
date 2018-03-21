@@ -9,6 +9,10 @@
 #import "CCBaseViewController.h"
 #import "AddInfoModel.h"
 
+@interface Fleetmodel :NSObject
+@property (nonatomic, copy) NSString *fleet_id, *fleet_name;
+@end
+
 typedef NS_ENUM (NSInteger, AddInfoType)   {
     
     AddOne = 0,

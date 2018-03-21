@@ -20,11 +20,14 @@
 @interface MeViewController ()<UITableViewDelegate, UITableViewDataSource>{
     NSString *phone;
     NSString *UserAgreeContent;
+    NSString *headimageStr, *nickNameStr;
+    BOOL JIYunBang;
 }
 @property (nonatomic, retain) UITableView *noUseTableView;
 @property (nonatomic, retain) NSArray *titleArr, *picArr;
 @property (nonatomic, retain) UIImageView *headImage;
 @property (nonatomic, retain) UILabel *nickNamelab, *scorelab, *logolab;
+@property (nonatomic, strong) HeadInfoView *info1, *info2;
 
 @end
 
@@ -32,6 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    JIYunBang = NO;
     [self.view addSubview:self.noUseTableView];
     self.navigationView.hidden = YES;
     self.extendedLayoutIncludesOpaqueBars = YES;
@@ -94,8 +98,10 @@
         }
     }];
     
-    WeakSelf(weak);
-    [HttpRequest postPath:@"/Driver/Driver/updateDriverInfo" params:nil resultBlock:^(id responseObject, NSError *error) {
+    @weakify(self)
+    [HttpRequest postPath:@"/Driver/Driver/driverInfo" params:nil resultBlock:^(id responseObject, NSError *error) {
+        NSLog(@"%@", responseObject);
+        @strongify(self)
         if([error isEqual:[NSNull null]] || error == nil){
             NSLog(@"success");
         }
@@ -104,8 +110,23 @@
             NSDictionary *data = datadic[@"data"];
              UserModel *user = [UserModel mj_objectWithKeyValues:data];
             
-            [weak.headImage sd_setImageWithURL:[NSURL URLWithString:user.driver_name] placeholderImage:[UIImage imageNamed:@"wd_icon_140 (1)"]];
-            weak.nickNamelab.text =  user.driver_name;
+            [self.headImage sd_setImageWithURL:[NSURL URLWithString:user.driver_face] placeholderImage:[UIImage imageNamed:@"wd_icon_140 (1)"]];
+            self.nickNamelab.text =  user.driver_name;
+            self.logolab.text = user.fleet_name;
+            self.scorelab.text = [NSString stringWithFormat:@"%@分", user.evel_score];
+            if ([user.fleet_name isEqualToString:@"集运邦"]) {
+                self.titleArr = @[@"收支明细", @"平台客服", @"用户协议"];
+                self.picArr= @[@"wd_icon_szmx",@"wd_icon_ptkf", @"wd_icon_yhxy"];
+                [self.noUseTableView reloadData];
+                JIYunBang = YES;
+            }
+            [ConfigModel saveString:user.fleet_id forKey:FleetId];
+            headimageStr = user.driver_face;
+            nickNameStr = user.driver_name;
+            self.info1.infoLab1.text = user.order_count;
+            self.info1.infolab2.text = user.total_price;
+            self.info2.infoLab1.text = user.month_order;
+            self.info2.infolab2.text = user.month_price;
             
             
         }else {
@@ -121,7 +142,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.titleArr.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -153,19 +174,39 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  
     if (indexPath.row == 0) {
-        [self.navigationController pushViewController:[TrasformViewController new] animated:YES];
+        if (JIYunBang) {
+            //   收支明细
+            
+        }else {
+            [self call];
+        }
+        
     }
-    if (indexPath.row == 1) {
-        NSMutableString* str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",phone];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];    }
-    if (indexPath.row == 2) {
-        CCWebViewViewController *vc = [[CCWebViewViewController alloc] init];
-        vc.titlestr = @"用户协议";
-        vc.content = UserAgreeContent;
-        [self.navigationController pushViewController:vc animated:YES];
+   else if (indexPath.row == 1) {
+        if (JIYunBang) {
+            [self call];
+        }else {
+            [self useragreement];
+        }
+        
+    }else {
+        [self useragreement];
+    }
 
-    }
+}
+
+- (void)call {
+    NSMutableString* str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",phone];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
+
+- (void)useragreement {
+    CCWebViewViewController *vc = [[CCWebViewViewController alloc] init];
+    vc.titlestr = @"用户协议";
+    vc.content = UserAgreeContent;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (UITableView *)noUseTableView {
     if (!_noUseTableView) {
@@ -234,16 +275,20 @@
 
     
     HeadInfoView *info1 = [[HeadInfoView alloc] initWithFrame:FRAME(0, SizeHeight(215), kScreenW, SizeHeight(55)) title1:@"累计接单(单)" title2:@"累计收入(元)" color:UIColorFromHex(0x1C9BFA)];
-    
+    self.info1 = info1;
     [view addSubview:info1];
     
     HeadInfoView *info2 = [[HeadInfoView alloc] initWithFrame:FRAME(0, SizeHeight(215 + 55), kScreenW, SizeHeight(55)) title1:@"本月接单(单)" title2:@"本月收入(元)" color:UIColorFromHex(0x3CA9FB)];
+    self.info2 = info2;
     [view addSubview:info2];
     
 }
 
 - (void)userInfoClick {
-    [self.navigationController pushViewController:[UserInfoViewController new] animated:YES];
+    UserInfoViewController *vc = [[UserInfoViewController alloc] init];
+    vc.headImageStr = headimageStr;
+    vc.nickNameStr = nickNameStr;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)logout {
@@ -263,13 +308,13 @@
 
 - (NSArray *)titleArr {
     if (!_titleArr) {
-        _titleArr = @[@"收支明细", @"平台客服", @"用户协议"];
+        _titleArr = @[ @"平台客服", @"用户协议"];
     }
     return _titleArr;
 }
 - (NSArray *)picArr {
     if (!_picArr) {
-        _picArr = @[@"wd_icon_szmx", @"wd_icon_ptkf", @"wd_icon_yhxy"];
+        _picArr = @[ @"wd_icon_ptkf", @"wd_icon_yhxy"];
     }
     return _picArr;
 }
