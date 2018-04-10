@@ -8,6 +8,12 @@
 
 #import "BaseViewController.h"
 
+@interface SystemModel : NSObject
+
+@property (nonatomic, copy) NSString *msg_id, *msg_type, *content, *is_read, *user_id, *planfrom, *create_time, *update_time, *order_id;
+
+@end
+
 @interface SystemMessageViewController : BaseViewController
 
 @end

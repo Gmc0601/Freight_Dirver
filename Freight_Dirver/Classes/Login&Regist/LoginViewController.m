@@ -13,6 +13,7 @@
 #import "PerfectInfoViewController.h"
 #import "ReviewViewController.h"
 #import "AddInfoModel.h"
+#import <Hyphenate/Hyphenate.h>
 
 @implementation UserModel
 
@@ -50,8 +51,8 @@
     self.view2.layer.masksToBounds = YES;
     self.view1.layer.borderWidth = 1;
     self.view2.layer.borderWidth = 1;
-    self.view1.layer.borderColor = [UIColorFromHex(0x999999) CGColor];
-    self.view2.layer.borderColor = [UIColorFromHex(0x999999) CGColor];
+    self.view1.layer.borderColor = [UIColorFromHex(0xe3e3e3) CGColor];
+    self.view2.layer.borderColor = [UIColorFromHex(0xe3e3e3) CGColor];
     [self.leftBar setImage:[UIImage imageNamed:@"nav_icon_fh"] forState:UIControlStateNormal];
     [self.phoneText addTarget:self action:@selector(textchange) forControlEvents:UIControlEventEditingChanged];
     [self.codeText addTarget:self action:@selector(textchange) forControlEvents:UIControlEventEditingChanged];
@@ -156,62 +157,67 @@
     }
     
     
-    NSDictionary *dic = @{
-                          @"phone" :self.phoneText.text,
-                          @"vcode" : self.codeText.text
-                          };
-    
-    [HttpRequest postPath:loginUrl params:dic resultBlock:^(id responseObject, NSError *error) {
+    if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+        NSDictionary *dic = @{
+                              @"phone" :self.phoneText.text,
+                              @"vcode" : self.codeText.text
+                              };
         
-        NSLog(@"%@", responseObject);
-        
-        if([error isEqual:[NSNull null]] || error == nil){
-            NSLog(@"success");
-        }
-        NSDictionary *datadic = responseObject;
-        if ([datadic[@"success"] intValue] == 1) {
+        [HttpRequest postPath:loginUrl params:dic resultBlock:^(id responseObject, NSError *error) {
             
-            NSDictionary *data = datadic[@"data"];
             
-            UserModel *user = [UserModel mj_objectWithKeyValues:data];
-            NSLog(@".........%@", user.car_no);
-            if (IsNULL(user.car_no) || [user.car_no isEqualToString:@""]) {
-                //   车牌号为空 去填写资料
-                PerfectInfoViewController *vc = [[PerfectInfoViewController alloc] init];
-                vc.type = AddOne;
-                AddInfoModel *model = [[AddInfoModel alloc] init];
-                model.driver_id =  user.driver_id;
-                model.fleet_id = user.fleet_id;
-                vc.model =  model;
-                [self.navigationController pushViewController:vc animated:YES];
-            }else {
-                if ([user.status intValue] == 0) {
-                    //  待审核
-                    ReviewViewController *vc = [[ReviewViewController alloc] init];
-                    vc.type =  Reviewing;
-                    [self.navigationController pushViewController:vc animated:YES];
-                }else if([user.status intValue] == 1){
-                    //  审核通过
-                    
-                    [ConfigModel saveString:user.driver_id forKey:DriverId];
-                    [ConfigModel saveBoolObject:YES forKey:IsLogin];
-                    
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                }else {
-                    //  审核失败
-                    ReviewViewController *vc = [[ReviewViewController alloc] init];
-                    vc.type =  ReviewError;
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
+            //  登录环信
+           
+            
+            if([error isEqual:[NSNull null]] || error == nil){
+                NSLog(@"success");
             }
-        }else {
-            NSString *str = datadic[@"msg"];
-            [ConfigModel mbProgressHUD:str andView:nil];
-        }
-    }];
-}
-
-- (IBAction)weichatClick:(id)sender {
+            NSDictionary *datadic = responseObject;
+            if ([datadic[@"success"] intValue] == 1) {
+                NSDictionary *data = datadic[@"data"];
+                UserModel *user = [UserModel mj_objectWithKeyValues:data];
+                EMError *error = nil;
+                NSString *userId = [NSString stringWithFormat:@"d%@", user.driver_id];
+                error = [[EMClient sharedClient] registerWithUsername:userId password:ChatPWD];
+                error = [[EMClient sharedClient] loginWithUsername:userId password:ChatPWD];
+                if (IsNULL(user.car_no) || [user.car_no isEqualToString:@""]) {
+                    //   车牌号为空 去填写资料
+                    PerfectInfoViewController *vc = [[PerfectInfoViewController alloc] init];
+                    vc.type = AddOne;
+                    AddInfoModel *model = [[AddInfoModel alloc] init];
+                    model.driver_id =  user.driver_id;
+                    model.fleet_id = user.fleet_id;
+                    vc.model =  model;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }else {
+                    if ([user.status intValue] == 0) {
+                        //  待审核
+                        ReviewViewController *vc = [[ReviewViewController alloc] init];
+                        vc.type =  Reviewing;
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }else if([user.status intValue] == 1){
+                        //  审核通过
+                        [ConfigModel saveString:user.driver_id forKey:DriverId];
+                        [ConfigModel saveBoolObject:YES forKey:IsLogin];
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                    }else {
+                        //  审核失败
+                        ReviewViewController *vc = [[ReviewViewController alloc] init];
+                        vc.type =  ReviewError;
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
+                }
+            }else {
+                NSString *str = datadic[@"msg"];
+                [ConfigModel mbProgressHUD:str andView:nil];
+            }
+        }];
+    }
+    
+    if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+        //   装箱工  登录
+        
+    }
     
     
 }

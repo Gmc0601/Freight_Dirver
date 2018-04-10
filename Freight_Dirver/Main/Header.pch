@@ -51,6 +51,8 @@
 
 #define UnloginReturn if (![ConfigModel haveLogin:self]) {return;}
 
+#define NULLReturn(_ref)  if (IsNULL(_ref)) {return ;}
+
 
 /**
  * 设备判断
@@ -103,11 +105,17 @@
 
 #define IsLogin @"islogin"
 
+#define DriverLogin @"DriverLogin"
+
+#define WorkLogin @"WorkLogin"
+
 #define UserToken @"userToken"
 
 #define DriverId @"DriverId"
 
 #define FleetId @"fleetId"  //  车队 Id
+
+#define ChatPWD @"999999999"
 
 #endif
 

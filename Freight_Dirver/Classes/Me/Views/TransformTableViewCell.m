@@ -21,6 +21,42 @@
     return self;
 }
 
+- (void)update:(TransformModel *)model {
+    NSString *title, *moeny, *box;
+    switch ([model.change_type intValue]) {
+        case 1:
+            title =  @"运费";
+            break;
+        case 2:
+            title =  @"额外费用";
+            break;
+        case 5:
+            title =  @"充值";
+            break;
+        case 6:
+            title =  @"退款";
+            break;
+            
+        default:
+            break;
+    }
+    
+    NSString *add;
+    if ([model.add_subtract intValue] == 1) {
+        add = @"+";
+    }else {
+        add = @"-";
+    }
+    box =[NSString stringWithFormat:@"提箱号：%@", model.box_no];
+    
+    moeny = [NSString stringWithFormat:@"%@", model.change_price];
+    self.titleLab.text = title;
+    self.detailLab.text = box;
+    self.timelab.text = model.create_time;
+    self.moneyLab.text = moeny;
+    
+}
+
 - (UILabel *)titleLab {
     if (!_titleLab) {
         _titleLab = [[UILabel alloc] initWithFrame:FRAME(SizeWidth(16), SizeHeight(15), kScreenW/2 - SizeWidth(16), SizeHeight(15))];
@@ -62,3 +98,4 @@
 
 
 @end
+

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SystemMessageViewController.h"
 
 @interface SystemCellTableViewCell : UITableViewCell
 
@@ -14,5 +15,6 @@
 
 @property (nonatomic, retain) UILabel *contentLab;
 
+- (void)update:(SystemModel *)model;
 
 @end

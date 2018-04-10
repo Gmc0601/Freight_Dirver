@@ -49,9 +49,11 @@
 
 
 - (IBAction)dirverView:(id)sender {
+    [ConfigModel saveBoolObject:YES forKey:DriverLogin];
     [self jump:User_Driver];
 }
 - (IBAction)connactClick:(id)sender {
+    [ConfigModel saveBoolObject:YES forKey:WorkLogin];
     [self jump:User_Worker];
 }
 - (void)jump:(LoginUserType *)type {

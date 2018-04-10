@@ -21,16 +21,21 @@
     return self;
 }
 
+- (void)update:(SystemModel *)model {
+    
+    self.contentLab.text = model.content;
+}
+
 - (UILabel *)contentLab {
     if (!_contentLab) {
         _contentLab = [[UILabel alloc] initWithFrame:FRAME(SizeWidth(15), SizeHeight(8.5), kScreenW - SizeWidth(60), SizeHeight(20))];
         _contentLab.textColor = UIColorHex(0x333333);
         _contentLab.font = [UIFont systemFontOfSize:15];
         _contentLab.numberOfLines = 2;
-        CGSize size = [_contentLab boundingRectWithSize:_contentLab.size];
-        if (size.height > SizeHeight(40)) {
-            size.height = SizeHeight(40);
-        }_contentLab.size = size;
+        //        CGSize size = [_contentLab boundingRectWithSize:_contentLab.size];
+        //        if (size.height > SizeHeight(40)) {
+        //            size.height = SizeHeight(40);
+        //        }_contentLab.size = size;
     }
     return _contentLab;
 }
@@ -64,3 +69,4 @@
 
 
 @end
+

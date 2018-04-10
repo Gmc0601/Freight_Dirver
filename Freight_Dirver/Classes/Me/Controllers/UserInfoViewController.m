@@ -90,10 +90,10 @@
     if (photo) {
         [dic setValue:imgStr forKey:@"driver_face"];
     }
-    
-    if (![self.nickNameStr isEqualToString:self.nickName.text]) {
+    [dic setValue:[ConfigModel getStringforKey:FleetId] forKey:@"fleet_id"];
+//    if (![self.nickNameStr isEqualToString:self.nickName.text]) {
         [dic setValue:self.nickName.text forKey:@"driver_name"];
-    }
+//    }
     
     
     
@@ -233,7 +233,7 @@
         _headImage.backgroundColor = [UIColor clearColor];
         _headImage.layer.masksToBounds =  YES;
         _headImage.layer.cornerRadius = SizeWidth(20);
-        _headImage.image = [UIImage imageNamed:@"wd_icon_140 (1)"];
+        _headImage.image = [UIImage imageNamed:@"-s-xxzx_icon_96 (1)"];
         [_headImage sd_setImageWithURL:[NSURL URLWithString:self.headImageStr] placeholderImage:[UIImage imageNamed:@"-s-xq_bg_tx"]];
     }
     return _headImage;

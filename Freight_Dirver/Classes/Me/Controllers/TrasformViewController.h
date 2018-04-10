@@ -8,6 +8,10 @@
 
 #import "CCBaseViewController.h"
 
+@interface TransformModel : NSObject
+@property (nonatomic, copy) NSString *change_type, *add_subtract, *change_price, *box_no, *create_time;
+@end
+
 @interface TrasformViewController : CCBaseViewController
 
 @end

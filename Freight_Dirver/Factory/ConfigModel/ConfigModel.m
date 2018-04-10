@@ -8,7 +8,18 @@
 
 #import "ConfigModel.h"
 #import <MBProgressHUD.h>
+#import "ChoseMembersViewController.h"
 @implementation ConfigModel
+
++ (BOOL)haveLogin:(UIViewController *)vc {
+    if (![ConfigModel getBoolObjectforKey:IsLogin]) {
+        UINavigationController *na = [[UINavigationController alloc] initWithRootViewController:[ChoseMembersViewController new]];
+        [vc presentViewController:na animated:YES completion:nil];
+        return NO;
+    }else {
+        return YES;
+    }
+}
 
 + (void)showHud:(UIViewController *)vc {
     [MBProgressHUD showHUDAddedTo:vc.view animated:YES];

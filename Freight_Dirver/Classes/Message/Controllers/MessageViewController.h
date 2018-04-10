@@ -8,6 +8,12 @@
 
 #import "BaseViewController.h"
 
+@interface MessageModel : NSObject
+
+@property (nonatomic, copy) NSString *driver_id, *driver_name, *driver_phone, *driver_face;
+
+@end
+
 @interface MessageViewController : BaseViewController
 
 @end

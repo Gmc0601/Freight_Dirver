@@ -8,10 +8,16 @@
 
 #import "TrasformViewController.h"
 #import "TransformTableViewCell.h"
+#import <MJExtension.h>
+@implementation TransformModel
 
+@end
 @interface TrasformViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView *noUseTableView;
+
+
+@property (nonatomic, strong) NSMutableArray *dataArr;
 
 @end
 
@@ -22,6 +28,27 @@
     self.titleLab.text = @"收支明细";
     self.rightBar.hidden = YES;
     [self.view addSubview:self.noUseTableView];
+    [self getData];
+}
+
+- (void)getData {
+    [HttpRequest postPath:@"/Driver/Driver/walletFlow" params:nil resultBlock:^(id responseObject, NSError *error) {
+        NSLog(@">>>>>%@", responseObject);
+        if([error isEqual:[NSNull null]] || error == nil){
+            NSLog(@"success");
+        }
+        NSDictionary *datadic = responseObject;
+        if ([datadic[@"success"] intValue] == 1) {
+            
+            NSDictionary *data = datadic[@"data"];
+            self.dataArr = [TransformModel mj_objectArrayWithKeyValuesArray:data];
+            [self.noUseTableView reloadData];
+            
+        }else {
+            NSString *str = datadic[@"msg"];
+            [ConfigModel mbProgressHUD:str andView:nil];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,7 +61,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.dataArr.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -43,6 +70,7 @@
     if (!cell) {
         cell = [[TransformTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
     }
+     [cell update:self.dataArr[indexPath.row]];
     return cell;
     
 }
@@ -74,7 +102,12 @@
     }
     return _noUseTableView;
 }
-
+- (NSMutableArray *)dataArr {
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray new];
+    }
+    return _dataArr;
+}
 
 
 @end

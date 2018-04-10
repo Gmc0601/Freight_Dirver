@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TrasformViewController.h"
 
 @interface TransformTableViewCell : UITableViewCell
 
 @property (nonatomic, retain) UILabel *titleLab, *detailLab, *moneyLab, *timelab;
+
+- (void)update:(TransformModel *)model;
 
 @end

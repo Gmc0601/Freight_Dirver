@@ -9,11 +9,18 @@
 #import "MessageViewController.h"
 #import <YYKit.h>
 #import "SystemMessageViewController.h"
+#import "ChoseMembersViewController.h"
 #import "EaseMessageViewController.h"
+
+@implementation MessageModel
+
+@end
 
 @interface MessageViewController ()<UITableViewDelegate,  UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView *noUseTableView;
+
+@property (nonatomic, strong) NSMutableArray *dataArr;
 
 @end
 
@@ -23,6 +30,101 @@
     [super viewDidLoad];
     [self navigation];
     [self.view addSubview:self.noUseTableView];
+}
+
+- (void)getDate {
+    EMError *error = nil;
+    NSString *userId = [NSString stringWithFormat:@"d%@", [ConfigModel getStringforKey:DriverId]];
+    error = [[EMClient sharedClient] loginWithUsername:userId password:ChatPWD];
+    [self.dataArr removeAllObjects];
+    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    self.dataArr = (NSMutableArray *)conversations;
+    [self.dataArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        EMConversation *conversation = obj;
+        EMMessage *message = conversation.latestMessage;
+        if ([[self timeStr:message.localTime] isEqualToString:@"1970-01-01 08:00"]) {
+            [self.dataArr removeObject:obj];
+        }
+    }];
+    
+    NSString *arrimg ;   //  聊天 Id  拼接
+    NULLReturn(conversations);
+    for (int i = 0; i < conversations.count; i++) {
+        EMConversation *conversation = conversations[i];
+        NSString *imgStr = conversation.conversationId;
+        
+        if (i == 0) {
+            arrimg = imgStr;
+        }else {
+            NSString *str = [NSString stringWithFormat:@",%@", imgStr];
+            arrimg = [arrimg stringByAppendingString:str];
+        }
+    }
+    NSDictionary *dic =@{
+                         @"driver_ids" : arrimg
+                         };
+    [HttpRequest postPath:@"Driver/Public/batchDriverInfo" params:dic resultBlock:^(id responseObject, NSError *error) {
+        if([error isEqual:[NSNull null]] || error == nil){
+            NSLog(@"success");
+        }
+        NSDictionary *datadic = responseObject;
+        if ([datadic[@"success"] intValue] == 1) {
+            
+            
+        }else {
+            NSString *str = datadic[@"msg"];
+            [ConfigModel mbProgressHUD:str andView:nil];
+        }
+    }];
+    
+    
+}
+- (NSString *)timeStr:(long long)timestamp
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *currentDate = [NSDate date];
+    
+    // 获取当前时间的年、月、日
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear| NSCalendarUnitMonth|NSCalendarUnitDay fromDate:currentDate];
+    NSInteger currentYear = components.year;
+    NSInteger currentMonth = components.month;
+    NSInteger currentDay = components.day;
+    
+    // 获取消息发送时间的年、月、日
+    NSDate *msgDate = [NSDate dateWithTimeIntervalSince1970:timestamp/1000.0];
+    components = [calendar components:NSCalendarUnitYear| NSCalendarUnitMonth|NSCalendarUnitDay fromDate:msgDate];
+    CGFloat msgYear = components.year;
+    CGFloat msgMonth = components.month;
+    CGFloat msgDay = components.day;
+    
+    // 判断
+    NSDateFormatter *dateFmt = [[NSDateFormatter alloc] init];
+    if (currentYear == msgYear && currentMonth == msgMonth && currentDay == msgDay) {
+        //今天
+        dateFmt.dateFormat = @"HH:mm";
+    }else if (currentYear == msgYear && currentMonth == msgMonth && currentDay-1 == msgDay ){
+        //昨天
+        dateFmt.dateFormat = @"昨天 HH:mm";
+    }else{
+        //昨天以前
+        dateFmt.dateFormat = @"yyyy-MM-dd HH:mm";
+    }
+    return [dateFmt stringFromDate:msgDate];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (![ConfigModel getBoolObjectforKey:IsLogin]) {
+        ChoseMembersViewController *vc = [[ChoseMembersViewController alloc] init];
+        vc.backBlock = ^{
+            self.tabBarController.selectedIndex = 0;
+        };
+        
+        UINavigationController *na = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:na animated:YES completion:nil];
+        return;
+    }
+    [self getDate];
 }
 
 - (void)navigation {
@@ -40,7 +142,7 @@
 }
 
 - (void)backAction {
-//    [self.navigationController pushViewController:[NextViewController new] animated:YES];
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -48,7 +150,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return section ? 3 : 1;
+    return section ? self.dataArr.count : 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -62,24 +164,28 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }else {
             UIButton *message , *callBtn;
-            message = [[UIButton alloc] initWithFrame:FRAME(SizeWidth(260), SizeHeight(24), SizeWidth(34), SizeWidth(34))];
+            message = [[UIButton alloc] initWithFrame:FRAME(SizeWidth(260), 24, 34, 34)];
             message.backgroundColor = [UIColor clearColor];
             [message setImage:[UIImage imageNamed:@"ddxq_icon_lt_68 (1)"] forState:UIControlStateNormal];
             message.tag = 100 + indexPath.row;
             [message addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-            message.centerY = cell.contentView.centerY;
             [cell.contentView addSubview:message];
             
-            callBtn = [[UIButton alloc] initWithFrame:FRAME(message.right + SizeWidth(15), SizeHeight(24), SizeWidth(34), SizeWidth(34))];
+            callBtn = [[UIButton alloc] initWithFrame:FRAME(message.right + SizeWidth(15), 24, 34, 34)];
             callBtn.backgroundColor = [UIColor clearColor];
             callBtn.tag = 1000 + indexPath.row;
             [callBtn setImage:[UIImage imageNamed:@"ddxq_icon_dh_68 (1)"] forState:UIControlStateNormal];
             [callBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-            callBtn.centerY = cell.contentView.centerY;
             [cell.contentView addSubview:callBtn];
             cell.imageView.image = [UIImage imageNamed:@"xxzx_icon_96 (1)"];
             cell.textLabel.text = @"你好";
         }
+        if (indexPath.section) {
+            UILabel *line = [[UILabel alloc] initWithFrame:FRAME(15, 81, kScreenW, 1)];
+            line.backgroundColor = UIColorHex(0xe3e3e3);
+            [cell.contentView addSubview:line];
+        }
+
         [cell.imageView sizeToFit];
         
         
@@ -105,7 +211,7 @@
 
 #pragma mark - UITableDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return SizeHeight(82);
+    return 82;
 }
 
 
@@ -119,7 +225,7 @@
 }
 - (UITableView *)noUseTableView {
     if (!_noUseTableView) {
-        _noUseTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenW, kScreenH - 64) style:UITableViewStylePlain];
+        _noUseTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenW, kScreenH - 64) style:UITableViewStyleGrouped];
         _noUseTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _noUseTableView.backgroundColor = RGBColor(239, 240, 241);
         _noUseTableView.delegate = self;
@@ -148,6 +254,11 @@
 
 }
 
-
+- (NSMutableArray *)dataArr {
+    if (!_dataArr) {
+        _dataArr = [[NSMutableArray alloc] init];
+    }
+    return _dataArr;
+}
 
 @end

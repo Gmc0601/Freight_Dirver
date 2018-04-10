@@ -16,6 +16,7 @@
 #import <MJExtension.h>
 #import "LoginViewController.h"
 #import <UIImageView+WebCache.h>
+#import "TrasformViewController.h"
 
 @interface MeViewController ()<UITableViewDelegate, UITableViewDataSource>{
     NSString *phone;
@@ -97,7 +98,6 @@
             [ConfigModel mbProgressHUD:str andView:nil];
         }
     }];
-    
     @weakify(self)
     [HttpRequest postPath:@"/Driver/Driver/driverInfo" params:nil resultBlock:^(id responseObject, NSError *error) {
         NSLog(@"%@", responseObject);
@@ -178,7 +178,8 @@
     if (indexPath.row == 0) {
         if (JIYunBang) {
             //   收支明细
-            
+            TrasformViewController *vc = [[TrasformViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
         }else {
             [self call];
         }
@@ -281,7 +282,6 @@
     HeadInfoView *info2 = [[HeadInfoView alloc] initWithFrame:FRAME(0, SizeHeight(215 + 55), kScreenW, SizeHeight(55)) title1:@"本月接单(单)" title2:@"本月收入(元)" color:UIColorFromHex(0x3CA9FB)];
     self.info2 = info2;
     [view addSubview:info2];
-    
 }
 
 - (void)userInfoClick {
@@ -292,13 +292,10 @@
 }
 
 - (void)logout {
-        ChoseMembersViewController *vc = [[ChoseMembersViewController alloc] init];
-        vc.backBlock = ^{
-            self.tabBarController.selectedIndex = 0;
-        };
-    
-        UINavigationController *na = [[UINavigationController alloc] initWithRootViewController:vc];
-        [self presentViewController:na animated:YES completion:nil];
+    [ConfigModel saveBoolObject:NO forKey:IsLogin];
+    [ConfigModel saveBoolObject:NO forKey:DriverLogin];
+    [ConfigModel saveBoolObject:NO forKey:WorkLogin];
+    UnloginReturn
 }
 
 - (void)didReceiveMemoryWarning {
