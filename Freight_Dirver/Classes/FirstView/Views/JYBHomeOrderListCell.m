@@ -32,8 +32,6 @@
 
 @property (nonatomic ,strong)UILabel *orderNumLab;
 
-@property (nonatomic ,strong)UIButton *leftBtn;
-
 @property (nonatomic ,strong)UIButton *rightBtn;
 
 @property (nonatomic ,strong)JYBOrderListModel *listModel;
@@ -65,7 +63,6 @@
     [self.conView addSubview:self.endTimeLab];
     
     [self.backView addSubview:self.orderNumLab];
-    [self.backView addSubview:self.leftBtn];
     [self.backView addSubview:self.rightBtn];
 
     
@@ -140,14 +137,7 @@
         make.left.equalTo(self.backView).offset(SizeWidth(10));
         make.width.mas_greaterThanOrEqualTo(10);
     }];
-    
-    [self.leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.conView.mas_bottom).offset(SizeWidth(11));
-        make.right.equalTo(self.rightBtn.mas_left).offset(-SizeWidth(10));
-        make.width.mas_equalTo(SizeWidth(65));
-        make.height.mas_equalTo(SizeWidth(22));
-        
-    }];
+
     
     [self.rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.conView.mas_bottom).offset(SizeWidth(11));
@@ -183,123 +173,49 @@
     
     //订单状态 状态：0-待支付 10-派单中 20-已接单 30-进行中 40-已到港（待支付,支付额外费用） 50-已完成 60-已取消
     
+    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+            //   司机登录
+            self.rightBtn.hidden = YES;
+
+        }
+        if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+            //  装箱工登录
+            self.rightBtn.hidden = NO;
+
+        }
+    }else {
+        //   未登录
+    }
+    
+    
     switch (status) {
         case 0:
-        {
-            self.leftBtn.hidden = YES;
-            self.rightBtn.hidden = NO;
-            [self.rightBtn setTitle:@"确认费用" forState:UIControlStateNormal];
-            [self.rightBtn setTitleColor:RGB(55, 164, 242) forState:UIControlStateNormal];
-            self.rightBtn.layer.borderColor = RGB(55, 164, 242).CGColor;
             return @"待确认";
-        }
-            //支付
             break;
         case 10:
-        {
-            self.leftBtn.hidden = YES;
-            self.rightBtn.hidden = NO;
-            [self.rightBtn setTitle:@"再次下单" forState:UIControlStateNormal];
-            [self.rightBtn setTitleColor:RGB(52, 52, 52) forState:UIControlStateNormal];
-            self.rightBtn.layer.borderColor = RGB(52, 52, 52).CGColor;
             return @"派单中";
-
-        }
-            //再次下单
             break;
         case 20:
-        {
-            self.leftBtn.hidden = NO;
-            self.rightBtn.hidden = NO;
-            [self.leftBtn setTitle:@"再次下单" forState:UIControlStateNormal];
-            [self.leftBtn setTitleColor:RGB(52, 52, 52) forState:UIControlStateNormal];
-            self.leftBtn.layer.borderColor = RGB(52, 52, 52).CGColor;
-            [self.rightBtn setTitle:@"联系司机" forState:UIControlStateNormal];
-            [self.rightBtn setTitleColor:RGB(55, 164, 242) forState:UIControlStateNormal];
-            self.rightBtn.layer.borderColor = RGB(55, 164, 242).CGColor;
             return @"已接单";
-
-        }
-            //再次下单 。 联系司机
             break;
         case 30:
-        {
-            self.leftBtn.hidden = NO;
-            self.rightBtn.hidden = NO;
-            [self.leftBtn setTitle:@"再次下单" forState:UIControlStateNormal];
-            [self.leftBtn setTitleColor:RGB(52, 52, 52) forState:UIControlStateNormal];
-            self.leftBtn.layer.borderColor = RGB(52, 52, 52).CGColor;
-            [self.rightBtn setTitle:@"联系司机" forState:UIControlStateNormal];
-            [self.rightBtn setTitleColor:RGB(55, 164, 242) forState:UIControlStateNormal];
-            self.rightBtn.layer.borderColor = RGB(55, 164, 242).CGColor;
             return @"运输中";
-        }
-            //再次下单 。 联系司机
             break;
         case 31:
-        {
-            self.leftBtn.hidden = NO;
-            self.rightBtn.hidden = NO;
-            [self.leftBtn setTitle:@"再次下单" forState:UIControlStateNormal];
-            [self.leftBtn setTitleColor:RGB(52, 52, 52) forState:UIControlStateNormal];
-            self.leftBtn.layer.borderColor = RGB(52, 52, 52).CGColor;
-            [self.rightBtn setTitle:@"联系司机" forState:UIControlStateNormal];
-            [self.rightBtn setTitleColor:RGB(55, 164, 242) forState:UIControlStateNormal];
-            self.rightBtn.layer.borderColor = RGB(55, 164, 242).CGColor;
-            return @"已到港待支付(额外费用待审核)";
-        }
-            //再次下单 。 联系司机
+            return @"已进港(额外费用待审核";
             break;
         case 32:
-        {
-            self.leftBtn.hidden = NO;
-            self.rightBtn.hidden = NO;
-            [self.leftBtn setTitle:@"再次下单" forState:UIControlStateNormal];
-            [self.leftBtn setTitleColor:RGB(52, 52, 52) forState:UIControlStateNormal];
-            self.leftBtn.layer.borderColor = RGB(52, 52, 52).CGColor;
-            [self.rightBtn setTitle:@"联系司机" forState:UIControlStateNormal];
-            [self.rightBtn setTitleColor:RGB(55, 164, 242) forState:UIControlStateNormal];
-            self.rightBtn.layer.borderColor = RGB(55, 164, 242).CGColor;
-            return @"已到港待支付(额外费用已拒绝)";
-        }
-            //再次下单 。 联系司机
+            return @"已进港(额外费用待审核";
             break;
         case 40:
-        {
-            self.leftBtn.hidden = NO;
-            self.rightBtn.hidden = NO;
-            [self.leftBtn setTitle:@"再次下单" forState:UIControlStateNormal];
-            [self.leftBtn setTitleColor:RGB(52, 52, 52) forState:UIControlStateNormal];
-            self.leftBtn.layer.borderColor = RGB(52, 52, 52).CGColor;
-            [self.rightBtn setTitle:@"联系司机" forState:UIControlStateNormal];
-            [self.rightBtn setTitleColor:RGB(55, 164, 242) forState:UIControlStateNormal];
-            self.rightBtn.layer.borderColor = RGB(55, 164, 242).CGColor;
             return @"确认额外费用";
-        }
-            //再次下单 。 联系司机
             break;
         case 50:
-        {
-            self.leftBtn.hidden = YES;
-            self.rightBtn.hidden = NO;
-            [self.rightBtn setTitle:@"再次下单" forState:UIControlStateNormal];
-            [self.rightBtn setTitleColor:RGB(52, 52, 52) forState:UIControlStateNormal];
-            self.rightBtn.layer.borderColor = RGB(52, 52, 52).CGColor;
             return @"已完成";
-
-        }
-            //再次下单
             break;
         case 60:
-        {
-            self.leftBtn.hidden = YES;
-            self.rightBtn.hidden = NO;
-            [self.rightBtn setTitle:@"再次下单" forState:UIControlStateNormal];
-            [self.rightBtn setTitleColor:RGB(52, 52, 52) forState:UIControlStateNormal];
-            self.rightBtn.layer.borderColor = RGB(52, 52, 52).CGColor;
             return @"已取消";
-        }
-            //再次下单
             break;
         default:
             return @"";
@@ -308,58 +224,10 @@
 }
 
 
-- (void)leftBtnAction{
-    if (self.listBlock) {
-        self.listBlock(JYBHomeOrderListActionOrder,self.listModel);
-    }
-}
-
 - (void)rightBtnAction{
-    
-    JYBHomeOrderListAction action;
-    switch (self.listModel.order_status.integerValue) {
-        case 0:
-            action = JYBHomeOrderListActionPay;
-            //支付
-            break;
-        case 10:
-            action = JYBHomeOrderListActionOrder;
-            //再次下单
-            break;
-        case 20:
-            action = JYBHomeOrderListActionContact;
-            //再次下单 。 联系司机
-            break;
-        case 30:
-            action = JYBHomeOrderListActionContact;
-            //再次下单 。 联系司机
-            break;
-        case 31:
-            action = JYBHomeOrderListActionContact;
-            //再次下单 。 联系司机
-            break;
-        case 32:
-            action = JYBHomeOrderListActionContact;
-            //再次下单 。 联系司机
-            break;
-        case 40:
-            action = JYBHomeOrderListActionContact;
-            //再次下单 。 联系司机
-            break;
-        case 50:
-            action = JYBHomeOrderListActionOrder;
-            //再次下单
-            break;
-        case 60:
-            action = JYBHomeOrderListActionOrder;
-            //再次下单
-            break;
-        default:
-            action = JYBHomeOrderListActionOrder;
-            break;
-    }
+
     if (self.listBlock) {
-        self.listBlock(action,self.listModel);
+        self.listBlock(JYBHomeOrderListActionContact,self.listModel);
     }
 }
 
@@ -469,20 +337,6 @@
     return _orderNumLab;
 }
 
-- (UIButton *)leftBtn{
-    if (!_leftBtn) {
-        _leftBtn = [[UIButton alloc] init];
-        [_leftBtn setTitle:@"再次下单" forState:UIControlStateNormal];
-        _leftBtn.titleLabel.font = [UIFont systemFontOfSize:SizeWidth(12)];
-        [_leftBtn setTitleColor:RGB(52, 52, 52) forState:UIControlStateNormal];
-        _leftBtn.layer.borderColor = RGB(52, 52, 52).CGColor;
-        _leftBtn.layer.borderWidth = 1;
-        _leftBtn.layer.cornerRadius = SizeWidth(10);
-        _leftBtn.layer.masksToBounds = YES;
-        [_leftBtn addTarget:self action:@selector(leftBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _leftBtn;
-}
 
 - (UIButton *)rightBtn{
     if (!_rightBtn) {

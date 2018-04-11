@@ -66,7 +66,11 @@
 
 @property (nonatomic,copy)NSString *driver_lat;          //lat
 
-@property (nonatomic,copy)NSString *driver_lon;          //lon
+@property (nonatomic,copy)NSString *dock_id;          //dock_id
+
+@property (nonatomic,copy)NSString *weight_id;          //weight_id
+
+@property (nonatomic,copy)NSString *yard_id;          //yard_id
 
 @property (nonatomic,copy)NSArray *other_price_img;          //额外费用凭证图片
 

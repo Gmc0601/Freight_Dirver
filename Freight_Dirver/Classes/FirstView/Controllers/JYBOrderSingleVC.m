@@ -29,6 +29,18 @@
     self.currentPage = 1;
     [self.view addSubview:self.myTableView];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:@"orderChangeNotification" object:nil];
+    
+    [self __fetchOrderList];
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)refreshData{
+    
+    self.currentPage = 1;
     [self __fetchOrderList];
 }
 

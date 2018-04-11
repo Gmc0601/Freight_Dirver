@@ -24,6 +24,10 @@
 
 @property (nonatomic ,strong)UIButton   *phoneBtn;
 
+@property (nonatomic ,strong)UIButton   *navBtn;
+
+@property (nonatomic ,strong)UIButton   *messBtn;
+
 @property (nonatomic ,strong)JYBOrderBoxAddressModel *addressModel;
 
 @property (nonatomic ,assign)BOOL isbox;
@@ -47,7 +51,9 @@
     [self.contentView addSubview:self.contactTitleLab];
     [self.contentView addSubview:self.contactLab];
     [self.contentView addSubview:self.phoneBtn];
-    
+    [self.contentView addSubview:self.messBtn];
+    [self.contentView addSubview:self.navBtn];
+
     [self.dotView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(SizeWidth(8));
         make.centerY.equalTo(self.contentView);
@@ -64,13 +70,13 @@
     [self.addressTitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.nameLab.mas_bottom).offset(SizeWidth(10));
         make.left.equalTo(self.dotView.mas_right).offset(SizeWidth(20));
-        make.width.mas_equalTo(SizeWidth(75));
+        make.width.mas_equalTo(SizeWidth(65));
         make.height.mas_equalTo(SizeWidth(15));
     }];
     
     [self.addressLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.nameLab.mas_bottom).offset(SizeWidth(10));
-        make.left.equalTo(self.addressTitleLab.mas_right).offset(SizeWidth(20));
+        make.left.equalTo(self.addressTitleLab.mas_right).offset(SizeWidth(10));
         make.right.equalTo(self.contentView).offset(-SizeWidth(10));
         make.height.mas_lessThanOrEqualTo(SizeWidth(40));
     }];
@@ -78,21 +84,33 @@
     [self.contactTitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.addressTitleLab.mas_top).offset(SizeWidth(40));
         make.left.equalTo(self.dotView.mas_right).offset(SizeWidth(20));
-        make.width.mas_equalTo(SizeWidth(75));
+        make.width.mas_equalTo(SizeWidth(65));
         make.height.mas_equalTo(SizeWidth(15));
     }];
     
     [self.contactLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.addressTitleLab.mas_top).offset(SizeWidth(40));
-        make.left.equalTo(self.contactTitleLab.mas_right).offset(SizeWidth(20));
+        make.left.equalTo(self.contactTitleLab.mas_right).offset(SizeWidth(10));
         make.right.equalTo(self.contentView).offset(-SizeWidth(60));
         make.height.mas_equalTo(SizeWidth(15));
     }];
     
     [self.phoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-SizeWidth(5));
-        make.width.height.mas_equalTo(SizeWidth(50));
-        make.centerY.equalTo(self.contactTitleLab);
+        make.width.height.mas_equalTo(SizeWidth(30));
+        make.bottom.equalTo(self.contentView).offset(-SizeWidth(10));
+    }];
+    
+    [self.messBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.phoneBtn.mas_left).offset(-SizeWidth(3));
+        make.width.height.mas_equalTo(SizeWidth(30));
+        make.bottom.equalTo(self.contentView).offset(-SizeWidth(10));
+    }];
+    
+    [self.navBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.messBtn.mas_left).offset(-SizeWidth(3));
+        make.width.height.mas_equalTo(SizeWidth(30));
+        make.bottom.equalTo(self.contentView).offset(-SizeWidth(10));
     }];
     
     [self.contentView addLineWithInset:UIEdgeInsetsMake(-1, 0, 0, 0)];
@@ -103,12 +121,18 @@
     self.addressModel = model;
     self.isbox = isBox;
     if (isBox) {
+        self.phoneBtn.hidden = YES;
+        self.messBtn.hidden = YES;
+        self.navBtn.hidden = YES;
         self.nameLab.text = [NSString stringWithFormat:@"提单号:%@",box_no];
         self.addressTitleLab.text = @"拿箱单地址";
         self.addressLab.text = model.box_address_desc;
         self.contactLab.text = [NSString stringWithFormat:@"%@  %@",model.box_linkman,model.box_linkman_phone];
         self.dotView.backgroundColor = RGB(75, 157, 252);
     }else{
+        self.phoneBtn.hidden = NO;
+        self.messBtn.hidden = NO;
+        self.navBtn.hidden = NO;
         self.nameLab.text = [NSString stringWithFormat:@"%@-%@",model.city,model.address];
         self.addressTitleLab.text = @"装箱地址";
         self.addressLab.text = model.address_desc ;
@@ -126,6 +150,15 @@
     }
 }
 
+- (void)messBtnActin{
+    
+}
+
+- (void)navBtnBtnActin{
+    if (self.navBlock){
+        self.navBlock(self.addressModel);
+    }
+}
 
 - (UIView *)dotView{
     if (!_dotView) {
@@ -196,11 +229,33 @@
 - (UIButton *)phoneBtn{
     if (!_phoneBtn) {
         _phoneBtn = [[UIButton alloc] init];
-        [_phoneBtn setImage:[UIImage imageNamed:@"ddxq_icon_dh"] forState:UIControlStateNormal];
+        [_phoneBtn setImage:[UIImage imageNamed:@"sj_icon_dh"] forState:UIControlStateNormal];
         [_phoneBtn addTarget:self action:@selector(phoneBtnActin) forControlEvents:UIControlEventTouchUpInside];
     }
     return _phoneBtn;
 }
+
+
+
+- (UIButton *)messBtn{
+    if (!_messBtn) {
+        _messBtn = [[UIButton alloc] init];
+        [_messBtn setImage:[UIImage imageNamed:@"sj_icon_xx"] forState:UIControlStateNormal];
+        [_messBtn addTarget:self action:@selector(messBtnActin) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _messBtn;
+}
+
+- (UIButton *)navBtn{
+    if (!_navBtn) {
+        _navBtn = [[UIButton alloc] init];
+        [_navBtn setImage:[UIImage imageNamed:@"sj_icon_dw"] forState:UIControlStateNormal];
+        [_navBtn addTarget:self action:@selector(navBtnBtnActin) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _navBtn;
+}
+
+
 
 
 

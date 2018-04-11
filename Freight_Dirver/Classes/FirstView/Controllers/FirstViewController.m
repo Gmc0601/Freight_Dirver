@@ -12,6 +12,8 @@
 #import "HMSegmentedControl.h"
 #import "JYBOrderSingleVC.h"
 #import "JYBAlertView.h"
+#import "JYBOrderCountModel.h"
+#import <YYKit.h>
 
 @interface FirstViewController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
 
@@ -21,6 +23,7 @@
 
 @property (nonatomic ,strong)NSArray  *vcArr;
 
+@property (nonatomic ,strong)JYBOrderCountModel  *countModel;
 
 @end
 
@@ -31,7 +34,47 @@
  
     [self navigation];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:@"orderChangeNotification" object:nil];
+
+    
     self.view.backgroundColor = [UIColor whiteColor];
+
+    [self getCountData];
+}
+
+
+- (void)getCountData{
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    
+    [ConfigModel showHud:self];
+    NSLog(@"%@", dic);
+    WeakSelf(weak)
+    [HttpRequest postPath:@"/Driver/Order/orderCountList" params:dic resultBlock:^(id responseObject, NSError *error) {
+        [ConfigModel hideHud:weak];
+        
+        NSLog(@"%@", responseObject);
+        if([error isEqual:[NSNull null]] || error == nil){
+            NSLog(@"success");
+        }
+        NSDictionary *datadic = responseObject;
+        if ([datadic[@"success"] intValue] == 1) {
+            
+            weak.countModel = [JYBOrderCountModel modelWithDictionary:datadic[@"data"]];
+            
+            [weak __setUI];
+            
+        }else {
+            NSString *str = datadic[@"msg"];
+            [ConfigModel mbProgressHUD:str andView:nil];
+            [weak __setUI];
+        }
+    }];
+    
+}
+
+- (void)__setUI{
+    
     
     [self.view addSubview:self.headTabView];
     [self.headTabView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,6 +100,26 @@
                                               direction:UIPageViewControllerNavigationDirectionReverse
                                                animated:NO completion:nil];
     };
+    
+}
+
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)refreshData{
+    if (self.headTabView.selectedSegmentIndex == 0){
+        [self.headTabView setSelectedSegmentIndex:1 animated:NO];
+        [self.pageViewController setViewControllers:@[[self.vcArr objectAtIndex:1]] direction:UIPageViewControllerNavigationDirectionReverse
+                                               animated:NO completion:nil];
+    }else if (self.headTabView.selectedSegmentIndex == 1){
+        [self.headTabView setSelectedSegmentIndex:2 animated:NO];
+        [self.pageViewController setViewControllers:@[[self.vcArr objectAtIndex:2]] direction:UIPageViewControllerNavigationDirectionReverse
+                                           animated:NO completion:nil];
+    }else{
+        
+    }
     
 }
 
@@ -127,7 +190,25 @@
 
 - (HMSegmentedControl *)headTabView{
     if (!_headTabView) {
-        _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"待提箱",@"运输中",@"已完成"]];
+        
+        NSString *one = @"待提箱";
+        NSString *two = @"运输中";
+        NSString *three = @"已完成";
+        
+        if (![NSString stringIsNilOrEmpty:self.countModel.wait_box]) {
+            one = [NSString stringWithFormat:@"待提箱(%@)",self.countModel.wait_box];
+        }
+        
+        if (![NSString stringIsNilOrEmpty:self.countModel.transport]) {
+            two = [NSString stringWithFormat:@"运输中(%@)",self.countModel.transport];
+        }
+        
+        if (![NSString stringIsNilOrEmpty:self.countModel.completed]) {
+            three = [NSString stringWithFormat:@"已完成(%@)",self.countModel.completed];
+        }
+        
+        
+        _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[one,two,three]];
         _headTabView.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleFixed;
         _headTabView.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
         _headTabView.selectionIndicatorColor = RGB(26, 143, 241);

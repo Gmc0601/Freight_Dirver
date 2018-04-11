@@ -23,6 +23,8 @@
 #import "JYBOrderLogisMapViewCell.h"
 #import <YYKit.h>
 #import "JYBAlertView.h"
+#import "JYBOtherCostInputVC.h"
+#import "JYBTiBoxDoneVC.h"
 
 typedef enum : NSUInteger {
     JYBOrderDetailTypeLogisUser,
@@ -37,13 +39,15 @@ typedef enum : NSUInteger {
     
 } JYBOrderDetailType;
 
-@interface JYBOrderDetailVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface JYBOrderDetailVC ()<UITableViewDelegate,UITableViewDataSource,JYBOtherCostInputVCDelegate>
 
 @property (nonatomic ,strong)UITableView *myTableView;
 
 @property (nonatomic ,strong)JYBOrderListModel *detailModel;
 
-@property (nonatomic ,strong)JYBOrderDetailBottomView *bottomView;
+@property (nonatomic ,strong)UIView *bottomView;
+
+@property (nonatomic ,strong)UIButton       *commitBtn;
 
 @end
 
@@ -101,14 +105,18 @@ typedef enum : NSUInteger {
 
 
 - (void)__setBottomView{
-    if (self.detailModel.order_status.integerValue == 0 || self.detailModel.order_status.integerValue == 10 || self.detailModel.order_status.integerValue == 40) {
-        self.bottomView.hidden= NO;
-        self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64 - SizeWidth(95));
-        [self.bottomView updateBottomView:self.detailModel];
+    if (self.detailModel.order_status.integerValue == 20){
+        self.bottomView.hidden = NO;
+        self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64 - SizeWidth(55));
+        [self.commitBtn setTitle:@"完成提箱" forState:UIControlStateNormal];
+    }else if (self.detailModel.order_status.integerValue == 30){
+        self.bottomView.hidden = NO;
+        self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64 - SizeWidth(55));
+        [self.commitBtn setTitle:@"已装货进港" forState:UIControlStateNormal];
     }else{
-        self.bottomView.hidden= YES;
+        self.bottomView.hidden = YES;
         self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64);
-        
+
     }
     
 }
@@ -141,10 +149,10 @@ typedef enum : NSUInteger {
             return @"运输中";
             break;
             case 31:
-            return @"已进港待支付(额外费用待审核)";
+            return @"已进港(额外费用待审核";
             break;
             case 32:
-            return @"已进港待支付(额外费用已拒绝)";
+            return @"已进港(额外费用待审核";
             break;
             case 40:
             return @"确认额外费用";
@@ -195,6 +203,9 @@ typedef enum : NSUInteger {
     [self presentViewController:alertVC animated:YES completion:nil];
 }
 
+- (void)__navAction:(JYBOrderBoxAddressModel *)model{
+    
+}
 
 - (void)__turnToOtherCostSchVC{
     JYBOrderOtherCostVC *vc = [[JYBOrderOtherCostVC alloc] init];
@@ -212,11 +223,11 @@ typedef enum : NSUInteger {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (section == JYBOrderDetailTypeLogisUser) {
-        return ([NSString stringIsNilOrEmpty:self.detailModel.driver_id] || self.detailModel.order_status.integerValue == 0 || self.detailModel.order_status.integerValue == 10 || self.detailModel.order_status.integerValue == 60)?0:1;
+        return 0;
     }else if (section == JYBOrderDetailTypeLogisInfo){
-        return self.detailModel.logistics.count?1:0;
+        return 0;
     }else if (section == JYBOrderDetailTypeLogisMap){
-        return (self.detailModel.order_status.integerValue == 30 )?1:0;
+        return 0;
     }else if (section == JYBOrderDetailTypeAddressInfo){
         return self.detailModel.shipment_address.count + 1;
     }else if (section == JYBOrderDetailTypeBoxInfo){
@@ -289,11 +300,11 @@ typedef enum : NSUInteger {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == JYBOrderDetailTypeLogisUser) {
-        return ([NSString stringIsNilOrEmpty:self.detailModel.driver_id] ||self.detailModel.order_status.integerValue == 0 || self.detailModel.order_status.integerValue == 10 || self.detailModel.order_status.integerValue == 60)?CGFLOAT_MIN:SizeWidth(10);
+        return CGFLOAT_MIN;
     }else if (section == JYBOrderDetailTypeLogisInfo){
         return CGFLOAT_MIN;
     }else if (section == JYBOrderDetailTypeLogisMap){
-        return (self.detailModel.logistics.count || self.detailModel.order_status.integerValue == 30)?SizeWidth(10):CGFLOAT_MIN;
+        return CGFLOAT_MIN;
     }else if (section == JYBOrderDetailTypeAddressInfo){
         return SizeWidth(10);
     }else if (section == JYBOrderDetailTypeBoxInfo){
@@ -345,6 +356,11 @@ typedef enum : NSUInteger {
         [cell setPhoneBlock:^(NSString *phone) {
             [selfWeak __phoneWithPhone:phone];
         }];
+        
+        [cell setNavBlock:^(JYBOrderBoxAddressModel *model) {
+            [selfWeak __navAction:model];
+        }];
+        
         return cell;
         
     }else if (indexPath.section == JYBOrderDetailTypeBoxInfo){
@@ -408,7 +424,7 @@ typedef enum : NSUInteger {
 //        [self.navigationController pushViewController:vc animated:YES];
         
     }else if (indexPath.section == JYBOrderDetailTypeAddressInfo){
-        
+
     }else if (indexPath.section == JYBOrderDetailTypeBoxInfo){
         
     }else if (indexPath.section == JYBOrderDetailTypeMarkInfo){
@@ -451,7 +467,7 @@ typedef enum : NSUInteger {
         [_myTableView registerClass:[JYBOrderDetailMarkInfoCell class] forCellReuseIdentifier:NSStringFromClass([JYBOrderDetailMarkInfoCell class])];
         [_myTableView registerClass:[JYBOrderDetailCostCell class] forCellReuseIdentifier:NSStringFromClass([JYBOrderDetailCostCell class])];
         [_myTableView registerClass:[JYBHomeOrderImageCell class] forCellReuseIdentifier:NSStringFromClass([JYBHomeOrderImageCell class])];
-//        [_myTableView registerClass:[JYBOrderLogisMapViewCell class] forCellReuseIdentifier:NSStringFromClass([JYBOrderLogisMapViewCell class])];
+        [_myTableView registerClass:[JYBOrderLogisMapViewCell class] forCellReuseIdentifier:NSStringFromClass([JYBOrderLogisMapViewCell class])];
         
         
         
@@ -459,39 +475,45 @@ typedef enum : NSUInteger {
     return _myTableView;
 }
 
-- (JYBOrderDetailBottomView *)bottomView{
+- (void)commitBtnAction{
+    
+    if (self.detailModel.order_status.integerValue == 20){
+        JYBTiBoxDoneVC *vc = [[JYBTiBoxDoneVC alloc] init];
+        vc.detailModel = self.detailModel;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else if (self.detailModel.order_status.integerValue == 30){
+
+        JYBOtherCostInputVC *vc = [[JYBOtherCostInputVC alloc] init];
+        vc.detailModel = self.detailModel;
+        vc.delegate = self;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else{
+
+    }
+    
+}
+
+- (void)JYBOtherCostInputSuccess{
+    [self __fetchOrderDetail];
+}
+
+- (UIView *)bottomView{
     if (!_bottomView) {
-        _bottomView = [[JYBOrderDetailBottomView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height -  SizeWidth(95), kScreenW, SizeWidth(95))];
-//        WeakSelf(weak)
-//        [_bottomView setScheBlock:^{
-//            [weak __turnToOtherCostSchVC];
-//        }];
-//        [_bottomView setPayBlock:^(JYBOrderDetailBottomType type) {
-//            if (type == JYBOrderDetailBottomTypeCancel) {
-//                [weak __cancelOrder];
-//            }else{
-//                [weak __orderPay:type];
-//            }
-//        }];
+        _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - SizeWidth(55) , kScreenW, SizeWidth(55))];
+        _bottomView.backgroundColor = [UIColor whiteColor];
+
+        self.commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(SizeWidth(10), SizeWidth(5), kScreenW - SizeWidth(20), SizeWidth(45))];
+        self.commitBtn.backgroundColor = RGB(24, 141, 240);
+        [self.commitBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [self.commitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.commitBtn.layer.cornerRadius = 2;
+        self.commitBtn.layer.masksToBounds = YES;
+        [self.commitBtn addTarget:self action:@selector(commitBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomView addSubview:self.commitBtn];
     }
     return _bottomView;
 }
-
-//- (UIView *)bottomView{
-//    if (!_bottomView) {
-//        _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenH - SizeWidth(50) , kScreenW, SizeWidth(50))];
-//        _bottomView.backgroundColor = [UIColor whiteColor];
-//
-//        UIButton *commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(SizeWidth(10), SizeWidth(5), kScreenW - SizeWidth(20), SizeWidth(40))];
-//        commitBtn.backgroundColor = RGB(24, 141, 240);
-//        [commitBtn setTitle:@"确定" forState:UIControlStateNormal];
-//        [commitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        commitBtn.layer.cornerRadius = 2;
-//        commitBtn.layer.masksToBounds = YES;
-//        [commitBtn addTarget:self action:@selector(commitBtnAction) forControlEvents:UIControlEventTouchUpInside];
-//        [_bottomView addSubview:commitBtn];
-//    }
-//    return _bottomView;
-//}
 
 @end

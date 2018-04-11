@@ -225,6 +225,12 @@
 		F673C73C207D4DCA004C1500 /* LXFullScreenImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C735207D4DCA004C1500 /* LXFullScreenImageBrowser.m */; };
 		F673C73D207D4DCA004C1500 /* LXZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C738207D4DCA004C1500 /* LXZoomingScrollView.m */; };
 		F673C73E207D4DCA004C1500 /* LXImageLoopBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C73A207D4DCA004C1500 /* LXImageLoopBrowser.m */; };
+		F673C74E207E1E75004C1500 /* JYBOtherCostInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C74D207E1E75004C1500 /* JYBOtherCostInputVC.m */; };
+		F673C751207E24AB004C1500 /* CPHomeEvalAddImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C750207E24AB004C1500 /* CPHomeEvalAddImageView.m */; };
+		F673C754207E24DB004C1500 /* UIButton+LXMImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C753207E24DB004C1500 /* UIButton+LXMImagePosition.m */; };
+		F673C757207E2660004C1500 /* AppAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C756207E265F004C1500 /* AppAlertViewController.m */; };
+		F673C75A207E2DB9004C1500 /* JYBTiBoxDoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C759207E2DB9004C1500 /* JYBTiBoxDoneVC.m */; };
+		F673C75D207E3812004C1500 /* JYBOrderCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C75B207E3812004C1500 /* JYBOrderCountModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -674,6 +680,18 @@
 		F673C738207D4DCA004C1500 /* LXZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXZoomingScrollView.m; sourceTree = "<group>"; };
 		F673C739207D4DCA004C1500 /* LXFullScreenImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXFullScreenImageBrowser.h; sourceTree = "<group>"; };
 		F673C73A207D4DCA004C1500 /* LXImageLoopBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXImageLoopBrowser.m; sourceTree = "<group>"; };
+		F673C74C207E1E75004C1500 /* JYBOtherCostInputVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYBOtherCostInputVC.h; sourceTree = "<group>"; };
+		F673C74D207E1E75004C1500 /* JYBOtherCostInputVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYBOtherCostInputVC.m; sourceTree = "<group>"; };
+		F673C74F207E24AB004C1500 /* CPHomeEvalAddImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeEvalAddImageView.h; sourceTree = "<group>"; };
+		F673C750207E24AB004C1500 /* CPHomeEvalAddImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeEvalAddImageView.m; sourceTree = "<group>"; };
+		F673C752207E24DB004C1500 /* UIButton+LXMImagePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+LXMImagePosition.h"; sourceTree = "<group>"; };
+		F673C753207E24DB004C1500 /* UIButton+LXMImagePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LXMImagePosition.m"; sourceTree = "<group>"; };
+		F673C755207E265F004C1500 /* AppAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAlertViewController.h; sourceTree = "<group>"; };
+		F673C756207E265F004C1500 /* AppAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppAlertViewController.m; sourceTree = "<group>"; };
+		F673C758207E2DB9004C1500 /* JYBTiBoxDoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYBTiBoxDoneVC.h; sourceTree = "<group>"; };
+		F673C759207E2DB9004C1500 /* JYBTiBoxDoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYBTiBoxDoneVC.m; sourceTree = "<group>"; };
+		F673C75B207E3812004C1500 /* JYBOrderCountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderCountModel.m; sourceTree = "<group>"; };
+		F673C75C207E3812004C1500 /* JYBOrderCountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderCountModel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -788,6 +806,10 @@
 				F61239B5205EC31100B58AA5 /* JYBOrderSingleVC.m */,
 				427C6873200C5CF9006A9EBB /* FirstViewController.h */,
 				427C6874200C5CF9006A9EBB /* FirstViewController.m */,
+				F673C74C207E1E75004C1500 /* JYBOtherCostInputVC.h */,
+				F673C74D207E1E75004C1500 /* JYBOtherCostInputVC.m */,
+				F673C758207E2DB9004C1500 /* JYBTiBoxDoneVC.h */,
+				F673C759207E2DB9004C1500 /* JYBTiBoxDoneVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1654,6 +1676,12 @@
 		F612396F205EBE7E00B58AA5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F673C755207E265F004C1500 /* AppAlertViewController.h */,
+				F673C756207E265F004C1500 /* AppAlertViewController.m */,
+				F673C752207E24DB004C1500 /* UIButton+LXMImagePosition.h */,
+				F673C753207E24DB004C1500 /* UIButton+LXMImagePosition.m */,
+				F673C74F207E24AB004C1500 /* CPHomeEvalAddImageView.h */,
+				F673C750207E24AB004C1500 /* CPHomeEvalAddImageView.m */,
 				F673C72F207D4D01004C1500 /* JYBHomeOrderImageCell.h */,
 				F673C730207D4D01004C1500 /* JYBHomeOrderImageCell.m */,
 				F673C705207D4CAA004C1500 /* JYBHomeOrderListCell.h */,
@@ -1699,6 +1727,8 @@
 				F612398E205EBE7E00B58AA5 /* JYBOrderListModel.m */,
 				F612398F205EBE7E00B58AA5 /* JYBOrderLogisticsModel.h */,
 				F6123990205EBE7E00B58AA5 /* JYBOrderLogisticsModel.m */,
+				F673C75C207E3812004C1500 /* JYBOrderCountModel.h */,
+				F673C75B207E3812004C1500 /* JYBOrderCountModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1859,7 +1889,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1873,7 +1903,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Freight_Dirver/Pods-Freight_Dirver-frameworks.sh",
-				"${PODS_ROOT}/Hyphenate/ios_IM_Hyphenate_sdk_3.3.6/HyphenateFullSDK/Hyphenate.framework",
+				"${PODS_ROOT}/Hyphenate/iOS_IM_SDK_V3.4.0/HyphenateFullSDK/Hyphenate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1941,6 +1971,7 @@
 				427C6872200C5C64006A9EBB /* UIScrollView+TBRefresh.m in Sources */,
 				42D3617C201714B0004A16CB /* EaseFaceView.m in Sources */,
 				427C68AF200C8A20006A9EBB /* UITabBar+TBBadge.m in Sources */,
+				F673C751207E24AB004C1500 /* CPHomeEvalAddImageView.m in Sources */,
 				42D36120201714B0004A16CB /* EaseEmojiEmoticons.m in Sources */,
 				42D36115201714B0004A16CB /* UIViewController+HUD.m in Sources */,
 				42D3613B201714B0004A16CB /* amrFileCodec.mm in Sources */,
@@ -1996,6 +2027,7 @@
 				427C6834200C5B4D006A9EBB /* CCBaseViewController.m in Sources */,
 				F61239CC205EC3E500B58AA5 /* TYLimitedTextField.m in Sources */,
 				42D36121201714B0004A16CB /* EaseEmotionManager.m in Sources */,
+				F673C75D207E3812004C1500 /* JYBOrderCountModel.m in Sources */,
 				427C6875200C5CF9006A9EBB /* FirstViewController.m in Sources */,
 				427C69C5200F4D20006A9EBB /* AddPhotoCollectionViewCell.m in Sources */,
 				427C69B5200F2019006A9EBB /* NODataView.m in Sources */,
@@ -2008,6 +2040,7 @@
 				42D3616F201714B0004A16CB /* EaseUsersListViewController.m in Sources */,
 				42400DA8200C4D5500B6C87E /* MainApi.m in Sources */,
 				427C68B6200C8A20006A9EBB /* NSObject+SXRuntime.m in Sources */,
+				F673C75A207E2DB9004C1500 /* JYBTiBoxDoneVC.m in Sources */,
 				42A48C6E2012DF8300B8EC3D /* SystemCellTableViewCell.m in Sources */,
 				42D361BE20171674004A16CB /* UIView+MJExtension.m in Sources */,
 				42D36173201714B0004A16CB /* EaseUserCell.m in Sources */,
@@ -2047,6 +2080,7 @@
 				42D36171201714B0004A16CB /* EaseMessageViewController.m in Sources */,
 				42400D98200C4D4D00B6C87E /* NSString+SBJSON.m in Sources */,
 				427C68B2200C8A20006A9EBB /* UINavigationController+SXFullScreen.m in Sources */,
+				F673C757207E2660004C1500 /* AppAlertViewController.m in Sources */,
 				42D36180201714B0004A16CB /* EaseChatToolbarItem.m in Sources */,
 				42D361C820171674004A16CB /* MJRefreshFooter.m in Sources */,
 				42D3615E201714B0004A16CB /* MKAnnotationView+EMWebCache.m in Sources */,
@@ -2072,11 +2106,13 @@
 				42D36166201714B0004A16CB /* EMSDWebImageDownloaderOperation.m in Sources */,
 				42D3611E201714B0004A16CB /* EaseEmoji.m in Sources */,
 				427C68B4200C8A20006A9EBB /* UIBarButtonItem+SXCreate.m in Sources */,
+				F673C74E207E1E75004C1500 /* JYBOtherCostInputVC.m in Sources */,
 				F673C72D207D4CAE004C1500 /* JYBOrderOtherCostMarkCell.m in Sources */,
 				42D3615B201714B0004A16CB /* NSData+EMImageContentType.m in Sources */,
 				F673C727207D4CAE004C1500 /* JYBOrderDetailAddressCell.m in Sources */,
 				42D36162201714B0004A16CB /* UIImageView+EMWebCache.m in Sources */,
 				42D361C720171674004A16CB /* MJRefreshGifHeader.m in Sources */,
+				F673C754207E24DB004C1500 /* UIButton+LXMImagePosition.m in Sources */,
 				F673C72E207D4CAE004C1500 /* JYBOrderOtherCostImageCell.m in Sources */,
 				42A48C75201329A500B8EC3D /* MessageTableViewCell.m in Sources */,
 				42D36174201714B0004A16CB /* EaseConversationCell.m in Sources */,

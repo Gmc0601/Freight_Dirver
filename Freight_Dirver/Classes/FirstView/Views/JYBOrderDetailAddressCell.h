@@ -11,9 +11,14 @@
 
 typedef void(^JYBOrderDetailPhoneBlock)(NSString *phone);
 
+typedef void(^JYBOrderDetailNavBlock)(JYBOrderBoxAddressModel *model);
+
+
 @interface JYBOrderDetailAddressCell : UITableViewCell
 
 @property (nonatomic ,copy)JYBOrderDetailPhoneBlock phoneBlock;
+
+@property (nonatomic ,copy)JYBOrderDetailNavBlock navBlock;
 
 - (void)updateCellWithModel:(JYBOrderBoxAddressModel *)model isBox:(BOOL)isBox box_no:(NSString *)box_no;
 
