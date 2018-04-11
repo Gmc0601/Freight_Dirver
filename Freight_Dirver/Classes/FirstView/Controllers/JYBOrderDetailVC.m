@@ -25,6 +25,8 @@
 #import "JYBAlertView.h"
 #import "JYBOtherCostInputVC.h"
 #import "JYBTiBoxDoneVC.h"
+#import "CPHomeNavMapViewController.h"
+#import <AMapLocationKit/AMapLocationKit.h>
 
 typedef enum : NSUInteger {
     JYBOrderDetailTypeLogisUser,
@@ -48,6 +50,8 @@ typedef enum : NSUInteger {
 @property (nonatomic ,strong)UIView *bottomView;
 
 @property (nonatomic ,strong)UIButton       *commitBtn;
+
+@property (nonatomic, strong) AMapLocationManager *locationManager;
 
 @end
 
@@ -203,8 +207,11 @@ typedef enum : NSUInteger {
     [self presentViewController:alertVC animated:YES completion:nil];
 }
 
-- (void)__navAction:(JYBOrderBoxAddressModel *)model{
-    
+- (void)__navAction:(JYBOrderBoxAddressModel *)model currLoc:(CLLocation *)curLoc{
+    CPHomeNavMapViewController *vc = [[CPHomeNavMapViewController alloc] init];
+    vc.startPoint = [AMapNaviPoint locationWithLatitude:curLoc.coordinate.latitude longitude:curLoc.coordinate.longitude];
+    vc.endPoint   = [AMapNaviPoint locationWithLatitude:model.lat.floatValue longitude:model.lon.floatValue];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)__turnToOtherCostSchVC{
@@ -213,6 +220,38 @@ typedef enum : NSUInteger {
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)__fetCurrentLocationWithModel:(JYBOrderBoxAddressModel *)model{
+    
+    // 带逆地理信息的一次定位（返回坐标和地址信息）
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    //   定位超时时间，最低2s，此处设置为2s
+    self.locationManager.locationTimeout =5;
+    //   逆地理请求超时时间，最低2s，此处设置为2s
+    self.locationManager.reGeocodeTimeout = 5;
+    
+    // 带逆地理（返回坐标和地址信息）。将下面代码中的 YES 改成 NO ，则不会返回地址信息。
+    [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        
+        if (error)
+        {
+            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            
+            if (error.code == AMapLocationErrorLocateFailed)
+            {
+                return;
+            }
+        }
+        
+        [self __navAction:model currLoc:location];
+        
+        NSLog(@"location:%@", location);
+        
+        if (regeocode)
+        {
+            NSLog(@"reGeocode:%@", regeocode);
+        }
+    }];
+}
 
 #pragma mark - tableviewdelegate
 
@@ -358,7 +397,7 @@ typedef enum : NSUInteger {
         }];
         
         [cell setNavBlock:^(JYBOrderBoxAddressModel *model) {
-            [selfWeak __navAction:model];
+            [selfWeak __fetCurrentLocationWithModel:model];
         }];
         
         return cell;

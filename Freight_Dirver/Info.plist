@@ -35,6 +35,11 @@
 	<string>App需要您的同意,才能访问麦克风</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>需要获取您的相机用于“修改头像和发布任务”若不允许则无法设置头像和发布任务</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

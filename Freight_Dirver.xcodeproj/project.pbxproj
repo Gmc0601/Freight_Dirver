@@ -231,6 +231,9 @@
 		F673C757207E2660004C1500 /* AppAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C756207E265F004C1500 /* AppAlertViewController.m */; };
 		F673C75A207E2DB9004C1500 /* JYBTiBoxDoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C759207E2DB9004C1500 /* JYBTiBoxDoneVC.m */; };
 		F673C75D207E3812004C1500 /* JYBOrderCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C75B207E3812004C1500 /* JYBOrderCountModel.m */; };
+		F673C760207E5B20004C1500 /* CPHomeNavMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C75F207E5B20004C1500 /* CPHomeNavMapViewController.m */; };
+		F673C765207E5B9B004C1500 /* MoreMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C761207E5B9A004C1500 /* MoreMenuView.m */; };
+		F673C766207E5B9B004C1500 /* SpeechSynthesizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C764207E5B9B004C1500 /* SpeechSynthesizer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -692,6 +695,12 @@
 		F673C759207E2DB9004C1500 /* JYBTiBoxDoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYBTiBoxDoneVC.m; sourceTree = "<group>"; };
 		F673C75B207E3812004C1500 /* JYBOrderCountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderCountModel.m; sourceTree = "<group>"; };
 		F673C75C207E3812004C1500 /* JYBOrderCountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderCountModel.h; sourceTree = "<group>"; };
+		F673C75E207E5B20004C1500 /* CPHomeNavMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeNavMapViewController.h; sourceTree = "<group>"; };
+		F673C75F207E5B20004C1500 /* CPHomeNavMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeNavMapViewController.m; sourceTree = "<group>"; };
+		F673C761207E5B9A004C1500 /* MoreMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreMenuView.m; sourceTree = "<group>"; };
+		F673C762207E5B9B004C1500 /* SpeechSynthesizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesizer.h; sourceTree = "<group>"; };
+		F673C763207E5B9B004C1500 /* MoreMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreMenuView.h; sourceTree = "<group>"; };
+		F673C764207E5B9B004C1500 /* SpeechSynthesizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechSynthesizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -796,6 +805,8 @@
 		42400D71200C4AA000B6C87E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F673C75E207E5B20004C1500 /* CPHomeNavMapViewController.h */,
+				F673C75F207E5B20004C1500 /* CPHomeNavMapViewController.m */,
 				F61239B7205EC31200B58AA5 /* JYBOrderDetailVC.h */,
 				F61239AE205EC31000B58AA5 /* JYBOrderDetailVC.m */,
 				F61239B0205EC31100B58AA5 /* JYBOrderLogisInfoVC.h */,
@@ -1676,6 +1687,10 @@
 		F612396F205EBE7E00B58AA5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F673C763207E5B9B004C1500 /* MoreMenuView.h */,
+				F673C761207E5B9A004C1500 /* MoreMenuView.m */,
+				F673C762207E5B9B004C1500 /* SpeechSynthesizer.h */,
+				F673C764207E5B9B004C1500 /* SpeechSynthesizer.m */,
 				F673C755207E265F004C1500 /* AppAlertViewController.h */,
 				F673C756207E265F004C1500 /* AppAlertViewController.m */,
 				F673C752207E24DB004C1500 /* UIButton+LXMImagePosition.h */,
@@ -1815,6 +1830,11 @@
 					42400D44200C484000B6C87E = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1934,6 +1954,7 @@
 				42D361CC20171674004A16CB /* MJRefreshComponent.m in Sources */,
 				42A48C722012DF8D00B8EC3D /* SystemMessageViewController.m in Sources */,
 				42D3613F201714B0004A16CB /* EMCDDeviceManager+Media.m in Sources */,
+				F673C760207E5B20004C1500 /* CPHomeNavMapViewController.m in Sources */,
 				F673C728207D4CAE004C1500 /* JYBOrderDetailBoxInfoCell.m in Sources */,
 				42D361BF20171674004A16CB /* MJRefreshBackGifFooter.m in Sources */,
 				F61239C0205EC37F00B58AA5 /* HMSegmentedControl.m in Sources */,
@@ -1986,6 +2007,7 @@
 				427C687E200C80E2006A9EBB /* UserInfoViewController.m in Sources */,
 				42D3613D201714B0004A16CB /* EMCDDeviceManager+Remind.m in Sources */,
 				42D36150201714B0004A16CB /* PSTGridLayoutInfo.m in Sources */,
+				F673C765207E5B9B004C1500 /* MoreMenuView.m in Sources */,
 				42D3613E201714B0004A16CB /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				42D36184201714B0004A16CB /* EaseBubbleView.m in Sources */,
 				42D36172201714B0004A16CB /* EaseViewController.m in Sources */,
@@ -2111,6 +2133,7 @@
 				42D3615B201714B0004A16CB /* NSData+EMImageContentType.m in Sources */,
 				F673C727207D4CAE004C1500 /* JYBOrderDetailAddressCell.m in Sources */,
 				42D36162201714B0004A16CB /* UIImageView+EMWebCache.m in Sources */,
+				F673C766207E5B9B004C1500 /* SpeechSynthesizer.m in Sources */,
 				42D361C720171674004A16CB /* MJRefreshGifHeader.m in Sources */,
 				F673C754207E24DB004C1500 /* UIButton+LXMImagePosition.m in Sources */,
 				F673C72E207D4CAE004C1500 /* JYBOrderOtherCostImageCell.m in Sources */,

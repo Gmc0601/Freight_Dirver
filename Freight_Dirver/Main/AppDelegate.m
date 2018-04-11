@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "AppDelegate+EMOptions.h"
 #import "ChoseMembersViewController.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 @interface AppDelegate ()
 
@@ -19,6 +20,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [AMapServices sharedServices].apiKey = @"c2216fac26230148bf21b8ea3b00499e";
+
     
     if (@available(iOS 11.0, *)) {
         UITableView.appearance.estimatedRowHeight = 0;
