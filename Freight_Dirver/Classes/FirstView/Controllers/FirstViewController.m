@@ -62,6 +62,19 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+            //   司机登录
+        }
+        if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+            //  装箱工登录
+        }
+    }else {
+        //   未登录 
+    }
+    
+    
 }
 
 - (void)navigation {
