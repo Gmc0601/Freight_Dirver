@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "AppDelegate+EMOptions.h"
+#import "ChoseMembersViewController.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +26,15 @@
         UITableView.appearance.estimatedSectionHeaderHeight = 0;
     }
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [[ViewController alloc] init];
+    
+    if (![ConfigModel getBoolObjectforKey:IsLogin]) {
+        UINavigationController *na = [[UINavigationController alloc] initWithRootViewController:[ChoseMembersViewController new]];
+        self.window.rootViewController = na;
+    }else {
+        self.window.rootViewController = [ViewController new];
+    }
+    
+//    self.window.rootViewController = [[ViewController alloc] init];
     self.window.backgroundColor = [UIColor whiteColor];
     [self initEmoptions];
     [self.window makeKeyAndVisible];

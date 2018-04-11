@@ -113,6 +113,13 @@
     if (self.type == AddOne && indexPath.row == 0) {
         cell.text.userInteractionEnabled =  NO;
     }
+    if (self.type == AddOne && indexPath.row == 2) {
+        cell.text.keyboardType = UIKeyboardTypeNamePhonePad;
+    }
+    if (self.type == AddOne && indexPath.row == 4) {
+        cell.text.keyboardType = UIKeyboardTypeNumberPad;
+    }
+    
     cell.title = self.titleArr[indexPath.row];
     cell.textBlock = ^(NSIndexPath *index, NSString *text) {
         if (self.type == AddOne) {
@@ -181,7 +188,7 @@
 
 #pragma mark - UITableDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return SizeHeight(55);
+    return 55;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

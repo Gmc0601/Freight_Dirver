@@ -151,6 +151,9 @@
     UITableViewCell *cell = [self.noUseTableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+        UILabel *line = [[UILabel alloc] initWithFrame:FRAME(0, SizeHeight(55) - 1, kScreenW, 1)];
+        line.backgroundColor = UIColorHex(0xe3e3e3);
+        [cell.contentView addSubview:line];
     }
     NSString *imagestr = self.picArr[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:imagestr];
@@ -213,6 +216,7 @@
     if (!_noUseTableView) {
         _noUseTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH - 50) style:UITableViewStylePlain];
         _noUseTableView.backgroundColor = [UIColor whiteColor];
+        _noUseTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _noUseTableView.delegate = self;
         _noUseTableView.dataSource = self;
         _noUseTableView.tableHeaderView = ({

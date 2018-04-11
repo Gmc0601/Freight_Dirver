@@ -14,6 +14,7 @@
 #import "ReviewViewController.h"
 #import "AddInfoModel.h"
 #import <Hyphenate/Hyphenate.h>
+#import "ViewController.h"
 
 @implementation UserModel
 
@@ -56,6 +57,8 @@
     [self.leftBar setImage:[UIImage imageNamed:@"nav_icon_fh"] forState:UIControlStateNormal];
     [self.phoneText addTarget:self action:@selector(textchange) forControlEvents:UIControlEventEditingChanged];
     [self.codeText addTarget:self action:@selector(textchange) forControlEvents:UIControlEventEditingChanged];
+    self.phoneText.keyboardType = UIKeyboardTypeNumberPad;
+    self.codeText.keyboardType = UIKeyboardTypeNumberPad;
     
 }
 
@@ -199,7 +202,8 @@
                         //  审核通过
                         [ConfigModel saveString:user.driver_id forKey:DriverId];
                         [ConfigModel saveBoolObject:YES forKey:IsLogin];
-                        [self dismissViewControllerAnimated:YES completion:nil];
+                        [self presentViewController:[ViewController new] animated:YES completion:nil];
+//                        [self dismissViewControllerAnimated:YES completion:nil];
                     }else {
                         //  审核失败
                         ReviewViewController *vc = [[ReviewViewController alloc] init];
