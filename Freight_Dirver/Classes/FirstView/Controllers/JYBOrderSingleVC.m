@@ -114,9 +114,9 @@
         if (action == JYBHomeOrderListActionContact) {
             [selfWeak __phoneWithModel:listModel];
         }else if (action == JYBHomeOrderListActionOrder){
-            [selfWeak __orderWithModel:listModel];
+
         }else{
-            [selfWeak __payWithModel:listModel];
+
         }
     }];
     return cell;
@@ -145,16 +145,6 @@
     [self presentViewController:alertVC animated:YES completion:nil];
 }
 
-- (void)__orderWithModel:(JYBOrderListModel *)model{
-    
-}
-
-- (void)__payWithModel:(JYBOrderListModel *)model{
-    WeakObj(self);
-    [[[JYBOrderPayPopView alloc] initWithClickAction:^{
-        
-    }] show];
-}
 
 - (UITableView *)myTableView{
     if (!_myTableView) {

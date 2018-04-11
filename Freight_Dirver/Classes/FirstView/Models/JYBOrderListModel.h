@@ -16,11 +16,15 @@
 
 @property (nonatomic,copy)NSString *create_time;       //下单时间
 
-@property (nonatomic,copy)NSString *order_status;    //订单状态 状态：0-待支付 10-派单中 20-已接单 30-进行中 40-已到港（待支付,支付额外费用） 50-已完成 60-已取消
+@property (nonatomic,copy)NSString *order_status;    //订单状态 状态：0-待支付 10-派单中 20-已接单 30-进行中 31-已到港（待支付,支付额外费用）32-已到港（待支付,额外费用拒绝） 40-已到港（待支付,支付额外费用） 50-已完成 60-已取消
 
 @property (nonatomic,copy)NSString *order_price;     //运价（订单显示价格）
 
 @property (nonatomic,copy)NSString *port_name;       //港口名称
+
+@property (nonatomic,copy)NSString *port_id;          //港口id
+
+@property (nonatomic,copy)NSString *box_address_id;          //拿单箱地址id
 
 @property (nonatomic,copy)NSString *dock_name;       //码头名称
 
@@ -48,6 +52,10 @@
 
 @property (nonatomic,copy)NSString *box_no;          //提箱号
 
+@property (nonatomic,copy)NSString *car_no;          //car_no
+
+@property (nonatomic,copy)NSArray *box_img;          //箱子照片
+
 @property (nonatomic,copy)NSString *close_no;          //封号
 
 @property (nonatomic,copy)NSString *driver_id;          //司机ID
@@ -56,6 +64,9 @@
 
 @property (nonatomic,copy)NSString *driver_name;          //司机名
 
+@property (nonatomic,copy)NSString *driver_lat;          //lat
+
+@property (nonatomic,copy)NSString *driver_lon;          //lon
 
 @property (nonatomic,copy)NSArray *other_price_img;          //额外费用凭证图片
 

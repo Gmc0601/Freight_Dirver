@@ -189,19 +189,6 @@
 		50F8DD520205113BF895A5AD /* libPods-Freight_Dirver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACE7D39BF32338CD27E5381 /* libPods-Freight_Dirver.a */; };
 		F612396C205EBB5500B58AA5 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F612396B205EBB5400B58AA5 /* libopencore-amrnb.a */; };
 		F612396E205EBB6100B58AA5 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F612396D205EBB6100B58AA5 /* libopencore-amrwb.a */; };
-		F6123991205EBE7E00B58AA5 /* JYBHomeOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6123971205EBE7E00B58AA5 /* JYBHomeOrderListCell.m */; };
-		F6123992205EBE7E00B58AA5 /* JYBHomeOrderLogisItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6123973205EBE7E00B58AA5 /* JYBHomeOrderLogisItemCell.m */; };
-		F6123993205EBE7E00B58AA5 /* JYBOrderDetailAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6123975205EBE7E00B58AA5 /* JYBOrderDetailAddressCell.m */; };
-		F6123994205EBE7E00B58AA5 /* JYBOrderDetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6123977205EBE7E00B58AA5 /* JYBOrderDetailBottomView.m */; };
-		F6123995205EBE7E00B58AA5 /* JYBOrderDetailBoxInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6123979205EBE7E00B58AA5 /* JYBOrderDetailBoxInfoCell.m */; };
-		F6123996205EBE7E00B58AA5 /* JYBOrderDetailCostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F612397B205EBE7E00B58AA5 /* JYBOrderDetailCostCell.m */; };
-		F6123997205EBE7E00B58AA5 /* JYBOrderDetailLogisInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F612397D205EBE7E00B58AA5 /* JYBOrderDetailLogisInfoCell.m */; };
-		F6123998205EBE7E00B58AA5 /* JYBOrderDetailLogisUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F612397F205EBE7E00B58AA5 /* JYBOrderDetailLogisUserCell.m */; };
-		F6123999205EBE7E00B58AA5 /* JYBOrderDetailMarkInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6123981205EBE7E00B58AA5 /* JYBOrderDetailMarkInfoCell.m */; };
-		F612399A205EBE7E00B58AA5 /* JYBOrderOtherCostImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6123983205EBE7E00B58AA5 /* JYBOrderOtherCostImageCell.m */; };
-		F612399B205EBE7E00B58AA5 /* JYBOrderOtherCostItmeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6123985205EBE7E00B58AA5 /* JYBOrderOtherCostItmeCell.m */; };
-		F612399C205EBE7E00B58AA5 /* JYBOrderOtherCostMarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6123987205EBE7E00B58AA5 /* JYBOrderOtherCostMarkCell.m */; };
-		F612399D205EBE7E00B58AA5 /* JYBOrderPayPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6123989205EBE7E00B58AA5 /* JYBOrderPayPopView.m */; };
 		F612399E205EBE7E00B58AA5 /* JYBOrderBoxAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F612398C205EBE7E00B58AA5 /* JYBOrderBoxAddressModel.m */; };
 		F612399F205EBE7E00B58AA5 /* JYBOrderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F612398E205EBE7E00B58AA5 /* JYBOrderListModel.m */; };
 		F61239A0205EBE7E00B58AA5 /* JYBOrderLogisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6123990205EBE7E00B58AA5 /* JYBOrderLogisticsModel.m */; };
@@ -214,11 +201,30 @@
 		F61239BA205EC31200B58AA5 /* JYBOrderLogisInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F61239B2205EC31100B58AA5 /* JYBOrderLogisInfoVC.m */; };
 		F61239BC205EC31200B58AA5 /* JYBOrderSingleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F61239B5205EC31100B58AA5 /* JYBOrderSingleVC.m */; };
 		F61239C0205EC37F00B58AA5 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F61239BF205EC37F00B58AA5 /* HMSegmentedControl.m */; };
-		F61239C3205EC3B800B58AA5 /* JYBHomeOrderImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F61239C2205EC3B800B58AA5 /* JYBHomeOrderImageCell.m */; };
 		F61239CC205EC3E500B58AA5 /* TYLimitedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F61239C4205EC3E400B58AA5 /* TYLimitedTextField.m */; };
 		F61239CD205EC3E500B58AA5 /* TYLimitedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F61239C8205EC3E500B58AA5 /* TYLimitedTextView.m */; };
 		F61239CE205EC3E500B58AA5 /* JYBAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F61239C9205EC3E500B58AA5 /* JYBAlertView.m */; };
 		F61239CF205EC3E500B58AA5 /* ESPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F61239CA205EC3E500B58AA5 /* ESPickerView.m */; };
+		F673C720207D4CAE004C1500 /* JYBHomeOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C704207D4CAA004C1500 /* JYBHomeOrderListCell.m */; };
+		F673C721207D4CAE004C1500 /* JYBOrderDetailCostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C706207D4CAA004C1500 /* JYBOrderDetailCostCell.m */; };
+		F673C722207D4CAE004C1500 /* JYBOrderLogisMapViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C707207D4CAA004C1500 /* JYBOrderLogisMapViewCell.m */; };
+		F673C723207D4CAE004C1500 /* JYBOrderDetailLogisUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C708207D4CAA004C1500 /* JYBOrderDetailLogisUserCell.m */; };
+		F673C724207D4CAE004C1500 /* JYBHomeOrderLogisItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C709207D4CAB004C1500 /* JYBHomeOrderLogisItemCell.m */; };
+		F673C725207D4CAE004C1500 /* JYBOrderOtherCostItmeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C70B207D4CAB004C1500 /* JYBOrderOtherCostItmeCell.m */; };
+		F673C726207D4CAE004C1500 /* JYBOrderDetailMarkInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C70C207D4CAB004C1500 /* JYBOrderDetailMarkInfoCell.m */; };
+		F673C727207D4CAE004C1500 /* JYBOrderDetailAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C70D207D4CAB004C1500 /* JYBOrderDetailAddressCell.m */; };
+		F673C728207D4CAE004C1500 /* JYBOrderDetailBoxInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C70E207D4CAB004C1500 /* JYBOrderDetailBoxInfoCell.m */; };
+		F673C729207D4CAE004C1500 /* JYBOrderDetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C70F207D4CAB004C1500 /* JYBOrderDetailBottomView.m */; };
+		F673C72A207D4CAE004C1500 /* JYBOrderDetailLogisInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C710207D4CAB004C1500 /* JYBOrderDetailLogisInfoCell.m */; };
+		F673C72B207D4CAE004C1500 /* JYBOrderPayPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C712207D4CAC004C1500 /* JYBOrderPayPopView.m */; };
+		F673C72C207D4CAE004C1500 /* THDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C715207D4CAC004C1500 /* THDatePickerView.m */; };
+		F673C72D207D4CAE004C1500 /* JYBOrderOtherCostMarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C71C207D4CAE004C1500 /* JYBOrderOtherCostMarkCell.m */; };
+		F673C72E207D4CAE004C1500 /* JYBOrderOtherCostImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C71D207D4CAE004C1500 /* JYBOrderOtherCostImageCell.m */; };
+		F673C731207D4D02004C1500 /* JYBHomeOrderImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C730207D4D01004C1500 /* JYBHomeOrderImageCell.m */; };
+		F673C73B207D4DCA004C1500 /* LXCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C733207D4DCA004C1500 /* LXCircularProgressView.m */; };
+		F673C73C207D4DCA004C1500 /* LXFullScreenImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C735207D4DCA004C1500 /* LXFullScreenImageBrowser.m */; };
+		F673C73D207D4DCA004C1500 /* LXZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C738207D4DCA004C1500 /* LXZoomingScrollView.m */; };
+		F673C73E207D4DCA004C1500 /* LXImageLoopBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C73A207D4DCA004C1500 /* LXImageLoopBrowser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -596,32 +602,6 @@
 		AACE7D39BF32338CD27E5381 /* libPods-Freight_Dirver.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Freight_Dirver.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F612396B205EBB5400B58AA5 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		F612396D205EBB6100B58AA5 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
-		F6123970205EBE7E00B58AA5 /* JYBHomeOrderListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBHomeOrderListCell.h; sourceTree = "<group>"; };
-		F6123971205EBE7E00B58AA5 /* JYBHomeOrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBHomeOrderListCell.m; sourceTree = "<group>"; };
-		F6123972205EBE7E00B58AA5 /* JYBHomeOrderLogisItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBHomeOrderLogisItemCell.h; sourceTree = "<group>"; };
-		F6123973205EBE7E00B58AA5 /* JYBHomeOrderLogisItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBHomeOrderLogisItemCell.m; sourceTree = "<group>"; };
-		F6123974205EBE7E00B58AA5 /* JYBOrderDetailAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailAddressCell.h; sourceTree = "<group>"; };
-		F6123975205EBE7E00B58AA5 /* JYBOrderDetailAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailAddressCell.m; sourceTree = "<group>"; };
-		F6123976205EBE7E00B58AA5 /* JYBOrderDetailBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailBottomView.h; sourceTree = "<group>"; };
-		F6123977205EBE7E00B58AA5 /* JYBOrderDetailBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailBottomView.m; sourceTree = "<group>"; };
-		F6123978205EBE7E00B58AA5 /* JYBOrderDetailBoxInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailBoxInfoCell.h; sourceTree = "<group>"; };
-		F6123979205EBE7E00B58AA5 /* JYBOrderDetailBoxInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailBoxInfoCell.m; sourceTree = "<group>"; };
-		F612397A205EBE7E00B58AA5 /* JYBOrderDetailCostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailCostCell.h; sourceTree = "<group>"; };
-		F612397B205EBE7E00B58AA5 /* JYBOrderDetailCostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailCostCell.m; sourceTree = "<group>"; };
-		F612397C205EBE7E00B58AA5 /* JYBOrderDetailLogisInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailLogisInfoCell.h; sourceTree = "<group>"; };
-		F612397D205EBE7E00B58AA5 /* JYBOrderDetailLogisInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailLogisInfoCell.m; sourceTree = "<group>"; };
-		F612397E205EBE7E00B58AA5 /* JYBOrderDetailLogisUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailLogisUserCell.h; sourceTree = "<group>"; };
-		F612397F205EBE7E00B58AA5 /* JYBOrderDetailLogisUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailLogisUserCell.m; sourceTree = "<group>"; };
-		F6123980205EBE7E00B58AA5 /* JYBOrderDetailMarkInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailMarkInfoCell.h; sourceTree = "<group>"; };
-		F6123981205EBE7E00B58AA5 /* JYBOrderDetailMarkInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailMarkInfoCell.m; sourceTree = "<group>"; };
-		F6123982205EBE7E00B58AA5 /* JYBOrderOtherCostImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderOtherCostImageCell.h; sourceTree = "<group>"; };
-		F6123983205EBE7E00B58AA5 /* JYBOrderOtherCostImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderOtherCostImageCell.m; sourceTree = "<group>"; };
-		F6123984205EBE7E00B58AA5 /* JYBOrderOtherCostItmeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderOtherCostItmeCell.h; sourceTree = "<group>"; };
-		F6123985205EBE7E00B58AA5 /* JYBOrderOtherCostItmeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderOtherCostItmeCell.m; sourceTree = "<group>"; };
-		F6123986205EBE7E00B58AA5 /* JYBOrderOtherCostMarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderOtherCostMarkCell.h; sourceTree = "<group>"; };
-		F6123987205EBE7E00B58AA5 /* JYBOrderOtherCostMarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderOtherCostMarkCell.m; sourceTree = "<group>"; };
-		F6123988205EBE7E00B58AA5 /* JYBOrderPayPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderPayPopView.h; sourceTree = "<group>"; };
-		F6123989205EBE7E00B58AA5 /* JYBOrderPayPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderPayPopView.m; sourceTree = "<group>"; };
 		F612398B205EBE7E00B58AA5 /* JYBOrderBoxAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderBoxAddressModel.h; sourceTree = "<group>"; };
 		F612398C205EBE7E00B58AA5 /* JYBOrderBoxAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderBoxAddressModel.m; sourceTree = "<group>"; };
 		F612398D205EBE7E00B58AA5 /* JYBOrderListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderListModel.h; sourceTree = "<group>"; };
@@ -646,8 +626,6 @@
 		F61239B7205EC31200B58AA5 /* JYBOrderDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailVC.h; sourceTree = "<group>"; };
 		F61239BE205EC37F00B58AA5 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
 		F61239BF205EC37F00B58AA5 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
-		F61239C1205EC3B800B58AA5 /* JYBHomeOrderImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBHomeOrderImageCell.h; sourceTree = "<group>"; };
-		F61239C2205EC3B800B58AA5 /* JYBHomeOrderImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBHomeOrderImageCell.m; sourceTree = "<group>"; };
 		F61239C4205EC3E400B58AA5 /* TYLimitedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYLimitedTextField.m; sourceTree = "<group>"; };
 		F61239C5205EC3E400B58AA5 /* TYLimitedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYLimitedTextView.h; sourceTree = "<group>"; };
 		F61239C6205EC3E500B58AA5 /* TYLimitedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYLimitedTextField.h; sourceTree = "<group>"; };
@@ -656,6 +634,46 @@
 		F61239C9205EC3E500B58AA5 /* JYBAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBAlertView.m; sourceTree = "<group>"; };
 		F61239CA205EC3E500B58AA5 /* ESPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPickerView.m; sourceTree = "<group>"; };
 		F61239CB205EC3E500B58AA5 /* JYBAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBAlertView.h; sourceTree = "<group>"; };
+		F673C702207D4CAA004C1500 /* JYBOrderDetailLogisUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailLogisUserCell.h; sourceTree = "<group>"; };
+		F673C703207D4CAA004C1500 /* JYBOrderDetailBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailBottomView.h; sourceTree = "<group>"; };
+		F673C704207D4CAA004C1500 /* JYBHomeOrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBHomeOrderListCell.m; sourceTree = "<group>"; };
+		F673C705207D4CAA004C1500 /* JYBHomeOrderListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBHomeOrderListCell.h; sourceTree = "<group>"; };
+		F673C706207D4CAA004C1500 /* JYBOrderDetailCostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailCostCell.m; sourceTree = "<group>"; };
+		F673C707207D4CAA004C1500 /* JYBOrderLogisMapViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderLogisMapViewCell.m; sourceTree = "<group>"; };
+		F673C708207D4CAA004C1500 /* JYBOrderDetailLogisUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailLogisUserCell.m; sourceTree = "<group>"; };
+		F673C709207D4CAB004C1500 /* JYBHomeOrderLogisItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBHomeOrderLogisItemCell.m; sourceTree = "<group>"; };
+		F673C70A207D4CAB004C1500 /* JYBOrderOtherCostItmeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderOtherCostItmeCell.h; sourceTree = "<group>"; };
+		F673C70B207D4CAB004C1500 /* JYBOrderOtherCostItmeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderOtherCostItmeCell.m; sourceTree = "<group>"; };
+		F673C70C207D4CAB004C1500 /* JYBOrderDetailMarkInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailMarkInfoCell.m; sourceTree = "<group>"; };
+		F673C70D207D4CAB004C1500 /* JYBOrderDetailAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailAddressCell.m; sourceTree = "<group>"; };
+		F673C70E207D4CAB004C1500 /* JYBOrderDetailBoxInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailBoxInfoCell.m; sourceTree = "<group>"; };
+		F673C70F207D4CAB004C1500 /* JYBOrderDetailBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailBottomView.m; sourceTree = "<group>"; };
+		F673C710207D4CAB004C1500 /* JYBOrderDetailLogisInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderDetailLogisInfoCell.m; sourceTree = "<group>"; };
+		F673C711207D4CAC004C1500 /* JYBOrderDetailAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailAddressCell.h; sourceTree = "<group>"; };
+		F673C712207D4CAC004C1500 /* JYBOrderPayPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderPayPopView.m; sourceTree = "<group>"; };
+		F673C713207D4CAC004C1500 /* THDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDatePickerView.h; sourceTree = "<group>"; };
+		F673C714207D4CAC004C1500 /* JYBOrderDetailMarkInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailMarkInfoCell.h; sourceTree = "<group>"; };
+		F673C715207D4CAC004C1500 /* THDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDatePickerView.m; sourceTree = "<group>"; };
+		F673C716207D4CAC004C1500 /* JYBOrderPayPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderPayPopView.h; sourceTree = "<group>"; };
+		F673C717207D4CAD004C1500 /* JYBOrderLogisMapViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderLogisMapViewCell.h; sourceTree = "<group>"; };
+		F673C718207D4CAD004C1500 /* JYBOrderDetailBoxInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailBoxInfoCell.h; sourceTree = "<group>"; };
+		F673C719207D4CAD004C1500 /* JYBOrderOtherCostImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderOtherCostImageCell.h; sourceTree = "<group>"; };
+		F673C71A207D4CAD004C1500 /* JYBHomeOrderLogisItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBHomeOrderLogisItemCell.h; sourceTree = "<group>"; };
+		F673C71B207D4CAD004C1500 /* JYBOrderDetailLogisInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailLogisInfoCell.h; sourceTree = "<group>"; };
+		F673C71C207D4CAE004C1500 /* JYBOrderOtherCostMarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderOtherCostMarkCell.m; sourceTree = "<group>"; };
+		F673C71D207D4CAE004C1500 /* JYBOrderOtherCostImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderOtherCostImageCell.m; sourceTree = "<group>"; };
+		F673C71E207D4CAE004C1500 /* JYBOrderOtherCostMarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderOtherCostMarkCell.h; sourceTree = "<group>"; };
+		F673C71F207D4CAE004C1500 /* JYBOrderDetailCostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailCostCell.h; sourceTree = "<group>"; };
+		F673C72F207D4D01004C1500 /* JYBHomeOrderImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBHomeOrderImageCell.h; sourceTree = "<group>"; };
+		F673C730207D4D01004C1500 /* JYBHomeOrderImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBHomeOrderImageCell.m; sourceTree = "<group>"; };
+		F673C733207D4DCA004C1500 /* LXCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCircularProgressView.m; sourceTree = "<group>"; };
+		F673C734207D4DCA004C1500 /* LXZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXZoomingScrollView.h; sourceTree = "<group>"; };
+		F673C735207D4DCA004C1500 /* LXFullScreenImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXFullScreenImageBrowser.m; sourceTree = "<group>"; };
+		F673C736207D4DCA004C1500 /* LXImageLoopBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXImageLoopBrowser.h; sourceTree = "<group>"; };
+		F673C737207D4DCA004C1500 /* LXCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCircularProgressView.h; sourceTree = "<group>"; };
+		F673C738207D4DCA004C1500 /* LXZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXZoomingScrollView.m; sourceTree = "<group>"; };
+		F673C739207D4DCA004C1500 /* LXFullScreenImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXFullScreenImageBrowser.h; sourceTree = "<group>"; };
+		F673C73A207D4DCA004C1500 /* LXImageLoopBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXImageLoopBrowser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -859,6 +877,7 @@
 		42400D7D200C4C9600B6C87E /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				F673C732207D4DCA004C1500 /* LXImageLoopBrowser */,
 				42E6174C2058B98200B01D6D /* Pickers */,
 				42D35FEE201714B0004A16CB /* EaseUI */,
 				427C6864200C5C64006A9EBB /* MJRefresh */,
@@ -1635,34 +1654,38 @@
 		F612396F205EBE7E00B58AA5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F61239C1205EC3B800B58AA5 /* JYBHomeOrderImageCell.h */,
-				F61239C2205EC3B800B58AA5 /* JYBHomeOrderImageCell.m */,
-				F6123970205EBE7E00B58AA5 /* JYBHomeOrderListCell.h */,
-				F6123971205EBE7E00B58AA5 /* JYBHomeOrderListCell.m */,
-				F6123972205EBE7E00B58AA5 /* JYBHomeOrderLogisItemCell.h */,
-				F6123973205EBE7E00B58AA5 /* JYBHomeOrderLogisItemCell.m */,
-				F6123974205EBE7E00B58AA5 /* JYBOrderDetailAddressCell.h */,
-				F6123975205EBE7E00B58AA5 /* JYBOrderDetailAddressCell.m */,
-				F6123976205EBE7E00B58AA5 /* JYBOrderDetailBottomView.h */,
-				F6123977205EBE7E00B58AA5 /* JYBOrderDetailBottomView.m */,
-				F6123978205EBE7E00B58AA5 /* JYBOrderDetailBoxInfoCell.h */,
-				F6123979205EBE7E00B58AA5 /* JYBOrderDetailBoxInfoCell.m */,
-				F612397A205EBE7E00B58AA5 /* JYBOrderDetailCostCell.h */,
-				F612397B205EBE7E00B58AA5 /* JYBOrderDetailCostCell.m */,
-				F612397C205EBE7E00B58AA5 /* JYBOrderDetailLogisInfoCell.h */,
-				F612397D205EBE7E00B58AA5 /* JYBOrderDetailLogisInfoCell.m */,
-				F612397E205EBE7E00B58AA5 /* JYBOrderDetailLogisUserCell.h */,
-				F612397F205EBE7E00B58AA5 /* JYBOrderDetailLogisUserCell.m */,
-				F6123980205EBE7E00B58AA5 /* JYBOrderDetailMarkInfoCell.h */,
-				F6123981205EBE7E00B58AA5 /* JYBOrderDetailMarkInfoCell.m */,
-				F6123982205EBE7E00B58AA5 /* JYBOrderOtherCostImageCell.h */,
-				F6123983205EBE7E00B58AA5 /* JYBOrderOtherCostImageCell.m */,
-				F6123984205EBE7E00B58AA5 /* JYBOrderOtherCostItmeCell.h */,
-				F6123985205EBE7E00B58AA5 /* JYBOrderOtherCostItmeCell.m */,
-				F6123986205EBE7E00B58AA5 /* JYBOrderOtherCostMarkCell.h */,
-				F6123987205EBE7E00B58AA5 /* JYBOrderOtherCostMarkCell.m */,
-				F6123988205EBE7E00B58AA5 /* JYBOrderPayPopView.h */,
-				F6123989205EBE7E00B58AA5 /* JYBOrderPayPopView.m */,
+				F673C72F207D4D01004C1500 /* JYBHomeOrderImageCell.h */,
+				F673C730207D4D01004C1500 /* JYBHomeOrderImageCell.m */,
+				F673C705207D4CAA004C1500 /* JYBHomeOrderListCell.h */,
+				F673C704207D4CAA004C1500 /* JYBHomeOrderListCell.m */,
+				F673C71A207D4CAD004C1500 /* JYBHomeOrderLogisItemCell.h */,
+				F673C709207D4CAB004C1500 /* JYBHomeOrderLogisItemCell.m */,
+				F673C711207D4CAC004C1500 /* JYBOrderDetailAddressCell.h */,
+				F673C70D207D4CAB004C1500 /* JYBOrderDetailAddressCell.m */,
+				F673C703207D4CAA004C1500 /* JYBOrderDetailBottomView.h */,
+				F673C70F207D4CAB004C1500 /* JYBOrderDetailBottomView.m */,
+				F673C718207D4CAD004C1500 /* JYBOrderDetailBoxInfoCell.h */,
+				F673C70E207D4CAB004C1500 /* JYBOrderDetailBoxInfoCell.m */,
+				F673C71F207D4CAE004C1500 /* JYBOrderDetailCostCell.h */,
+				F673C706207D4CAA004C1500 /* JYBOrderDetailCostCell.m */,
+				F673C71B207D4CAD004C1500 /* JYBOrderDetailLogisInfoCell.h */,
+				F673C710207D4CAB004C1500 /* JYBOrderDetailLogisInfoCell.m */,
+				F673C702207D4CAA004C1500 /* JYBOrderDetailLogisUserCell.h */,
+				F673C708207D4CAA004C1500 /* JYBOrderDetailLogisUserCell.m */,
+				F673C714207D4CAC004C1500 /* JYBOrderDetailMarkInfoCell.h */,
+				F673C70C207D4CAB004C1500 /* JYBOrderDetailMarkInfoCell.m */,
+				F673C717207D4CAD004C1500 /* JYBOrderLogisMapViewCell.h */,
+				F673C707207D4CAA004C1500 /* JYBOrderLogisMapViewCell.m */,
+				F673C719207D4CAD004C1500 /* JYBOrderOtherCostImageCell.h */,
+				F673C71D207D4CAE004C1500 /* JYBOrderOtherCostImageCell.m */,
+				F673C70A207D4CAB004C1500 /* JYBOrderOtherCostItmeCell.h */,
+				F673C70B207D4CAB004C1500 /* JYBOrderOtherCostItmeCell.m */,
+				F673C71E207D4CAE004C1500 /* JYBOrderOtherCostMarkCell.h */,
+				F673C71C207D4CAE004C1500 /* JYBOrderOtherCostMarkCell.m */,
+				F673C716207D4CAC004C1500 /* JYBOrderPayPopView.h */,
+				F673C712207D4CAC004C1500 /* JYBOrderPayPopView.m */,
+				F673C713207D4CAC004C1500 /* THDatePickerView.h */,
+				F673C715207D4CAC004C1500 /* THDatePickerView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1710,6 +1733,21 @@
 				F61239BF205EC37F00B58AA5 /* HMSegmentedControl.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		F673C732207D4DCA004C1500 /* LXImageLoopBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				F673C733207D4DCA004C1500 /* LXCircularProgressView.m */,
+				F673C734207D4DCA004C1500 /* LXZoomingScrollView.h */,
+				F673C735207D4DCA004C1500 /* LXFullScreenImageBrowser.m */,
+				F673C736207D4DCA004C1500 /* LXImageLoopBrowser.h */,
+				F673C737207D4DCA004C1500 /* LXCircularProgressView.h */,
+				F673C738207D4DCA004C1500 /* LXZoomingScrollView.m */,
+				F673C739207D4DCA004C1500 /* LXFullScreenImageBrowser.h */,
+				F673C73A207D4DCA004C1500 /* LXImageLoopBrowser.m */,
+			);
+			path = LXImageLoopBrowser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1835,7 +1873,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Freight_Dirver/Pods-Freight_Dirver-frameworks.sh",
-				"${PODS_ROOT}/Hyphenate/iOS_IM_SDK_V3.3.8/HyphenateFullSDK/Hyphenate.framework",
+				"${PODS_ROOT}/Hyphenate/iOS_IM_SDK_V3.4.0/HyphenateFullSDK/Hyphenate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1856,7 +1894,6 @@
 				42D36187201714B0004A16CB /* EaseBubbleView+Image.m in Sources */,
 				42D36154201714B0004A16CB /* PSTGridLayoutSection.m in Sources */,
 				F61239CE205EC3E500B58AA5 /* JYBAlertView.m in Sources */,
-				F6123998205EBE7E00B58AA5 /* JYBOrderDetailLogisUserCell.m in Sources */,
 				42D36142201714B0004A16CB /* EMAudioPlayerUtil.m in Sources */,
 				42D36168201714B0004A16CB /* UIImage+EMMultiFormat.m in Sources */,
 				42D361BD20171674004A16CB /* UIScrollView+MJExtension.m in Sources */,
@@ -1867,6 +1904,7 @@
 				42D361CC20171674004A16CB /* MJRefreshComponent.m in Sources */,
 				42A48C722012DF8D00B8EC3D /* SystemMessageViewController.m in Sources */,
 				42D3613F201714B0004A16CB /* EMCDDeviceManager+Media.m in Sources */,
+				F673C728207D4CAE004C1500 /* JYBOrderDetailBoxInfoCell.m in Sources */,
 				42D361BF20171674004A16CB /* MJRefreshBackGifFooter.m in Sources */,
 				F61239C0205EC37F00B58AA5 /* HMSegmentedControl.m in Sources */,
 				42D3617F201714B0004A16CB /* EaseRecordView.m in Sources */,
@@ -1887,10 +1925,12 @@
 				42D3615C201714B0004A16CB /* UIButton+EMWebCache.m in Sources */,
 				42D36116201714B0004A16CB /* NSDate+Category.m in Sources */,
 				427C69A4200DA717006A9EBB /* PerfectInfoViewController.m in Sources */,
+				F673C72A207D4CAE004C1500 /* JYBOrderDetailLogisInfoCell.m in Sources */,
 				427C6835200C5B4D006A9EBB /* BaseViewController.m in Sources */,
 				42399A882010442F009263E5 /* AddInfoModel.m in Sources */,
 				42400D9A200C4D4D00B6C87E /* NSString+MD5.m in Sources */,
 				42D36178201714B0004A16CB /* EaseBaseMessageCell.m in Sources */,
+				F673C720207D4CAE004C1500 /* JYBHomeOrderListCell.m in Sources */,
 				42D36164201714B0004A16CB /* UIImage+EMWebP.m in Sources */,
 				427C686E200C5C64006A9EBB /* TBRefreshHeadView.m in Sources */,
 				427C687B200C5D16006A9EBB /* MeViewController.m in Sources */,
@@ -1906,9 +1946,11 @@
 				42D3613B201714B0004A16CB /* amrFileCodec.mm in Sources */,
 				42D361CF201717C2004A16CB /* AppDelegate+EMOptions.m in Sources */,
 				42D36182201714B0004A16CB /* EaseBubbleView+Location.m in Sources */,
+				F673C73B207D4DCA004C1500 /* LXCircularProgressView.m in Sources */,
 				42D36188201714B0004A16CB /* EaseBubbleView+Gif.m in Sources */,
 				427C6836200C5B4D006A9EBB /* BaseTableView.m in Sources */,
 				42400D9C200C4D4D00B6C87E /* NSDictionary+Smart.m in Sources */,
+				F673C72B207D4CAE004C1500 /* JYBOrderPayPopView.m in Sources */,
 				427C6878200C5D08006A9EBB /* MessageViewController.m in Sources */,
 				427C687E200C80E2006A9EBB /* UserInfoViewController.m in Sources */,
 				42D3613D201714B0004A16CB /* EMCDDeviceManager+Remind.m in Sources */,
@@ -1923,7 +1965,6 @@
 				42D361BA20171674004A16CB /* UIScrollView+MJRefresh.m in Sources */,
 				42D36161201714B0004A16CB /* EMSDWebImageDecoder.m in Sources */,
 				427C69BF200F2C69006A9EBB /* AddInfoTableViewCell.m in Sources */,
-				F6123996205EBE7E00B58AA5 /* JYBOrderDetailCostCell.m in Sources */,
 				42D36122201714B0004A16CB /* EaseMessageModel.m in Sources */,
 				42D36124201714B0004A16CB /* EaseUserModel.m in Sources */,
 				42D36153201714B0004A16CB /* PSTCollectionViewUpdateItem.m in Sources */,
@@ -1937,11 +1978,13 @@
 				42D361C020171674004A16CB /* MJRefreshBackStateFooter.m in Sources */,
 				F61239BA205EC31200B58AA5 /* JYBOrderLogisInfoVC.m in Sources */,
 				42D36146201714B0004A16CB /* MWZoomingScrollView.m in Sources */,
+				F673C723207D4CAE004C1500 /* JYBOrderDetailLogisUserCell.m in Sources */,
 				42D361C620171674004A16CB /* MJRefreshStateHeader.m in Sources */,
 				42D3617D201714B0004A16CB /* EaseTextView.m in Sources */,
 				42D36181201714B0004A16CB /* EaseBubbleView+Text.m in Sources */,
-				F6123997205EBE7E00B58AA5 /* JYBOrderDetailLogisInfoCell.m in Sources */,
+				F673C73C207D4DCA004C1500 /* LXFullScreenImageBrowser.m in Sources */,
 				42D3611C201714B0004A16CB /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
+				F673C724207D4CAE004C1500 /* JYBHomeOrderLogisItemCell.m in Sources */,
 				42D36169201714B0004A16CB /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				42D36179201714B0004A16CB /* EaseChatBarMoreView.m in Sources */,
 				42D36158201714B0004A16CB /* PSTCollectionViewLayout.m in Sources */,
@@ -1955,23 +1998,18 @@
 				42D36121201714B0004A16CB /* EaseEmotionManager.m in Sources */,
 				427C6875200C5CF9006A9EBB /* FirstViewController.m in Sources */,
 				427C69C5200F4D20006A9EBB /* AddPhotoCollectionViewCell.m in Sources */,
-				F6123995205EBE7E00B58AA5 /* JYBOrderDetailBoxInfoCell.m in Sources */,
 				427C69B5200F2019006A9EBB /* NODataView.m in Sources */,
-				F6123999205EBE7E00B58AA5 /* JYBOrderDetailMarkInfoCell.m in Sources */,
 				427C68B0200C8A20006A9EBB /* TBTabBar.m in Sources */,
 				F61239CF205EC3E500B58AA5 /* ESPickerView.m in Sources */,
 				42D36175201714B0004A16CB /* EaseMessageTimeCell.m in Sources */,
-				F612399B205EBE7E00B58AA5 /* JYBOrderOtherCostItmeCell.m in Sources */,
 				42D36189201714B0004A16CB /* EaseSDKHelper.m in Sources */,
 				42D36119201714B0004A16CB /* NSDateFormatter+Category.m in Sources */,
-				F6123994205EBE7E00B58AA5 /* JYBOrderDetailBottomView.m in Sources */,
 				42D3614E201714B0004A16CB /* PSTCollectionViewFlowLayout.m in Sources */,
 				42D3616F201714B0004A16CB /* EaseUsersListViewController.m in Sources */,
 				42400DA8200C4D5500B6C87E /* MainApi.m in Sources */,
 				427C68B6200C8A20006A9EBB /* NSObject+SXRuntime.m in Sources */,
 				42A48C6E2012DF8300B8EC3D /* SystemCellTableViewCell.m in Sources */,
 				42D361BE20171674004A16CB /* UIView+MJExtension.m in Sources */,
-				F612399C205EBE7E00B58AA5 /* JYBOrderOtherCostMarkCell.m in Sources */,
 				42D36173201714B0004A16CB /* EaseUserCell.m in Sources */,
 				42D361CB20171674004A16CB /* MJRefreshAutoFooter.m in Sources */,
 				427C69C8200F7696006A9EBB /* TrasformViewController.m in Sources */,
@@ -1991,10 +2029,12 @@
 				42E6174F2058B98200B01D6D /* ValuePickerView.m in Sources */,
 				42D36144201714B0004A16CB /* MWPhotoBrowser.m in Sources */,
 				42D3617A201714B0004A16CB /* EaseImageView.m in Sources */,
+				F673C725207D4CAE004C1500 /* JYBOrderOtherCostItmeCell.m in Sources */,
 				427C69B9200F2019006A9EBB /* LoginViewController.m in Sources */,
 				42D3611F201714B0004A16CB /* EaseEmotionEscape.m in Sources */,
 				427C69BC200F214A006A9EBB /* CCWebViewViewController.m in Sources */,
 				427C68B1200C8A20006A9EBB /* UIViewController+BarButton.m in Sources */,
+				F673C72C207D4CAE004C1500 /* THDatePickerView.m in Sources */,
 				42D36149201714B0004A16CB /* MWTapDetectingView.m in Sources */,
 				42D3611B201714B0004A16CB /* EaseMessageReadManager.m in Sources */,
 				42A48C6F2012DF8300B8EC3D /* UILabel+StringFrame.m in Sources */,
@@ -2011,12 +2051,15 @@
 				42D361C820171674004A16CB /* MJRefreshFooter.m in Sources */,
 				42D3615E201714B0004A16CB /* MKAnnotationView+EMWebCache.m in Sources */,
 				42D361C520171674004A16CB /* MJRefreshNormalHeader.m in Sources */,
+				F673C73E207D4DCA004C1500 /* LXImageLoopBrowser.m in Sources */,
 				42D361C220171674004A16CB /* MJRefreshAutoStateFooter.m in Sources */,
+				F673C721207D4CAE004C1500 /* JYBOrderDetailCostCell.m in Sources */,
 				42D3615A201714B0004A16CB /* EMSDWebImageDownloader.m in Sources */,
+				F673C73D207D4DCA004C1500 /* LXZoomingScrollView.m in Sources */,
 				427C6827200C5838006A9EBB /* ViewController.m in Sources */,
-				F6123992205EBE7E00B58AA5 /* JYBHomeOrderLogisItemCell.m in Sources */,
 				42D36167201714B0004A16CB /* EMSDWebImageCompat.m in Sources */,
 				F612399E205EBE7E00B58AA5 /* JYBOrderBoxAddressModel.m in Sources */,
+				F673C726207D4CAE004C1500 /* JYBOrderDetailMarkInfoCell.m in Sources */,
 				42D36143201714B0004A16CB /* EMCDDeviceManagerBase.m in Sources */,
 				F612399F205EBE7E00B58AA5 /* JYBOrderListModel.m in Sources */,
 				42D36117201714B0004A16CB /* NSString+Valid.m in Sources */,
@@ -2029,26 +2072,27 @@
 				42D36166201714B0004A16CB /* EMSDWebImageDownloaderOperation.m in Sources */,
 				42D3611E201714B0004A16CB /* EaseEmoji.m in Sources */,
 				427C68B4200C8A20006A9EBB /* UIBarButtonItem+SXCreate.m in Sources */,
-				F6123993205EBE7E00B58AA5 /* JYBOrderDetailAddressCell.m in Sources */,
+				F673C72D207D4CAE004C1500 /* JYBOrderOtherCostMarkCell.m in Sources */,
 				42D3615B201714B0004A16CB /* NSData+EMImageContentType.m in Sources */,
+				F673C727207D4CAE004C1500 /* JYBOrderDetailAddressCell.m in Sources */,
 				42D36162201714B0004A16CB /* UIImageView+EMWebCache.m in Sources */,
 				42D361C720171674004A16CB /* MJRefreshGifHeader.m in Sources */,
+				F673C72E207D4CAE004C1500 /* JYBOrderOtherCostImageCell.m in Sources */,
 				42A48C75201329A500B8EC3D /* MessageTableViewCell.m in Sources */,
-				F612399A205EBE7E00B58AA5 /* JYBOrderOtherCostImageCell.m in Sources */,
 				42D36174201714B0004A16CB /* EaseConversationCell.m in Sources */,
+				F673C731207D4D02004C1500 /* JYBHomeOrderImageCell.m in Sources */,
 				42D36186201714B0004A16CB /* EaseBubbleView+Voice.m in Sources */,
-				F6123991205EBE7E00B58AA5 /* JYBHomeOrderListCell.m in Sources */,
 				42D3618C201714B0004A16CB /* EaseUI.m in Sources */,
-				F612399D205EBE7E00B58AA5 /* JYBOrderPayPopView.m in Sources */,
 				42D361C420171674004A16CB /* MJRefreshAutoNormalFooter.m in Sources */,
 				42D36183201714B0004A16CB /* EaseBubbleView+File.m in Sources */,
+				F673C722207D4CAE004C1500 /* JYBOrderLogisMapViewCell.m in Sources */,
+				F673C729207D4CAE004C1500 /* JYBOrderDetailBottomView.m in Sources */,
 				F61239B9205EC31200B58AA5 /* JYBOrderOtherCostVC.m in Sources */,
 				427C6828200C5838006A9EBB /* main.m in Sources */,
 				42D3611A201714B0004A16CB /* FixFopen.c in Sources */,
 				427C686F200C5C64006A9EBB /* TBRefreshFootView.m in Sources */,
 				42D36151201714B0004A16CB /* PSTCollectionViewData.m in Sources */,
 				42D3614A201714B0004A16CB /* MWGridViewController.m in Sources */,
-				F61239C3205EC3B800B58AA5 /* JYBHomeOrderImageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

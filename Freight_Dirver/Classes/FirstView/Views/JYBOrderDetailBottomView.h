@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "JYBOrderListModel.h"
 
+typedef enum : NSUInteger {
+    JYBOrderDetailBottomTypePay,
+    JYBOrderDetailBottomTypePayOther,
+    JYBOrderDetailBottomTypeCancel,
+} JYBOrderDetailBottomType;
+
 typedef void(^JYBOrderDetailBottomScheBlock)();
 
-typedef void(^JYBOrderDetailBottomPayBlock)(BOOL isOther);
+typedef void(^JYBOrderDetailBottomPayBlock)(JYBOrderDetailBottomType type);
 
 @interface JYBOrderDetailBottomView : UIView
 

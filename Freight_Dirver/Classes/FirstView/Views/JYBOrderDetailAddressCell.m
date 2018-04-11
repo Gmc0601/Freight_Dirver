@@ -25,6 +25,8 @@
 @property (nonatomic ,strong)UIButton   *phoneBtn;
 
 @property (nonatomic ,strong)JYBOrderBoxAddressModel *addressModel;
+
+@property (nonatomic ,assign)BOOL isbox;
 @end
 
 @implementation JYBOrderDetailAddressCell
@@ -99,22 +101,28 @@
 
 - (void)updateCellWithModel:(JYBOrderBoxAddressModel *)model isBox:(BOOL)isBox box_no:(NSString *)box_no{
     self.addressModel = model;
+    self.isbox = isBox;
     if (isBox) {
         self.nameLab.text = [NSString stringWithFormat:@"提单号:%@",box_no];
         self.addressTitleLab.text = @"拿箱单地址";
-        self.dotView.backgroundColor = RGB(237, 171, 79);
+        self.addressLab.text = model.box_address_desc;
+        self.contactLab.text = [NSString stringWithFormat:@"%@  %@",model.box_linkman,model.box_linkman_phone];
+        self.dotView.backgroundColor = RGB(75, 157, 252);
     }else{
         self.nameLab.text = [NSString stringWithFormat:@"%@-%@",model.city,model.address];
         self.addressTitleLab.text = @"装箱地址";
-        self.dotView.backgroundColor = RGB(75, 157, 252);
+        self.addressLab.text = model.address_desc ;
+        self.contactLab.text = [NSString stringWithFormat:@"%@  %@",model.boxman_name,model.boxman_phone];
+        self.dotView.backgroundColor = RGB(237, 171, 79);
+        
 
     }
-    self.contactLab.text = model.shipment_linkman_phone;
 }
 
 - (void)phoneBtnActin{
+    NSString *phone = self.isbox?self.addressModel.box_linkman_phone:self.addressModel.boxman_phone;
     if (self.phoneBlock) {
-        self.phoneBlock(self.addressModel);
+        self.phoneBlock(phone);
     }
 }
 
@@ -188,7 +196,7 @@
 - (UIButton *)phoneBtn{
     if (!_phoneBtn) {
         _phoneBtn = [[UIButton alloc] init];
-        [_phoneBtn setImage:[UIImage imageNamed:@"icon_dh"] forState:UIControlStateNormal];
+        [_phoneBtn setImage:[UIImage imageNamed:@"ddxq_icon_dh"] forState:UIControlStateNormal];
         [_phoneBtn addTarget:self action:@selector(phoneBtnActin) forControlEvents:UIControlEventTouchUpInside];
     }
     return _phoneBtn;

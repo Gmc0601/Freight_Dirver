@@ -17,7 +17,7 @@
 
 @property (nonatomic ,strong)UILabel        *numLab;
 
-//@property (nonatomic ,strong)UILabel        *pointLab;
+@property (nonatomic ,strong)UILabel        *pointLab;
 
 @property (nonatomic ,strong)UIButton       *phontBtn;
 
@@ -37,7 +37,7 @@
     [self.contentView addSubview:self.iconImageView];
     [self.contentView addSubview:self.nameLab];
     [self.contentView addSubview:self.numLab];
-//    [self.contentView addSubview:self.pointLab];
+    [self.contentView addSubview:self.pointLab];
     [self.contentView addSubview:self.phontBtn];
     
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -60,12 +60,12 @@
         make.height.mas_equalTo(SizeWidth(20));
     }];
     
-//    [self.pointLab mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.contentView).offset(SizeWidth(20));
-//        make.left.equalTo(self.nameLab.mas_right).offset(SizeWidth(5));
-//        make.width.mas_greaterThanOrEqualTo(SizeWidth(10));
-//        make.height.mas_equalTo(SizeWidth(15));
-//    }];
+    [self.pointLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.contentView).offset(SizeWidth(20));
+        make.left.equalTo(self.nameLab.mas_right).offset(SizeWidth(8));
+        make.width.mas_greaterThanOrEqualTo(SizeWidth(10));
+        make.height.mas_equalTo(SizeWidth(15));
+    }];
     
     [self.phontBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(self.contentView);
@@ -76,11 +76,25 @@
 
 - (void)updateCellWithModel:(JYBOrderListModel *)model{
 
-    [self.iconImageView setImageWithURL:[NSURL URLWithString:model.driver_phone] placeholder:[UIImage imageNamed:@"grzx_icon_68  (2)"]];
-    self.nameLab.text = model.driver_name;
-    self.numLab.text = model.driver_id;
+    [self.iconImageView setImageWithURL:[NSURL URLWithString:model.driver_phone] placeholder:[UIImage imageNamed:@"jyb_order_driver"]];
+    self.nameLab.text = [NSString stringWithFormat:@"司机：%@",model.driver_name];
+    self.numLab.text = [self __getCarNoWithNo:model.car_no];
 
 }
+
+- (NSString *)__getCarNoWithNo:(NSString *)carno{
+    
+    if (carno.length > 3) {
+        NSString *first = [carno substringToIndex:1];
+        NSString *last = [carno substringFromIndex:3];
+        return [NSString stringWithFormat:@"%@**%@",first,last];
+        
+    }else{
+        return carno;
+    }
+    
+}
+
 
 - (void)phontBtnAction{
     if (self.logisPhoneBlock) {
@@ -91,7 +105,9 @@
 - (UIImageView *)iconImageView{
     if (!_iconImageView) {
         _iconImageView = [[UIImageView alloc] init];
-        _iconImageView.image = [UIImage imageNamed:@"ddxq_icon_96  (1)"];
+        _iconImageView.image = [UIImage imageNamed:@"jyb_order_driver"];
+        _iconImageView.layer.cornerRadius = SizeWidth(25);
+        _iconImageView.layer.masksToBounds = YES;
     }
     return _iconImageView;
 }
@@ -116,15 +132,15 @@
     return _numLab;
 }
 
-//- (UILabel *)pointLab{
-//    if (!_pointLab) {
-//        _pointLab = [[UILabel alloc] init];
-//        _pointLab.font = [UIFont systemFontOfSize:SizeWidth(14)];
-//        _pointLab.textColor = RGB(253, 125, 39);
-//        _pointLab.text = @"4.9分";
-//    }
-//    return _pointLab;
-//}
+- (UILabel *)pointLab{
+    if (!_pointLab) {
+        _pointLab = [[UILabel alloc] init];
+        _pointLab.font = [UIFont systemFontOfSize:SizeWidth(14)];
+        _pointLab.textColor = RGB(253, 125, 39);
+        _pointLab.text = @"5分";
+    }
+    return _pointLab;
+}
 
 - (UIButton *)phontBtn{
     if (!_phontBtn) {

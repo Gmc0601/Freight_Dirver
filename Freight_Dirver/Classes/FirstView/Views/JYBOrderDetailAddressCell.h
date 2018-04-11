@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JYBOrderBoxAddressModel.h"
 
-typedef void(^JYBOrderDetailPhoneBlock)(JYBOrderBoxAddressModel *addModel);
+typedef void(^JYBOrderDetailPhoneBlock)(NSString *phone);
 
 @interface JYBOrderDetailAddressCell : UITableViewCell
 

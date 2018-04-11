@@ -21,7 +21,7 @@ typedef void(^JYBOrderPayPopViewResult)();
  @param action 回调
  @return alertview对象
  */
-- (instancetype)initWithClickAction:(JYBOrderPayPopViewResult)action;
+- (instancetype)initWithPayAmount:(CGFloat)payamount totalAmount:(CGFloat)totalAmount ClickAction:(JYBOrderPayPopViewResult)action;
 
 /**
  显示

@@ -7,6 +7,7 @@
 //
 
 #import "JYBOrderOtherCostImageCell.h"
+#import "LXFullScreenImageBrowser.h"
 #import <YYKit.h>
 
 @interface JYBHomeOtherImageColectionCell : UICollectionViewCell
@@ -42,7 +43,7 @@
 
 
 
-@interface JYBOrderOtherCostImageCell()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface JYBOrderOtherCostImageCell()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,LXImageLoopBrowserDelegate, LXFullScreenImageBrowserDelegate>
 
 @property (nonatomic ,strong)UILabel    *titleLab;
 
@@ -76,11 +77,33 @@
     
     [self.myCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLab.mas_bottom);
-        make.right.and.bottom.equalTo(self.contentView);
-        make.left.equalTo(self.contentView).offset(SizeWidth(50));
+        make.left.right.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView).offset(-SizeWidth(10));
     }];
     
     
+}
+
+
+#pragma mark - LXImageLoopBrowserDelegate
+- (void)imageLoopBrowser:(LXImageLoopBrowser *)imageLoopBrowser didOnceTapAtIndex:(NSUInteger)index {
+    
+    LXFullScreenImageBrowser * browser = (LXFullScreenImageBrowser *)imageLoopBrowser;
+    if ([browser respondsToSelector:@selector(dismiss)]) {
+        [browser dismiss];
+    }
+}
+
+- (UIImage *)imageLoopBrowser:(LXImageLoopBrowser *)imageLoopBrowser placeholderImageForIndex:(NSInteger)index {
+    return [self.imageView image];
+}
+
+- (CGRect)imageLoopBrowser:(LXFullScreenImageBrowser *)imageLoopBrowser startRectForIndex:(NSInteger)index {
+    return self.imageView.frame;
+}
+
+- (UIView *)imageLoopBrowser:(LXFullScreenImageBrowser *)imageLoopBrowser originViewForIndex:(NSInteger)index {
+    return self.imageView;
 }
 
 
@@ -124,7 +147,16 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *imageStr = [self.dataArr objectAtIndex:indexPath.row];
     
+    LXFullScreenImageBrowser * browser = [[LXFullScreenImageBrowser alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    browser.delegate = self;
+    browser.fullScreenDelegate = self;
+    browser.imageUrls =@[imageStr];
+    browser.currentIndex = 0;
+    browser.zoomEnabled = YES;
+    browser.imageContentMode = UIViewContentModeScaleAspectFit;
+    [browser show];
 }
 
 

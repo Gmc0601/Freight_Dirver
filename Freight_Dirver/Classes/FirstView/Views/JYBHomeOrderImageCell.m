@@ -7,6 +7,7 @@
 //  105  -- 50
 
 #import "JYBHomeOrderImageCell.h"
+#import "LXFullScreenImageBrowser.h"
 #import <YYKit.h>
 @interface JYBHomeOrderImageColectionCell : UICollectionViewCell
 
@@ -40,7 +41,7 @@
 @end
 
 
-@interface JYBHomeOrderImageCell ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface JYBHomeOrderImageCell ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,LXImageLoopBrowserDelegate, LXFullScreenImageBrowserDelegate>
 
 @property (nonatomic ,strong)UIButton   *iconBtn;
 
@@ -133,6 +134,40 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
+    NSString *imageStr = [self.dataArr objectAtIndex:indexPath.row];
+
+    LXFullScreenImageBrowser * browser = [[LXFullScreenImageBrowser alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    browser.delegate = self;
+    browser.fullScreenDelegate = self;
+    browser.imageUrls =@[imageStr];
+    browser.currentIndex = 0;
+    browser.zoomEnabled = YES;
+    browser.imageContentMode = UIViewContentModeScaleAspectFit;
+    [browser show];
+    
+    
+}
+
+
+#pragma mark - LXImageLoopBrowserDelegate
+- (void)imageLoopBrowser:(LXImageLoopBrowser *)imageLoopBrowser didOnceTapAtIndex:(NSUInteger)index {
+    
+    LXFullScreenImageBrowser * browser = (LXFullScreenImageBrowser *)imageLoopBrowser;
+    if ([browser respondsToSelector:@selector(dismiss)]) {
+        [browser dismiss];
+    }
+}
+
+- (UIImage *)imageLoopBrowser:(LXImageLoopBrowser *)imageLoopBrowser placeholderImageForIndex:(NSInteger)index {
+    return [self.imageView image];
+}
+
+- (CGRect)imageLoopBrowser:(LXFullScreenImageBrowser *)imageLoopBrowser startRectForIndex:(NSInteger)index {
+    return self.imageView.frame;
+}
+
+- (UIView *)imageLoopBrowser:(LXFullScreenImageBrowser *)imageLoopBrowser originViewForIndex:(NSInteger)index {
+    return self.imageView;
 }
 
 

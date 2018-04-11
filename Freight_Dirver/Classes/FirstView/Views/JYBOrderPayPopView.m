@@ -28,14 +28,14 @@
 
 @implementation JYBOrderPayPopView
 
-- (instancetype)initWithClickAction:(JYBOrderPayPopViewResult)action{
+- (instancetype)initWithPayAmount:(CGFloat)payamount totalAmount:(CGFloat)totalAmount ClickAction:(JYBOrderPayPopViewResult)action{
     if (self = [super init]) {
-        [self setupClickAction:action];
+        [self setupWithPayAmount:payamount totalAmount:totalAmount ClickAction:action];
     }
     return self;
 }
 
-- (void)setupClickAction:(JYBOrderPayPopViewResult)action{
+- (void)setupWithPayAmount:(CGFloat)payamount totalAmount:(CGFloat)totalAmount ClickAction:(JYBOrderPayPopViewResult)action{
     
     self.frame = [UIScreen mainScreen].bounds;
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
@@ -58,24 +58,27 @@
     self.priceLab.textColor = RGB(252, 154, 46);
     self.priceLab.font = [UIFont boldSystemFontOfSize:SizeWidth(22)];
     self.priceLab.textAlignment = NSTextAlignmentCenter;
-    self.priceLab.text = @"¥342.00";
+    self.priceLab.text = [NSString stringWithFormat:@"¥%.2f",payamount];
     [self.alertView addSubview:self.priceLab];
     
     self.amountLab = [[UILabel alloc] initWithFrame:CGRectMake(0, self.priceLab.bottom + SizeWidth(45), kScreenW, SizeWidth(20))];
     self.amountLab.textColor = RGB(162, 162, 162);
     self.amountLab.font = [UIFont systemFontOfSize:SizeWidth(13)];
     self.amountLab.textAlignment = NSTextAlignmentCenter;
-    self.amountLab.text = @"钱包余额：$234.00";
+    self.amountLab.text = [NSString stringWithFormat:@"钱包余额：¥%.2f",totalAmount];
     [self.alertView addSubview:self.amountLab];
     
     self.commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(SizeWidth(15), self.amountLab.bottom + SizeWidth(10), kScreenW - SizeWidth(30), SizeWidth(45))];
     self.commitBtn.backgroundColor = RGB(252, 154, 46);
+    [self.commitBtn setBackgroundImage:[UIImage imageWithColor:RGB(252, 154, 46)] forState:UIControlStateNormal];
+    [self.commitBtn setBackgroundImage:[UIImage imageWithColor:RGB(208, 208, 208)] forState:UIControlStateSelected];
     [self.commitBtn setTitle:@"支付" forState:UIControlStateNormal];
     self.commitBtn.titleLabel.font = [UIFont systemFontOfSize:SizeWidth(16)];
     [self.commitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.commitBtn.layer.cornerRadius = 3;
     self.commitBtn.layer.masksToBounds = YES;
     [self.commitBtn addTarget:self action:@selector(commitBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    self.commitBtn.selected = payamount > totalAmount;
     [self.alertView addSubview:self.commitBtn];
     
     self.myCall = action;
