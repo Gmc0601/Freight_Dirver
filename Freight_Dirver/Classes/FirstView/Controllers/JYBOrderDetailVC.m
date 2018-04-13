@@ -83,7 +83,23 @@ typedef enum : NSUInteger {
     [ConfigModel showHud:self];
     NSLog(@"%@", dic);
     WeakSelf(weak)
-    [HttpRequest postPath:@"/Driver/Order/orderDetail" params:dic resultBlock:^(id responseObject, NSError *error) {
+    
+    NSString *path = @"";
+    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+            //   司机登录
+            path = @"/Driver/Order/orderDetail";
+        }
+        if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+            //  装箱工登录
+            path = @"/Boxman/Order/boxmanOrderDetail";
+        }
+    }else {
+        //   未登录
+        path = @"/Driver/Order/orderDetail";
+    }
+    
+    [HttpRequest postPath:path params:dic resultBlock:^(id responseObject, NSError *error) {
         [ConfigModel hideHud:weak];
         
         NSLog(@"%@", responseObject);
@@ -109,20 +125,49 @@ typedef enum : NSUInteger {
 
 
 - (void)__setBottomView{
-    if (self.detailModel.order_status.integerValue == 20){
-        self.bottomView.hidden = NO;
-        self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64 - SizeWidth(55));
-        [self.commitBtn setTitle:@"完成提箱" forState:UIControlStateNormal];
-    }else if (self.detailModel.order_status.integerValue == 30){
-        self.bottomView.hidden = NO;
-        self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64 - SizeWidth(55));
-        [self.commitBtn setTitle:@"已装货进港" forState:UIControlStateNormal];
-    }else{
+    
+    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+            //   司机登录
+
+            
+            if (self.detailModel.order_status.integerValue == 20){
+                self.bottomView.hidden = NO;
+                self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64 - SizeWidth(55));
+                [self.commitBtn setTitle:@"完成提箱" forState:UIControlStateNormal];
+            }else if (self.detailModel.order_status.integerValue == 30){
+                self.bottomView.hidden = NO;
+                self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64 - SizeWidth(55));
+                [self.commitBtn setTitle:@"已装货进港" forState:UIControlStateNormal];
+            }else{
+                self.bottomView.hidden = YES;
+                self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64);
+                
+            }
+            
+            
+        }
+        if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+            //  装箱工登录
+            
+            if (self.detailModel.order_status.integerValue == 30){
+                self.bottomView.hidden = NO;
+                self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64 - SizeWidth(55));
+                [self.commitBtn setTitle:@"完成装车" forState:UIControlStateNormal];
+            }else{
+                self.bottomView.hidden = YES;
+                self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64);
+            }
+
+        }
+    }else {
+        //   未登录
+
         self.bottomView.hidden = YES;
         self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64);
 
     }
-    
+
 }
 
 - (void)more:(UIButton *)sender{
@@ -516,23 +561,91 @@ typedef enum : NSUInteger {
 
 - (void)commitBtnAction{
     
-    if (self.detailModel.order_status.integerValue == 20){
-        JYBTiBoxDoneVC *vc = [[JYBTiBoxDoneVC alloc] init];
-        vc.detailModel = self.detailModel;
-        [self.navigationController pushViewController:vc animated:YES];
-        
-    }else if (self.detailModel.order_status.integerValue == 30){
+    
+    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+            //   司机登录
+            
+            
+            if (self.detailModel.order_status.integerValue == 20){
+                JYBTiBoxDoneVC *vc = [[JYBTiBoxDoneVC alloc] init];
+                vc.detailModel = self.detailModel;
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            }else if (self.detailModel.order_status.integerValue == 30){
+                
+                JYBOtherCostInputVC *vc = [[JYBOtherCostInputVC alloc] init];
+                vc.detailModel = self.detailModel;
+                vc.delegate = self;
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            }else{
+                
+            }
+            
+            
+        }
+        if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+            //  装箱工登录
+            
+            if (self.detailModel.order_status.integerValue == 30){
+                [self __zhuangxianggongSureTake];
+            }else{
+                
+            }
+            
+        }
+    }else {
+        //   未登录
 
-        JYBOtherCostInputVC *vc = [[JYBOtherCostInputVC alloc] init];
-        vc.detailModel = self.detailModel;
-        vc.delegate = self;
-        [self.navigationController pushViewController:vc animated:YES];
         
-    }else{
-
     }
     
+
 }
+
+- (void)__zhuangxianggongSureTake{
+        WeakSelf(weak)
+         [[[JYBAlertView alloc] initWithTitle:@"确定货物已完成装车吗" message:nil cancelItem:@"取消" sureItem:@"确认" clickAction:^(NSInteger index) {
+             if (index == 1){
+                 [weak __sureTake];
+             }
+         }] show];
+    
+}
+
+- (void)__sureTake{
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic addUnEmptyString:self.detailModel.order_id forKey:@"order_id"];
+    
+    [ConfigModel showHud:self];
+    NSLog(@"%@", dic);
+    WeakSelf(weak)
+    [HttpRequest postPath:@"/Boxman/Order/completeBox" params:dic resultBlock:^(id responseObject, NSError *error) {
+        [ConfigModel hideHud:weak];
+        
+        NSLog(@"%@", responseObject);
+        if([error isEqual:[NSNull null]] || error == nil){
+            NSLog(@"success");
+        }
+        NSDictionary *datadic = responseObject;
+        if ([datadic[@"success"] intValue] == 1) {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"orderChangeNotification" object:nil];
+            [weak.navigationController popToRootViewControllerAnimated:YES];
+            
+        }else {
+            NSString *str = datadic[@"msg"];
+            [ConfigModel mbProgressHUD:str andView:nil];
+        }
+    }];
+    
+    
+    
+    
+}
+
 
 - (void)JYBOtherCostInputSuccess{
     [self __fetchOrderDetail];

@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Freight_Dirver/Classes/FirstView/Controllers/JYBOrderDetailVC.m"
-            timestampString = "545152933.563514"
+            timestampString = "545290782.169077"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "-__fetchOrderDetail"
             landmarkType = "7">
          </BreakpointContent>

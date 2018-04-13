@@ -46,6 +46,25 @@
 
 - (void)__fetchOrderList{
 
+    NSString *path = @"";
+    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+            //   司机登录
+            path = @"/Driver/Order/orderList";
+        }
+        if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+            //  装箱工登录
+            path = @"/Boxman/Order/boxmanOrderList";
+
+        }
+    }else {
+        //   未登录
+        path = @"/Driver/Order/orderList";
+
+    }
+    
+    
+    
     NSString *status;
     if (self.type == JYBOrderTypeWaitTi) {
         status = @"20";
@@ -63,7 +82,7 @@
     [ConfigModel showHud:self];
     NSLog(@"%@", dic);
     WeakSelf(weak)
-    [HttpRequest postPath:@"/Driver/Order/orderList" params:dic resultBlock:^(id responseObject, NSError *error) {
+    [HttpRequest postPath:path params:dic resultBlock:^(id responseObject, NSError *error) {
         [ConfigModel hideHud:weak];
         [weak.myTableView.header endHeadRefresh];
         [weak.myTableView.footer endFooterRefreshing];

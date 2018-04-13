@@ -8,10 +8,10 @@ pod 'MBProgressHUD'
 pod 'Masonry'
 pod 'IQKeyboardManager'
 pod 'MJExtension'
-pod 'Hyphenate'
-
-pod 'AMapNavi'
-pod 'AMapLocation'
+#pod 'Hyphenate'
+#
+#pod 'AMapNavi'
+#pod 'AMapLocation'
 
 
 

@@ -39,7 +39,56 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
 
-    [self getCountData];
+    [self __getCurrentModudleData];
+}
+
+
+- (void)__getCurrentModudleData{
+    
+    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+            //   司机登录
+            [self getCountData];
+
+        }
+        if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+            //  装箱工登录
+            [self __getTakeerCountData];
+
+        }
+    }else {
+        //   未登录
+    }
+    
+}
+
+- (void)__getTakeerCountData{
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    
+    [ConfigModel showHud:self];
+    NSLog(@"%@", dic);
+    WeakSelf(weak)
+    [HttpRequest postPath:@"/DBoxman/Order/orderCountList" params:dic resultBlock:^(id responseObject, NSError *error) {
+        [ConfigModel hideHud:weak];
+        
+        NSLog(@"%@", responseObject);
+        if([error isEqual:[NSNull null]] || error == nil){
+            NSLog(@"success");
+        }
+        NSDictionary *datadic = responseObject;
+        if ([datadic[@"success"] intValue] == 1) {
+            
+            weak.countModel = [JYBOrderCountModel modelWithDictionary:datadic[@"data"]];
+            
+            [weak __setUI];
+            
+        }else {
+            NSString *str = datadic[@"msg"];
+            [ConfigModel mbProgressHUD:str andView:nil];
+            [weak __setUI];
+        }
+    }];
 }
 
 
@@ -204,24 +253,62 @@
 - (HMSegmentedControl *)headTabView{
     if (!_headTabView) {
         
-        NSString *one = @"待提箱";
-        NSString *two = @"运输中";
-        NSString *three = @"已完成";
         
-        if (![NSString stringIsNilOrEmpty:self.countModel.wait_box]) {
-            one = [NSString stringWithFormat:@"待提箱(%@)",self.countModel.wait_box];
+        if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+            if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+                //   司机登录
+
+                
+                NSString *one = @"待提箱";
+                NSString *two = @"运输中";
+                NSString *three = @"已完成";
+                
+                if (![NSString stringIsNilOrEmpty:self.countModel.wait_box]) {
+                    one = [NSString stringWithFormat:@"待提箱(%@)",self.countModel.wait_box];
+                }
+                if (![NSString stringIsNilOrEmpty:self.countModel.transport]) {
+                    two = [NSString stringWithFormat:@"运输中(%@)",self.countModel.transport];
+                }
+                if (![NSString stringIsNilOrEmpty:self.countModel.completed]) {
+                    three = [NSString stringWithFormat:@"已完成(%@)",self.countModel.completed];
+                }
+                _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[one,two,three]];
+                
+                
+            }
+            if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+                //  装箱工登录
+                NSString *one = @"待接车";
+                NSString *two = @"已完成";
+                
+                if (![NSString stringIsNilOrEmpty:self.countModel.wait_car]) {
+                    one = [NSString stringWithFormat:@"待接车(%@)",self.countModel.wait_car];
+                }
+
+                _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[one,two]];
+                
+                
+            }
+        }else {
+            //   未登录
+            
+            NSString *one = @"待提箱";
+            NSString *two = @"运输中";
+            NSString *three = @"已完成";
+            
+            if (![NSString stringIsNilOrEmpty:self.countModel.wait_box]) {
+                one = [NSString stringWithFormat:@"待提箱(%@)",self.countModel.wait_box];
+            }
+            if (![NSString stringIsNilOrEmpty:self.countModel.transport]) {
+                two = [NSString stringWithFormat:@"运输中(%@)",self.countModel.transport];
+            }
+            if (![NSString stringIsNilOrEmpty:self.countModel.completed]) {
+                three = [NSString stringWithFormat:@"已完成(%@)",self.countModel.completed];
+            }
+            _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[one,two,three]];
+            
         }
-        
-        if (![NSString stringIsNilOrEmpty:self.countModel.transport]) {
-            two = [NSString stringWithFormat:@"运输中(%@)",self.countModel.transport];
-        }
-        
-        if (![NSString stringIsNilOrEmpty:self.countModel.completed]) {
-            three = [NSString stringWithFormat:@"已完成(%@)",self.countModel.completed];
-        }
-        
-        
-        _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[one,two,three]];
+
         _headTabView.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleFixed;
         _headTabView.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
         _headTabView.selectionIndicatorColor = RGB(26, 143, 241);
@@ -243,17 +330,49 @@
 
 - (NSArray *)vcArr{
     if (!_vcArr) {
-        JYBOrderSingleVC *WaitTiVC = [[JYBOrderSingleVC alloc] init];
-        WaitTiVC.type = JYBOrderTypeWaitTi;
         
-        JYBOrderSingleVC *TransingVC = [[JYBOrderSingleVC alloc] init];
-        TransingVC.type = JYBOrderTypeTransing;
+        if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+            if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+                //   司机登录
+                JYBOrderSingleVC *WaitTiVC = [[JYBOrderSingleVC alloc] init];
+                WaitTiVC.type = JYBOrderTypeWaitTi;
+                
+                JYBOrderSingleVC *TransingVC = [[JYBOrderSingleVC alloc] init];
+                TransingVC.type = JYBOrderTypeTransing;
+                
+                JYBOrderSingleVC *OverVC = [[JYBOrderSingleVC alloc] init];
+                OverVC.type = JYBOrderTypeOver;
+                
+                
+                _vcArr = @[WaitTiVC,TransingVC,OverVC];
+            }
+            if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+                //  装箱工登录
+
+                JYBOrderSingleVC *TransingVC = [[JYBOrderSingleVC alloc] init];
+                TransingVC.type = JYBOrderTypeTransing;
+                
+                JYBOrderSingleVC *OverVC = [[JYBOrderSingleVC alloc] init];
+                OverVC.type = JYBOrderTypeOver;
+                
+                _vcArr = @[TransingVC,OverVC];
+            }
+        }else {
+            //   未登录
+            JYBOrderSingleVC *WaitTiVC = [[JYBOrderSingleVC alloc] init];
+            WaitTiVC.type = JYBOrderTypeWaitTi;
+            
+            JYBOrderSingleVC *TransingVC = [[JYBOrderSingleVC alloc] init];
+            TransingVC.type = JYBOrderTypeTransing;
+            
+            JYBOrderSingleVC *OverVC = [[JYBOrderSingleVC alloc] init];
+            OverVC.type = JYBOrderTypeOver;
+            
+            
+            _vcArr = @[WaitTiVC,TransingVC,OverVC];
+        }
         
-        JYBOrderSingleVC *OverVC = [[JYBOrderSingleVC alloc] init];
-        OverVC.type = JYBOrderTypeOver;
-        
-        
-        _vcArr = @[WaitTiVC,TransingVC,OverVC];
+
     }
     return _vcArr;
 }
