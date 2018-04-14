@@ -70,6 +70,8 @@
     }
 //    装箱工端
     if (self.type == User_Worker) {
+        loginUrl = @"/DBoxman/Public/login";
+        codeUrl = @"/Boxman/Public/sendCode";
         
     }
     

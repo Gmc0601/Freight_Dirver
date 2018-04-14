@@ -278,14 +278,18 @@
             }
             if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
                 //  装箱工登录
-                NSString *one = @"待接车";
-                NSString *two = @"已完成";
-                
-                if (![NSString stringIsNilOrEmpty:self.countModel.wait_car]) {
-                    one = [NSString stringWithFormat:@"待接车(%@)",self.countModel.wait_car];
+                NSString *one = @"已接单";
+                NSString *two = @"运输中";
+                NSString *three = @"已进港";
+
+                if (![NSString stringIsNilOrEmpty:self.countModel.allotted]) {
+                    one = [NSString stringWithFormat:@"已接单(%@)",self.countModel.allotted];
                 }
 
-                _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[one,two]];
+                if (![NSString stringIsNilOrEmpty:self.countModel.under_way]) {
+                    two = [NSString stringWithFormat:@"运输中(%@)",self.countModel.under_way];
+                }
+                _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[one,two,three]];
                 
                 
             }
@@ -359,14 +363,15 @@
             }
         }else {
             //   未登录
+            
             JYBOrderSingleVC *WaitTiVC = [[JYBOrderSingleVC alloc] init];
-            WaitTiVC.type = JYBOrderTypeWaitTi;
+            WaitTiVC.type = JYBOrderTypeAllotted;
             
             JYBOrderSingleVC *TransingVC = [[JYBOrderSingleVC alloc] init];
             TransingVC.type = JYBOrderTypeTransing;
             
             JYBOrderSingleVC *OverVC = [[JYBOrderSingleVC alloc] init];
-            OverVC.type = JYBOrderTypeOver;
+            OverVC.type = JYBOrderTypeInPort;
             
             
             _vcArr = @[WaitTiVC,TransingVC,OverVC];

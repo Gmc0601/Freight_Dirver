@@ -29,9 +29,9 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 
 typedef enum : NSUInteger {
-    JYBOrderDetailTypeLogisUser,
     JYBOrderDetailTypeLogisInfo,
     JYBOrderDetailTypeLogisMap,
+    JYBOrderDetailTypeLogisUser,
     JYBOrderDetailTypeAddressInfo,
     JYBOrderDetailTypeBoxInfo,
     JYBOrderDetailTypeMarkInfo,
@@ -150,14 +150,14 @@ typedef enum : NSUInteger {
         if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
             //  装箱工登录
             
-            if (self.detailModel.order_status.integerValue == 30){
-                self.bottomView.hidden = NO;
-                self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64 - SizeWidth(55));
-                [self.commitBtn setTitle:@"完成装车" forState:UIControlStateNormal];
-            }else{
+//            if (self.detailModel.order_status.integerValue == 30){
+//                self.bottomView.hidden = NO;
+//                self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64 - SizeWidth(55));
+//                [self.commitBtn setTitle:@"完成装车" forState:UIControlStateNormal];
+//            }else{
                 self.bottomView.hidden = YES;
                 self.myTableView.frame = CGRectMake(0, 64, kScreenW, kScreenH - 64);
-            }
+//            }
 
         }
     }else {

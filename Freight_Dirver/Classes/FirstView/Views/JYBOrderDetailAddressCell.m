@@ -141,6 +141,28 @@
         
 
     }
+    
+    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+            //   司机登录
+            self.phoneBtn.hidden = NO;
+            self.navBtn.hidden = NO;
+            self.messBtn.hidden = NO;
+        }
+        if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+            //  装箱工登录
+            self.phoneBtn.hidden = YES;
+            self.navBtn.hidden = YES;
+            self.messBtn.hidden = YES;
+        }
+    }else {
+        //   未登录
+        self.phoneBtn.hidden = YES;
+        self.navBtn.hidden = YES;
+        self.messBtn.hidden = YES;
+    }
+    
+    
 }
 
 - (void)phoneBtnActin{

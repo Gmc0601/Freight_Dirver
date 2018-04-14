@@ -181,7 +181,7 @@
         }
         if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
             //  装箱工登录
-            self.rightBtn.hidden = NO;
+            self.rightBtn.hidden = YES;
 
         }
     }else {

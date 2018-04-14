@@ -63,15 +63,23 @@
 
     }
     
-    
-    
+//    JYBOrderTypeWaitTi,
+//    JYBOrderTypeTransing,
+//    JYBOrderTypeOver,
+//    JYBOrderTypeAllotted,
+//    JYBOrderTypeInPort,
+
     NSString *status;
     if (self.type == JYBOrderTypeWaitTi) {
         status = @"20";
     }else if (self.type == JYBOrderTypeTransing){
         status = @"30";
-    }else{
+    }else if (self.type == JYBOrderTypeOver){
         status = @"50";
+    }else if (self.type == JYBOrderTypeAllotted){
+        status = @"20";
+    }else{
+        status = @"31";
     }
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];

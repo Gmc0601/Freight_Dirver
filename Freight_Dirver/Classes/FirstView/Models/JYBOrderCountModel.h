@@ -16,8 +16,9 @@
 
 @property (nonatomic,copy)NSString *completed;      // 已完成订单数
 
-@property (nonatomic,copy)NSString *wait_car;      // 待接车订单数
+@property (nonatomic,copy)NSString *allotted;      // 已接单订单数
 
+@property (nonatomic,copy)NSString *under_way;      // 运输中订单数
 
 
 @end
