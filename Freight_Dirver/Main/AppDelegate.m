@@ -45,7 +45,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [AMapServices sharedServices].apiKey = @"c2216fac26230148bf21b8ea3b00499e";
+    [AMapServices sharedServices].apiKey = @"8c3feed239e06c8efdb450c7e1797666";
 
     
     if (@available(iOS 11.0, *)) {

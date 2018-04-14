@@ -10,6 +10,7 @@
 
 @interface JYBOrderListModel : NSObject
 
+
 @property (nonatomic,copy)NSString *order_id;       //订单ID
 
 @property (nonatomic,copy)NSString *order_no;       //订单编号
@@ -65,6 +66,8 @@
 @property (nonatomic,copy)NSString *driver_name;          //司机名
 
 @property (nonatomic,copy)NSString *driver_lat;          //lat
+
+@property (nonatomic,copy)NSString *driver_lon;          //lon
 
 @property (nonatomic,copy)NSString *dock_id;          //dock_id
 

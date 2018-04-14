@@ -60,9 +60,13 @@ static MainApi *request = nil;
     NSMutableDictionary *mutArr = [NSMutableDictionary dictionaryWithDictionary:parameters];
     [mutArr addEntriesFromDictionary:@{@"apiCode":URLString}];
     if ([ConfigModel getBoolObjectforKey:IsLogin]) {
-        //    if (YES) {
-        NSString *usertoken = [ConfigModel getStringforKey:DriverId];
-        [mutArr addEntriesFromDictionary:@{@"driver_id":usertoken}];
+        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+            NSString *usertoken = [ConfigModel getStringforKey:DriverId];
+            [mutArr addEntriesFromDictionary:@{@"driver_id":usertoken}];
+        }else {
+            NSString *usertoken = [ConfigModel getStringforKey:BoxmanId];
+            [mutArr addEntriesFromDictionary:@{@"boxman_id":usertoken}];
+        }
         
 #if UDID
         KeychainUUID *keychain = [[KeychainUUID alloc] init];

@@ -63,17 +63,18 @@
 }
 
 - (void)initUrl {
-//     司机端
+    //     司机端
     if (self.type == User_Driver) {
         loginUrl = @"/Driver/Public/login";
         codeUrl = @"/Driver/Public/sendCode";
     }
-//    装箱工端
+    //    装箱工端
     if (self.type == User_Worker) {
-        loginUrl = @"/DBoxman/Public/login";
+        loginUrl = @"/Boxman/Public/login";
         codeUrl = @"/Boxman/Public/sendCode";
         
     }
+    
     
 }
 
@@ -162,23 +163,24 @@
     }
     
     
-    if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
-        NSDictionary *dic = @{
-                              @"phone" :self.phoneText.text,
-                              @"vcode" : self.codeText.text
-                              };
+    NSDictionary *dic = @{
+                          @"phone" :self.phoneText.text,
+                          @"vcode" : self.codeText.text
+                          };
+    
+    [HttpRequest postPath:loginUrl params:dic resultBlock:^(id responseObject, NSError *error) {
         
-        [HttpRequest postPath:loginUrl params:dic resultBlock:^(id responseObject, NSError *error) {
-            
-            
-            //  登录环信
-           
-            
-            if([error isEqual:[NSNull null]] || error == nil){
-                NSLog(@"success");
-            }
-            NSDictionary *datadic = responseObject;
-            if ([datadic[@"success"] intValue] == 1) {
+        
+        //  登录环信
+        
+        NSLog(@"%@", responseObject);
+        if([error isEqual:[NSNull null]] || error == nil){
+            NSLog(@"success");
+        }
+        NSDictionary *datadic = responseObject;
+        if ([datadic[@"success"] intValue] == 1) {
+            if (self.type == User_Driver) {
+                //  司机
                 NSDictionary *data = datadic[@"data"];
                 UserModel *user = [UserModel mj_objectWithKeyValues:data];
                 EMError *error = nil;
@@ -204,8 +206,9 @@
                         //  审核通过
                         [ConfigModel saveString:user.driver_id forKey:DriverId];
                         [ConfigModel saveBoolObject:YES forKey:IsLogin];
+                        [ConfigModel saveBoolObject:YES forKey:DriverLogin];
                         [self presentViewController:[ViewController new] animated:YES completion:nil];
-//                        [self dismissViewControllerAnimated:YES completion:nil];
+                        //                        [self dismissViewControllerAnimated:YES completion:nil];
                     }else {
                         //  审核失败
                         ReviewViewController *vc = [[ReviewViewController alloc] init];
@@ -214,16 +217,28 @@
                     }
                 }
             }else {
-                NSString *str = datadic[@"msg"];
-                [ConfigModel mbProgressHUD:str andView:nil];
+                //   装箱工
+                NSDictionary *data = datadic[@"data"];
+                UserModel *user = [UserModel mj_objectWithKeyValues:data];
+                EMError *error = nil;
+                NSString *userId = [NSString stringWithFormat:@"w%@", user.boxman_id];
+                error = [[EMClient sharedClient] registerWithUsername:userId password:ChatPWD];
+                error = [[EMClient sharedClient] loginWithUsername:userId password:ChatPWD];
+                [ConfigModel saveString:user.boxman_id forKey:BoxmanId];
+                [ConfigModel saveBoolObject:YES forKey:IsLogin];
+                [ConfigModel saveBoolObject:YES forKey:WorkLogin];
+                [self presentViewController:[ViewController new] animated:YES completion:nil];
+                
             }
-        }];
-    }
+            
+        }else {
+            NSString *str = datadic[@"msg"];
+            [ConfigModel mbProgressHUD:str andView:nil];
+        }
+    }];
     
-    if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
-        //   装箱工  登录
-        
-    }
+    
+    
     
     
 }

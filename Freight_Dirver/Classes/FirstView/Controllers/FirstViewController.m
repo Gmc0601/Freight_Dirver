@@ -353,13 +353,16 @@
             if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
                 //  装箱工登录
 
+                JYBOrderSingleVC *attendVC = [[JYBOrderSingleVC alloc] init];
+                attendVC.type = JYBOrderTypeAllotted;
+                
                 JYBOrderSingleVC *TransingVC = [[JYBOrderSingleVC alloc] init];
                 TransingVC.type = JYBOrderTypeTransing;
                 
                 JYBOrderSingleVC *OverVC = [[JYBOrderSingleVC alloc] init];
-                OverVC.type = JYBOrderTypeOver;
+                OverVC.type = JYBOrderTypeInPort;
                 
-                _vcArr = @[TransingVC,OverVC];
+                _vcArr = @[attendVC,TransingVC,OverVC];
             }
         }else {
             //   未登录

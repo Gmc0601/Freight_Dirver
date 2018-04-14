@@ -27,6 +27,7 @@
 #import "JYBTiBoxDoneVC.h"
 #import "CPHomeNavMapViewController.h"
 #import <AMapLocationKit/AMapLocationKit.h>
+#import "JYBOrderMapVC.h"
 
 typedef enum : NSUInteger {
     JYBOrderDetailTypeLogisInfo,
@@ -171,9 +172,9 @@ typedef enum : NSUInteger {
 }
 
 - (void)more:(UIButton *)sender{
-    [[[JYBAlertView alloc] initWithTitle:@"确定联系平台客服？" message:@"" cancelItem:@"取消" sureItem:@"确认" clickAction:^(NSInteger index) {
+    [[[JYBAlertView alloc] initWithTitle:@"确定联系平台客服？" message:[ConfigModel getStringforKey:Servicephone] cancelItem:@"取消" sureItem:@"确认" clickAction:^(NSInteger index) {
         if (index == 1) {
-            NSString *phoneStr = [NSString stringWithFormat:@"tel://%@",@""];
+            NSString *phoneStr = [NSString stringWithFormat:@"tel://%@",[ConfigModel getStringforKey:Servicephone]];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneStr]];
         }
     }] show];
@@ -307,11 +308,53 @@ typedef enum : NSUInteger {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (section == JYBOrderDetailTypeLogisUser) {
-        return 0;
+        
+        if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+            if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+                //   司机登录
+                return 0;
+            }
+            if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+                //  装箱工登录
+                return ([NSString stringIsNilOrEmpty:self.detailModel.driver_id] || self.detailModel.order_status.integerValue == 0 || self.detailModel.order_status.integerValue == 10 || self.detailModel.order_status.integerValue == 60)?0:1;
+            }
+            return 0;
+        }else {
+            //   未登录
+            return 0;
+        }
+        
     }else if (section == JYBOrderDetailTypeLogisInfo){
-        return 0;
+        if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+            if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+                //   司机登录
+                return 0;
+            }
+            if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+                //  装箱工登录
+                return self.detailModel.logistics.count?1:0;
+            }
+            return 0;
+        }else {
+            //   未登录
+            return 0;
+        }
+
     }else if (section == JYBOrderDetailTypeLogisMap){
-        return 0;
+        if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+            if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+                //   司机登录
+                return 0;
+            }
+            if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+                //  装箱工登录
+                return (self.detailModel.order_status.integerValue == 30 )?1:0;
+            }
+            return 0;
+        }else {
+            //   未登录
+            return 0;
+        }
     }else if (section == JYBOrderDetailTypeAddressInfo){
         return self.detailModel.shipment_address.count + 1;
     }else if (section == JYBOrderDetailTypeBoxInfo){
@@ -354,7 +397,7 @@ typedef enum : NSUInteger {
     }else if (indexPath.section == JYBOrderDetailTypeLogisInfo){
         return SizeWidth(90);
     }else if (indexPath.section == JYBOrderDetailTypeLogisMap){
-        return SizeWidth(150);
+        return SizeWidth(200);
     }
     else if (indexPath.section == JYBOrderDetailTypeAddressInfo){
         return SizeWidth(110);
@@ -503,9 +546,9 @@ typedef enum : NSUInteger {
         vc.orderModel = self.detailModel;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section == JYBOrderDetailTypeLogisMap){
-//        JYBOrderMapVC *vc = [[JYBOrderMapVC alloc] init];
-//        vc.listModel = self.detailModel;
-//        [self.navigationController pushViewController:vc animated:YES];
+        JYBOrderMapVC *vc = [[JYBOrderMapVC alloc] init];
+        vc.listModel = self.detailModel;
+        [self.navigationController pushViewController:vc animated:YES];
         
     }else if (indexPath.section == JYBOrderDetailTypeAddressInfo){
 
@@ -655,7 +698,7 @@ typedef enum : NSUInteger {
     if (!_bottomView) {
         _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - SizeWidth(55) , kScreenW, SizeWidth(55))];
         _bottomView.backgroundColor = [UIColor whiteColor];
-
+        _bottomView.hidden = YES;
         self.commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(SizeWidth(10), SizeWidth(5), kScreenW - SizeWidth(20), SizeWidth(45))];
         self.commitBtn.backgroundColor = RGB(24, 141, 240);
         [self.commitBtn setTitle:@"确定" forState:UIControlStateNormal];

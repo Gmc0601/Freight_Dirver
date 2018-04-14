@@ -53,10 +53,14 @@
 
     FirstViewController *first = [[FirstViewController alloc] init];
     [self setChildVC:first title:@"首页" image:@"tab_icon_dd" selectedImage:@"tab_icon_dd_pre"];
-    MessageViewController *fishpidVC = [[MessageViewController alloc] init];
-    [self setChildVC:fishpidVC title:@"消息" image:@"tab_icon_xx" selectedImage:@"tab_icon_xx_pre"];
-    MeViewController *messageVC = [[MeViewController alloc] init];
-    [self setChildVC:messageVC title:@"我的" image:@"tab_icon_wd" selectedImage:@"tab_icon_wd_pre"];
+    
+    if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+        MessageViewController *fishpidVC = [[MessageViewController alloc] init];
+        [self setChildVC:fishpidVC title:@"消息" image:@"tab_icon_xx" selectedImage:@"tab_icon_xx_pre"];
+        MeViewController *messageVC = [[MeViewController alloc] init];
+        [self setChildVC:messageVC title:@"我的" image:@"tab_icon_wd" selectedImage:@"tab_icon_wd_pre"];
+    }
+    
 
 }
 

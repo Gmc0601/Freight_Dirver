@@ -46,6 +46,9 @@
 @property (nonatomic , copy) NSString              * user_status;
 @property (nonatomic , copy) NSString              * driver_card;
 @property (nonatomic , copy) NSString              * car_bridge;
+@property (nonatomic , copy) NSString              * boxman_id;
+
+
 @end
 
 typedef enum LoginUserType {

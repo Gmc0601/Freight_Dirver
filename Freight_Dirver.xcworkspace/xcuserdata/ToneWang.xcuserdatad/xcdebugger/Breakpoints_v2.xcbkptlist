@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Freight_Dirver/Classes/FirstView/Controllers/FirstViewController.m"
-            timestampString = "545374050.642208"
+            timestampString = "545387256.964027"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "341"
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Freight_Dirver/Classes/FirstView/Controllers/FirstViewController.m"
-            timestampString = "545374050.64316"
+            timestampString = "545387256.964172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
             landmarkName = "-vcArr"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,27 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Freight_Dirver/Classes/FirstView/Controllers/FirstViewController.m"
-            timestampString = "545374072.5072269"
+            timestampString = "545387256.9643379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "263"
             endingLineNumber = "263"
-            landmarkName = "-headTabView"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Freight_Dirver/Classes/FirstView/Controllers/FirstViewController.m"
-            timestampString = "545374207.198911"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
             landmarkName = "-headTabView"
             landmarkType = "7">
          </BreakpointContent>

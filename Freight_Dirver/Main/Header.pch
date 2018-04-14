@@ -124,9 +124,13 @@
 
 #define DriverId @"DriverId"
 
+#define BoxmanId @"boxmanId"
+
 #define FleetId @"fleetId"  //  车队 Id
 
 #define ChatPWD @"999999999"
+
+#define Servicephone @"Servicephone"  //   客服电话
 
 #endif
 
