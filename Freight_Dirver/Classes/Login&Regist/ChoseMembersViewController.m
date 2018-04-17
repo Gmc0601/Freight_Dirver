@@ -13,7 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIView *driverView;
 @property (weak, nonatomic) IBOutlet UIView *connactView;
 @property (weak, nonatomic) IBOutlet UIImageView *driverLab;
-
 @property (weak, nonatomic) IBOutlet UILabel *connactLab;
 
 @end
@@ -41,10 +40,10 @@
 
 
 - (void)back:(UIButton *)sender {
-    if (self.backBlock) {
-        self.backBlock();
-    }
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    if (self.backBlock) {
+//        self.backBlock();
+//    }
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

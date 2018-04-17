@@ -60,6 +60,9 @@
             arrimg = [arrimg stringByAppendingString:str];
         }
     }
+    if (arrimg.length <=0 ) {
+        return;
+    }
     NSDictionary *dic =@{
                          @"driver_ids" : arrimg
                          };
