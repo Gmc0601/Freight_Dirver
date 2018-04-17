@@ -256,6 +256,7 @@
         _priceLab.textColor = RGB(102, 102, 102);
         _priceLab.textAlignment = NSTextAlignmentRight;
         _priceLab.text = @"¥ 1200.00";
+        _priceLab.hidden = YES;
     }
     return _priceLab;
 }
@@ -271,7 +272,7 @@
 - (UILabel *)startLab{
     if (!_startLab) {
         _startLab = [[UILabel alloc] init];
-        _startLab.font = [UIFont boldSystemFontOfSize:SizeWidth(16)];
+        _startLab.font = [UIFont systemFontOfSize:SizeWidth(16)];
         _startLab.textColor = [UIColor blackColor];
         _startLab.numberOfLines = 0;
 //        _startLab.text = @"宁波港 北仓三期码头";

@@ -209,7 +209,7 @@
         _boxTextFeild.font = [UIFont systemFontOfSize:SizeWidth(15)];
         _boxTextFeild.textColor = RGB(52, 52, 52);
         _boxTextFeild.textAlignment = NSTextAlignmentRight;
-        _boxTextFeild.keyboardType = UIKeyboardTypeNumberPad;
+        _boxTextFeild.keyboardType = UIKeyboardTypeASCIICapable;
     }
     return _boxTextFeild;
 }
@@ -234,7 +234,7 @@
         _fengTextFeild.font = [UIFont systemFontOfSize:SizeWidth(15)];
         _fengTextFeild.textColor = RGB(52, 52, 52);
         _fengTextFeild.textAlignment = NSTextAlignmentRight;
-        _fengTextFeild.keyboardType = UIKeyboardTypeNumberPad;
+        _fengTextFeild.keyboardType = UIKeyboardTypeASCIICapable;
     }
     return _fengTextFeild;
 }

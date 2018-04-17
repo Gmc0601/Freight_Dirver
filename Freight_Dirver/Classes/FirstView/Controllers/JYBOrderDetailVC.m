@@ -400,7 +400,28 @@ typedef enum : NSUInteger {
         return SizeWidth(200);
     }
     else if (indexPath.section == JYBOrderDetailTypeAddressInfo){
-        return SizeWidth(110);
+        
+        if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+            if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+                //   司机登录
+                return SizeWidth(110);
+            }
+            if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+                //  装箱工登录
+                if (indexPath.row == 0) {
+                    return SizeWidth(110);
+                }else{
+                    return SizeWidth(70);
+                }
+            }
+            return SizeWidth(110);
+        }else {
+            //   未登录
+            return SizeWidth(110);
+        }
+        
+        
+
     }else if (indexPath.section == JYBOrderDetailTypeBoxInfo){
         if (indexPath.row == 6) {
             return SizeWidth(110);
@@ -503,7 +524,7 @@ typedef enum : NSUInteger {
             }else if (indexPath.row == 1){
                 [cell updateCellWithIcon:@"xx_icon_sj" title:@"装箱时间" value:self.detailModel.shipment_time other:NO];
             }else if (indexPath.row == 2){
-                [cell updateCellWithIcon:@"xx_icon_sj" title:@"截箱时间" value:self.detailModel.cutoff_time other:NO];
+                [cell updateCellWithIcon:@"xx_icon_sj" title:@"截关时间" value:self.detailModel.cutoff_time other:NO];
             }else if (indexPath.row == 3){
                 [cell updateCellWithIcon:@"xx_icon_sj" title:@"提箱时间" value:self.detailModel.cutoff_time other:NO];
             }else if (indexPath.row == 4){
