@@ -17,6 +17,9 @@
 
 @property (nonatomic,copy)NSString *create_time;       //下单时间
 
+@property (nonatomic,copy)NSString *box_create_time;       //提箱时间
+
+
 @property (nonatomic,copy)NSString *order_status;    //订单状态 状态：0-待支付 10-派单中 20-已接单 30-进行中 31-已到港（待支付,支付额外费用）32-已到港（待支付,额外费用拒绝） 40-已到港（待支付,支付额外费用） 50-已完成 60-已取消
 
 @property (nonatomic,copy)NSString *order_price;     //运价（订单显示价格）

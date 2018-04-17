@@ -124,6 +124,15 @@
         [ConfigModel mbProgressHUD:@"请填写箱号" andView:nil];
         return;
     }
+    if ([NSString stringIsNilOrEmpty:self.fengTextFeild.text]){
+        [ConfigModel mbProgressHUD:@"请填写封号" andView:nil];
+        return;
+    }
+    
+    if (!self.imageUrlArray.count) {
+        [ConfigModel mbProgressHUD:@"请选择凭证照片" andView:nil];
+        return;
+    }
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic addUnEmptyString:self.detailModel.driver_id forKey:@"driver_id"];

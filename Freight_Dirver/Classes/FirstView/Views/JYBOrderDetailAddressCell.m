@@ -96,8 +96,8 @@
     }];
     
     [self.phoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(-SizeWidth(5));
-        make.width.height.mas_equalTo(SizeWidth(40));
+        make.right.equalTo(self.contentView).offset(-SizeWidth(10));
+        make.width.height.mas_equalTo(SizeWidth(35));
         make.bottom.equalTo(self.contentView).offset(-SizeWidth(10));
     }];
     
@@ -108,8 +108,8 @@
 //    }];
     
     [self.navBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.phoneBtn.mas_left).offset(-SizeWidth(3));
-        make.width.height.mas_equalTo(SizeWidth(40));
+        make.right.equalTo(self.phoneBtn.mas_left).offset(-SizeWidth(15));
+        make.width.height.mas_equalTo(SizeWidth(35));
         make.bottom.equalTo(self.contentView).offset(-SizeWidth(10));
     }];
     
@@ -145,21 +145,47 @@
     if ([ConfigModel getBoolObjectforKey:IsLogin]) {
         if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
             //   司机登录
-            self.phoneBtn.hidden = NO;
-            self.navBtn.hidden = NO;
-//            self.messBtn.hidden = NO;
+
+            
+            if (isBox) {
+                self.contactTitleLab.hidden = YES;
+                self.contactLab.hidden = YES;
+                self.addressTitleLab.hidden = YES;
+                self.addressLab.hidden = YES;
+                self.phoneBtn.hidden = YES;
+                self.navBtn.hidden = YES;
+                //            self.messBtn.hidden = NO;
+            }else{
+                self.contactTitleLab.hidden = NO;
+                self.contactLab.hidden = NO;
+                self.addressTitleLab.hidden = NO;
+                self.addressLab.hidden = NO;
+                self.phoneBtn.hidden = NO;
+                self.navBtn.hidden = NO;
+                //            self.messBtn.hidden = NO;
+            }
+
+            
         }
         if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
             //  装箱工登录
             self.phoneBtn.hidden = YES;
             self.navBtn.hidden = YES;
 //            self.messBtn.hidden = YES;
-            if (!isBox) {
+            
+            if (isBox) {
                 self.contactTitleLab.hidden = YES;
                 self.contactLab.hidden = YES;
+                self.addressTitleLab.hidden = YES;
+                self.addressLab.hidden = YES;
+
+                //            self.messBtn.hidden = NO;
             }else{
-                self.contactTitleLab.hidden = NO;
-                self.contactLab.hidden = NO;
+                self.contactTitleLab.hidden = YES;
+                self.contactLab.hidden = YES;
+                self.addressTitleLab.hidden = NO;
+                self.addressLab.hidden = NO;
+                //            self.messBtn.hidden = NO;
             }
             
         }
@@ -259,8 +285,10 @@
 - (UIButton *)phoneBtn{
     if (!_phoneBtn) {
         _phoneBtn = [[UIButton alloc] init];
-        [_phoneBtn setImage:[UIImage imageNamed:@"sj_icon_dh"] forState:UIControlStateNormal];
+//        [_phoneBtn setImage:[UIImage imageNamed:@"sj_icon_dh"] forState:UIControlStateNormal];
         [_phoneBtn addTarget:self action:@selector(phoneBtnActin) forControlEvents:UIControlEventTouchUpInside];
+        [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"sj_icon_dh"] forState:UIControlStateNormal];
+
     }
     return _phoneBtn;
 }
@@ -279,7 +307,8 @@
 - (UIButton *)navBtn{
     if (!_navBtn) {
         _navBtn = [[UIButton alloc] init];
-        [_navBtn setImage:[UIImage imageNamed:@"sj_icon_dw"] forState:UIControlStateNormal];
+        [_navBtn setBackgroundImage:[UIImage imageNamed:@"sj_icon_dw"] forState:UIControlStateNormal];
+//        [_navBtn setImage:[UIImage imageNamed:@"sj_icon_dw"] forState:UIControlStateNormal];
         [_navBtn addTarget:self action:@selector(navBtnBtnActin) forControlEvents:UIControlEventTouchUpInside];
     }
     return _navBtn;
