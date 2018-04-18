@@ -14,6 +14,7 @@
 #import "JYBAlertView.h"
 #import "JYBOrderCountModel.h"
 #import <YYKit.h>
+#import "BoxmanMyCenterViewController.h"
 
 @interface FirstViewController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
 
@@ -175,17 +176,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
-        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
-            //   司机登录
-        }
-        if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
-            //  装箱工登录
-        }
-    }else {
-        //   未登录 
-    }
-    
     
 }
 
@@ -205,7 +195,9 @@
 }
 //  客服
 -(void)backAction {
-    [self.navigationController pushViewController:[UserInfoViewController new] animated:YES];
+    if ([ConfigModel getBoolObjectforKey:IsLogin] && [ConfigModel getBoolObjectforKey:WorkLogin]) {
+            [self.navigationController pushViewController:[BoxmanMyCenterViewController new] animated:YES];
+    }
 }
 
 

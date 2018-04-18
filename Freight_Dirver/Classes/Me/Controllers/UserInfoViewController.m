@@ -74,6 +74,12 @@
     
     [ConfigModel showHud:self];
     
+    NSString *url = [ConfigModel getBoolObjectforKey:DriverLogin] ? @"/Driver/Driver/updateDriverFaceAndName" : @"/Boxman/Boxman/updateBoxmanInfo";
+    
+    NSString *facekey = [ConfigModel getBoolObjectforKey:DriverLogin] ? @"driver_face" : @"boxman_face";
+    
+    NSString *nickKey = [ConfigModel getBoolObjectforKey:DriverLogin] ? @"driver_name" : @"boxman_name";
+    
     if (!photo && [self.nickNameStr isEqualToString:self.nickName.text]) {
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -88,17 +94,15 @@
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if (photo) {
-        [dic setValue:imgStr forKey:@"driver_face"];
+        
+        [dic setValue:imgStr forKey:facekey];
     }
     [dic setValue:[ConfigModel getStringforKey:FleetId] forKey:@"fleet_id"];
-//    if (![self.nickNameStr isEqualToString:self.nickName.text]) {
-        [dic setValue:self.nickName.text forKey:@"driver_name"];
-//    }
-    
+        [dic setValue:self.nickName.text forKey:nickKey];
     
     
     WeakSelf(weak);
-    [HttpRequest postPath:@"/Driver/Driver/updateDriverFaceAndName" params:dic resultBlock:^(id responseObject, NSError *error) {
+    [HttpRequest postPath:url params:dic resultBlock:^(id responseObject, NSError *error) {
         if([error isEqual:[NSNull null]] || error == nil){
             NSLog(@"success");
         }
