@@ -130,7 +130,7 @@
     }
     
     if (!self.imageUrlArray.count) {
-        [ConfigModel mbProgressHUD:@"请选择凭证照片" andView:nil];
+        [ConfigModel mbProgressHUD:@"请选择提箱照片" andView:nil];
         return;
     }
     
