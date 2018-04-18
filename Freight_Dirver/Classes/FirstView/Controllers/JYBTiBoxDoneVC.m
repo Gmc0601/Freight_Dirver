@@ -314,4 +314,11 @@
 }
 
 
+- (NSMutableArray *)imageUrlArray{
+    if (!_imageUrlArray) {
+        _imageUrlArray = [[NSMutableArray alloc] init];
+    }
+    return _imageUrlArray;
+}
+
 @end

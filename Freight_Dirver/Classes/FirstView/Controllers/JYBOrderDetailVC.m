@@ -362,7 +362,7 @@ typedef enum : NSUInteger {
     }else if (section == JYBOrderDetailTypeMarkInfo){
         return [NSString stringIsNilOrEmpty:self.detailModel.message]?0:1;
     }else if (section == JYBOrderDetailTypeCostInfo){
-        return 1;
+        return 0;
     }else if (section == JYBOrderDetailTypeOtherCost){
         return ([NSString stringIsNilOrEmpty:self.detailModel.other_price] || self.detailModel.other_price.floatValue <= 0)?0:1;
     }else{
@@ -475,7 +475,7 @@ typedef enum : NSUInteger {
     }else if (section == JYBOrderDetailTypeMarkInfo){
         return [NSString stringIsNilOrEmpty:self.detailModel.message]?CGFLOAT_MIN:SizeWidth(10);
     }else if (section== JYBOrderDetailTypeCostInfo){
-        return SizeWidth(10);
+        return CGFLOAT_MIN;
     }else if (section== JYBOrderDetailTypeOtherCost){
         return ([NSString stringIsNilOrEmpty:self.detailModel.other_price] || self.detailModel.other_price.floatValue <= 0)?CGFLOAT_MIN:SizeWidth(10);
     }else{
