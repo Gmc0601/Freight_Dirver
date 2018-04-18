@@ -254,7 +254,7 @@
 - (UILabel  *)picTitleLab{
     if (!_picTitleLab){
         _picTitleLab = [[UILabel alloc] initWithFrame:CGRectMake(SizeWidth(15), SizeWidth(100) + 64, SizeWidth(100), SizeWidth(50))];
-        _picTitleLab.text = @"其他费用凭证";
+        _picTitleLab.text = @"提箱照片";
         _picTitleLab.font = [UIFont systemFontOfSize:SizeWidth(15)];
         _picTitleLab.textColor = RGB(52, 52, 52);
     }
