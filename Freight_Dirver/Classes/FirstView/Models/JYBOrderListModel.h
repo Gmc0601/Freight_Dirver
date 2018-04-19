@@ -86,4 +86,7 @@
 
 @property (nonatomic,strong)NSArray *logistics;            //物流信息【数组】
 
+@property (nonatomic,copy)NSString *loadarea_name;          //yard_id
+
+
 @end

@@ -14,7 +14,7 @@ typedef enum : NSUInteger {
     JYBOrderTypeOver,
     JYBOrderTypeAllotted,
     JYBOrderTypeInPort,
-
+    JYBOrderTypeAll
 } JYBOrderType;
 
 @interface JYBOrderSingleVC : BaseViewController

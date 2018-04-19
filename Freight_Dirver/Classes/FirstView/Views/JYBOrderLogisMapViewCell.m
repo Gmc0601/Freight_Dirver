@@ -55,30 +55,30 @@
     
     [self.allArr addObject:pointModel];
     
-    for (JYBOrderBoxAddressModel *addreModel in model.shipment_address) {
-        JYBStationPointModel *subpointModel = [[JYBStationPointModel alloc] init];
-        subpointModel.lat = addreModel.lat;
-        subpointModel.lon = addreModel.lon;
-        subpointModel.type = 2;
-        
-        CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:pointModel.lat.floatValue longitude:pointModel.lon.floatValue];
-        CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude:addreModel.lat.floatValue longitude:addreModel.lon.floatValue];
-        CLLocationDistance distance = [currentLocation distanceFromLocation:targetLocation];
-        subpointModel.distance = distance/1000;
-        
-        [self.allArr addObject:subpointModel];
-    }
-    
-    for (int i = 0; i<self.allArr.count; i++) {
-        JYBStationPointModel *mapModel = [self.allArr objectAtIndex:i];
-        CLLocation *location = [[CLLocation alloc] initWithLatitude:mapModel.lat.floatValue longitude:mapModel.lon.floatValue];
-        
-        MAPointAnnotation *pointAnnotaiton = [[MAPointAnnotation alloc] init];
-        [pointAnnotaiton setCoordinate:location.coordinate];
-        [self.annotations addObject:pointAnnotaiton];
-        
-    }
-    
+//    for (JYBOrderBoxAddressModel *addreModel in model.shipment_address) {
+//        JYBStationPointModel *subpointModel = [[JYBStationPointModel alloc] init];
+//        subpointModel.lat = addreModel.lat;
+//        subpointModel.lon = addreModel.lon;
+//        subpointModel.type = 2;
+//
+//        CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:pointModel.lat.floatValue longitude:pointModel.lon.floatValue];
+//        CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude:addreModel.lat.floatValue longitude:addreModel.lon.floatValue];
+//        CLLocationDistance distance = [currentLocation distanceFromLocation:targetLocation];
+//        subpointModel.distance = distance/1000;
+//
+//        [self.allArr addObject:subpointModel];
+//    }
+//
+//    for (int i = 0; i<self.allArr.count; i++) {
+//        JYBStationPointModel *mapModel = [self.allArr objectAtIndex:i];
+//        CLLocation *location = [[CLLocation alloc] initWithLatitude:mapModel.lat.floatValue longitude:mapModel.lon.floatValue];
+//        
+//        MAPointAnnotation *pointAnnotaiton = [[MAPointAnnotation alloc] init];
+//        [pointAnnotaiton setCoordinate:location.coordinate];
+//        [self.annotations addObject:pointAnnotaiton];
+//        
+//    }
+//    
     
     [self.mapView addAnnotations:self.annotations];
     

@@ -167,16 +167,20 @@
         [self.headTabView setSelectedSegmentIndex:2 animated:NO];
         [self.pageViewController setViewControllers:@[[self.vcArr objectAtIndex:2]] direction:UIPageViewControllerNavigationDirectionReverse
                                            animated:NO completion:nil];
-    }else{
-        
+    }else if (self.headTabView.selectedSegmentIndex == 2){
+        if (self.vcArr.count > 3) {
+            [self.headTabView setSelectedSegmentIndex:3 animated:NO];
+            [self.pageViewController setViewControllers:@[[self.vcArr objectAtIndex:2]] direction:UIPageViewControllerNavigationDirectionReverse
+                                               animated:NO completion:nil];
+        }
     }
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    
+    self.navigationController.navigationBarHidden = NO;
+
 }
 
 - (void)navigation {
@@ -184,8 +188,22 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 
+    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+            //   司机登录
+            [self addLeftBarButtonWithImage:[UIImage imageNamed:@"nav_icon_kf"] action:@selector(backAction)];
+
+        }
+        if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+            //  装箱工登录
+            
+            [self addLeftBarButtonWithImage:[UIImage imageNamed:@"tab_icon_wd"] action:@selector(backAction)];
+            [self addRightBarButtonWithFirstImage:[UIImage imageNamed:@"nav_icon_xx"] action:@selector(rightAction)];
+        }
+    }else {
+        //   未登录
+    }
     
-    [self addLeftBarButtonWithImage:[UIImage imageNamed:@"nav_icon_kf"] action:@selector(backAction)];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 20)];
     UIImageView *img = [[UIImageView alloc] initWithFrame:view.frame];
     img.image = [UIImage imageNamed:@"icon_jyb"];
@@ -193,11 +211,31 @@
     [view addSubview:img];
     self.navigationItem.titleView = view;
 }
+
+
+- (void)rightAction{
+    
+}
+
 //  客服
 -(void)backAction {
-    if ([ConfigModel getBoolObjectforKey:IsLogin] && [ConfigModel getBoolObjectforKey:WorkLogin]) {
+    
+    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+            //   司机登录
+
+            
+        }
+        if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+            //  装箱工登录
+            
             [self.navigationController pushViewController:[BoxmanMyCenterViewController new] animated:YES];
+
+        }
+    }else {
+        //   未登录
     }
+
 }
 
 
@@ -270,6 +308,7 @@
             }
             if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
                 //  装箱工登录
+                NSString *zero = @"全部";
                 NSString *one = @"已接单";
                 NSString *two = @"运输中";
                 NSString *three = @"已进港";
@@ -281,7 +320,7 @@
                 if (![NSString stringIsNilOrEmpty:self.countModel.under_way]) {
                     two = [NSString stringWithFormat:@"运输中(%@)",self.countModel.under_way];
                 }
-                _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[one,two,three]];
+                _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[zero,one,two,three]];
                 
                 
             }
@@ -345,6 +384,9 @@
             if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
                 //  装箱工登录
 
+                JYBOrderSingleVC *allVC = [[JYBOrderSingleVC alloc] init];
+                allVC.type = JYBOrderTypeAll;
+                
                 JYBOrderSingleVC *attendVC = [[JYBOrderSingleVC alloc] init];
                 attendVC.type = JYBOrderTypeAllotted;
                 
@@ -354,7 +396,7 @@
                 JYBOrderSingleVC *OverVC = [[JYBOrderSingleVC alloc] init];
                 OverVC.type = JYBOrderTypeInPort;
                 
-                _vcArr = @[attendVC,TransingVC,OverVC];
+                _vcArr = @[allVC,attendVC,TransingVC,OverVC];
             }
         }else {
             //   未登录

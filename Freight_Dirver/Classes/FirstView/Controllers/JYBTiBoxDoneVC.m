@@ -120,15 +120,6 @@
 
 - (void)commitBtnAction{
     
-    if ([NSString stringIsNilOrEmpty:self.boxTextFeild.text]){
-        [ConfigModel mbProgressHUD:@"请填写箱号" andView:nil];
-        return;
-    }
-    if ([NSString stringIsNilOrEmpty:self.fengTextFeild.text]){
-        [ConfigModel mbProgressHUD:@"请填写封号" andView:nil];
-        return;
-    }
-    
     if (!self.imageUrlArray.count) {
         [ConfigModel mbProgressHUD:@"请选择提箱照片" andView:nil];
         return;

@@ -97,7 +97,7 @@
     
     [self.phoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-SizeWidth(10));
-        make.width.height.mas_equalTo(SizeWidth(35));
+        make.width.height.mas_equalTo(SizeWidth(40));
         make.bottom.equalTo(self.contentView).offset(-SizeWidth(10));
     }];
     
@@ -109,7 +109,7 @@
     
     [self.navBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.phoneBtn.mas_left).offset(-SizeWidth(15));
-        make.width.height.mas_equalTo(SizeWidth(35));
+        make.width.height.mas_equalTo(SizeWidth(40));
         make.bottom.equalTo(self.contentView).offset(-SizeWidth(10));
     }];
     

@@ -49,6 +49,9 @@
     
     [self.view addLineWithInset:UIEdgeInsetsMake(64+SizeWidth(50), 0, 0, 0)];
 
+    
+    [self.myTextFeild becomeFirstResponder];
+    
 }
 
 - (void)resetFather {

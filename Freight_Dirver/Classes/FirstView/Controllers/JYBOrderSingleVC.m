@@ -82,6 +82,10 @@
         status = @"31";
     }
     
+    if (self.type == JYBOrderTypeAll) {
+        status = @"";
+    }
+    
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic addUnEmptyString:status forKey:@"order_status"];
     [dic addUnEmptyString:[NSString stringWithFormat:@"%ld",self.currentPage] forKey:@"page"];

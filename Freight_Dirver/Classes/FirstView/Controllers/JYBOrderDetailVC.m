@@ -54,6 +54,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) AMapLocationManager *locationManager;
 
+@property (nonatomic ,strong)JYBOrderBoxAddressModel *seleBoxAddModel;
+
 @end
 
 @implementation JYBOrderDetailVC
@@ -239,6 +241,7 @@ typedef enum : NSUInteger {
 
 
 - (void)__phoneWithPhone:(NSString *)phone{
+    
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"确认拨打\n%@",phone] preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
@@ -268,36 +271,75 @@ typedef enum : NSUInteger {
 
 - (void)__fetCurrentLocationWithModel:(JYBOrderBoxAddressModel *)model{
     
-    // 带逆地理信息的一次定位（返回坐标和地址信息）
+    self.seleBoxAddModel = model;
+    
+    self.locationManager = [[AMapLocationManager alloc] init];
+    
+    [self.locationManager setDelegate:self];
+    
+    //设置期望定位精度
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-    //   定位超时时间，最低2s，此处设置为2s
-    self.locationManager.locationTimeout =5;
-    //   逆地理请求超时时间，最低2s，此处设置为2s
-    self.locationManager.reGeocodeTimeout = 5;
+    
+    //设置不允许系统暂停定位
+    [self.locationManager setPausesLocationUpdatesAutomatically:NO];
+    
+    //设置定位超时时间
+    [self.locationManager setLocationTimeout:10];
+    
+    //设置逆地理超时时间
+    [self.locationManager setReGeocodeTimeout:10];
+    
+    
+    
+    
     
     // 带逆地理（返回坐标和地址信息）。将下面代码中的 YES 改成 NO ，则不会返回地址信息。
+//    [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+//
+//            if (error.code == AMapLocationErrorLocateFailed)
+//            {
+//                return;
+//            }
+//        }
+//
+//
+//        NSLog(@"location:%@", location);
+//
+//        if (regeocode)
+//        {
+//            NSLog(@"reGeocode:%@", regeocode);
+//        }
+//    }];
+    
+    [self reGeocodeAction];
+}
+
+
+- (void)reGeocodeAction
+{
+    [ConfigModel showHud:self];
+
+    //进行单次带逆地理定位请求
+    __weak typeof(self)weakSelf= self;
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        
-        if (error)
-        {
-            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+        [ConfigModel hideHud:weakSelf];
+
+        NSLog(@"~~~~~~~~~~~~%@",regeocode);
+        if (error) {
             
-            if (error.code == AMapLocationErrorLocateFailed)
-            {
-                return;
-            }
+        }else{
+
+            [weakSelf __navAction:self.seleBoxAddModel currLoc:location];
+
         }
         
-        [self __navAction:model currLoc:location];
-        
-        NSLog(@"location:%@", location);
-        
-        if (regeocode)
-        {
-            NSLog(@"reGeocode:%@", regeocode);
-        }
     }];
 }
+
 
 #pragma mark - tableviewdelegate
 

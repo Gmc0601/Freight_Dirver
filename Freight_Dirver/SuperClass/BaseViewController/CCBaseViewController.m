@@ -104,7 +104,7 @@
 
 - (UIButton *)rightBar {
     if (!_rightBar) {
-        _rightBar = [[UIButton alloc] initWithFrame:CGRectMake(kScreenW - 10 - 40, 25, 40, 30)];
+        _rightBar = [[UIButton alloc] initWithFrame:CGRectMake(kScreenW - 10 - 60, 25, 60, 30)];
         _rightBar.backgroundColor = [UIColor clearColor];
         [_rightBar setTitle:@"更多" forState:UIControlStateNormal];
         _rightBar.titleLabel.font = [UIFont systemFontOfSize:14];

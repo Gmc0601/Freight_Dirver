@@ -161,6 +161,8 @@
     if (listModel.shipment_address.count) {
         JYBOrderBoxAddressModel *firstModel = [listModel.shipment_address firstObject];
         self.endLab.text = firstModel.loadarea_name;
+    }else{
+        self.endLab.text = listModel.loadarea_name;
     }
     
     self.startTimeLab.text = [NSString stringWithFormat:@"装箱时间\n%@",listModel.shipment_time];
@@ -181,7 +183,7 @@
         }
         if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
             //  装箱工登录
-            self.rightBtn.hidden = YES;
+            self.rightBtn.hidden = NO;
 
         }
     }else {

@@ -68,9 +68,10 @@
     }];
     
     [self.phontBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self.contentView);
-        make.right.equalTo(self.contentView);
-        make.width.mas_equalTo(SizeWidth(60));
+//        make.top.bottom.equalTo(self.contentView);
+        make.centerY.equalTo(self.contentView);
+        make.right.equalTo(self.contentView).offset(-SizeWidth(10));
+        make.width.height.mas_equalTo(SizeWidth(45));
     }];
 }
 
@@ -78,7 +79,7 @@
 
     [self.iconImageView setImageWithURL:[NSURL URLWithString:model.driver_phone] placeholder:[UIImage imageNamed:@"jyb_order_driver"]];
     self.nameLab.text = [NSString stringWithFormat:@"司机：%@",model.driver_name];
-    self.numLab.text = [self __getCarNoWithNo:model.car_no];
+    self.numLab.text = model.car_no;
 
 }
 
@@ -145,7 +146,7 @@
 - (UIButton *)phontBtn{
     if (!_phontBtn) {
         _phontBtn= [[UIButton alloc] init];
-        [_phontBtn setImage:[UIImage imageNamed:@"ddxq_icon_dh"] forState:UIControlStateNormal];
+        [_phontBtn setBackgroundImage:[UIImage imageNamed:@"ddxq_icon_dh"] forState:UIControlStateNormal];
         [_phontBtn addTarget:self action:@selector(phontBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _phontBtn;
