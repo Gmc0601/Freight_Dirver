@@ -11,6 +11,7 @@
 #import "AppDelegate+EMOptions.h"
 #import "ChoseMembersViewController.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
+#import "CPBackLocationManager.h"
 
 /*
  *　　　　　　　 ┏┓       ┏┓+ +
@@ -38,6 +39,8 @@
 
 @interface AppDelegate ()
 
+@property (nonatomic ,strong)CPBackLocationManager *backLocationManager;
+
 @end
 
 @implementation AppDelegate
@@ -53,6 +56,12 @@
         UITableView.appearance.estimatedSectionFooterHeight = 0;
         UITableView.appearance.estimatedSectionHeaderHeight = 0;
     }
+    
+    
+    self.backLocationManager = [CPBackLocationManager sharedManager];
+    [self.backLocationManager startBackLocation];
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     if (![ConfigModel getBoolObjectforKey:IsLogin]) {

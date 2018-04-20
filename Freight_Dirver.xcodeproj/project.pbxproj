@@ -208,6 +208,7 @@
 		F61239CF205EC3E500B58AA5 /* ESPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F61239CA205EC3E500B58AA5 /* ESPickerView.m */; };
 		F63494212081CE4D00519FEF /* JYBStationPointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F634941F2081CE4C00519FEF /* JYBStationPointModel.m */; };
 		F63494242081CF8300519FEF /* JYBOrderMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F63494232081CF8300519FEF /* JYBOrderMapVC.m */; };
+		F65FD52C208A2FED00561AD0 /* CPBackLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F65FD52A208A2FEC00561AD0 /* CPBackLocationManager.m */; };
 		F673C720207D4CAE004C1500 /* JYBHomeOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C704207D4CAA004C1500 /* JYBHomeOrderListCell.m */; };
 		F673C721207D4CAE004C1500 /* JYBOrderDetailCostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C706207D4CAA004C1500 /* JYBOrderDetailCostCell.m */; };
 		F673C722207D4CAE004C1500 /* JYBOrderLogisMapViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F673C707207D4CAA004C1500 /* JYBOrderLogisMapViewCell.m */; };
@@ -654,6 +655,8 @@
 		F63494232081CF8300519FEF /* JYBOrderMapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBOrderMapVC.m; sourceTree = "<group>"; };
 		F65FD525208736F900561AD0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		F65FD526208736F900561AD0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		F65FD52A208A2FEC00561AD0 /* CPBackLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBackLocationManager.m; sourceTree = "<group>"; };
+		F65FD52B208A2FEC00561AD0 /* CPBackLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBackLocationManager.h; sourceTree = "<group>"; };
 		F673C702207D4CAA004C1500 /* JYBOrderDetailLogisUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailLogisUserCell.h; sourceTree = "<group>"; };
 		F673C703207D4CAA004C1500 /* JYBOrderDetailBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBOrderDetailBottomView.h; sourceTree = "<group>"; };
 		F673C704207D4CAA004C1500 /* JYBHomeOrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBHomeOrderListCell.m; sourceTree = "<group>"; };
@@ -816,6 +819,8 @@
 		42400D71200C4AA000B6C87E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F65FD52B208A2FEC00561AD0 /* CPBackLocationManager.h */,
+				F65FD52A208A2FEC00561AD0 /* CPBackLocationManager.m */,
 				F63494222081CF8300519FEF /* JYBOrderMapVC.h */,
 				F63494232081CF8300519FEF /* JYBOrderMapVC.m */,
 				F673C75E207E5B20004C1500 /* CPHomeNavMapViewController.h */,
@@ -2069,6 +2074,7 @@
 				42D36121201714B0004A16CB /* EaseEmotionManager.m in Sources */,
 				F673C75D207E3812004C1500 /* JYBOrderCountModel.m in Sources */,
 				427C6875200C5CF9006A9EBB /* FirstViewController.m in Sources */,
+				F65FD52C208A2FED00561AD0 /* CPBackLocationManager.m in Sources */,
 				427C69C5200F4D20006A9EBB /* AddPhotoCollectionViewCell.m in Sources */,
 				427C69B5200F2019006A9EBB /* NODataView.m in Sources */,
 				427C68B0200C8A20006A9EBB /* TBTabBar.m in Sources */,

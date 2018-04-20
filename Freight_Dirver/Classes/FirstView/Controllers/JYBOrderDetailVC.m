@@ -201,10 +201,10 @@ typedef enum : NSUInteger {
             return @"运输中";
             break;
             case 31:
-            return @"已进港(额外费用待审核";
+            return @"已进港(额外费用待审核)";
             break;
             case 32:
-            return @"已进港(额外费用待审核";
+            return @"已进港(额外费用待审核)";
             break;
             case 40:
             return @"确认额外费用";
@@ -406,7 +406,25 @@ typedef enum : NSUInteger {
     }else if (section == JYBOrderDetailTypeCostInfo){
         return 0;
     }else if (section == JYBOrderDetailTypeOtherCost){
-        return ([NSString stringIsNilOrEmpty:self.detailModel.other_price] || self.detailModel.other_price.floatValue <= 0)?0:1;
+
+        
+        if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+            if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+                //   司机登录
+                return ([NSString stringIsNilOrEmpty:self.detailModel.other_price] || self.detailModel.other_price.floatValue <= 0 || self.detailModel.order_status.integerValue ==20 || self.detailModel.order_status.integerValue ==30)?0:1;
+            }
+            if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+                //  装箱工登录
+                return 0;
+            }
+            return 0;
+            
+        }else {
+            //   未登录
+            return 0;
+        }
+        
+        
     }else{
         return 1;
     }
@@ -519,7 +537,22 @@ typedef enum : NSUInteger {
     }else if (section== JYBOrderDetailTypeCostInfo){
         return CGFLOAT_MIN;
     }else if (section== JYBOrderDetailTypeOtherCost){
-        return ([NSString stringIsNilOrEmpty:self.detailModel.other_price] || self.detailModel.other_price.floatValue <= 0)?CGFLOAT_MIN:SizeWidth(10);
+        
+        if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+            if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+                //   司机登录
+                return ([NSString stringIsNilOrEmpty:self.detailModel.other_price] || self.detailModel.other_price.floatValue <= 0 || self.detailModel.order_status.integerValue ==20 || self.detailModel.order_status.integerValue ==30)?CGFLOAT_MIN:SizeWidth(10);
+            }
+            if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+                //  装箱工登录
+                return CGFLOAT_MIN;
+            }
+            return CGFLOAT_MIN;
+
+        }else {
+            //   未登录
+            return CGFLOAT_MIN;
+        }
     }else{
         return SizeWidth(10);
     }

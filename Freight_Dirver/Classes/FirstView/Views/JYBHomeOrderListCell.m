@@ -205,10 +205,10 @@
             return @"运输中";
             break;
         case 31:
-            return @"已进港(额外费用待审核";
+            return @"已进港(额外费用待审核)";
             break;
         case 32:
-            return @"已进港(额外费用待审核";
+            return @"已进港(额外费用待审核)";
             break;
         case 40:
             return @"确认额外费用";

@@ -40,6 +40,16 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
 
+    [self __setUI];
+
+    
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
     [self __getCurrentModudleData];
 }
 
@@ -67,11 +77,9 @@
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     
-    [ConfigModel showHud:self];
     NSLog(@"%@", dic);
     WeakSelf(weak)
-    [HttpRequest postPath:@"/DBoxman/Order/orderCountList" params:dic resultBlock:^(id responseObject, NSError *error) {
-        [ConfigModel hideHud:weak];
+    [HttpRequest postPath:@"/Boxman/Order/orderCountList" params:dic resultBlock:^(id responseObject, NSError *error) {
         
         NSLog(@"%@", responseObject);
         if([error isEqual:[NSNull null]] || error == nil){
@@ -82,12 +90,10 @@
             
             weak.countModel = [JYBOrderCountModel modelWithDictionary:datadic[@"data"]];
             
-            [weak __setUI];
-            
+            [weak __setCountAppear];
+
         }else {
-            NSString *str = datadic[@"msg"];
-            [ConfigModel mbProgressHUD:str andView:nil];
-            [weak __setUI];
+
         }
     }];
 }
@@ -97,11 +103,9 @@
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     
-    [ConfigModel showHud:self];
     NSLog(@"%@", dic);
     WeakSelf(weak)
     [HttpRequest postPath:@"/Driver/Order/orderCountList" params:dic resultBlock:^(id responseObject, NSError *error) {
-        [ConfigModel hideHud:weak];
         
         NSLog(@"%@", responseObject);
         if([error isEqual:[NSNull null]] || error == nil){
@@ -112,16 +116,70 @@
             
             weak.countModel = [JYBOrderCountModel modelWithDictionary:datadic[@"data"]];
             
-            [weak __setUI];
+            [weak __setCountAppear];
             
         }else {
-            NSString *str = datadic[@"msg"];
-            [ConfigModel mbProgressHUD:str andView:nil];
-            [weak __setUI];
+
         }
     }];
     
 }
+
+- (void)__setCountAppear{
+    
+    if ([ConfigModel getBoolObjectforKey:IsLogin]) {
+        if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
+            //   司机登录
+            
+            NSString *zero = @"全部";
+            NSString *one = @"待提箱";
+            NSString *two = @"运输中";
+            NSString *three = @"已完成";
+            
+            one = [NSString stringWithFormat:@"待提箱(%@)",[NSString stringIsNilOrEmpty:self.countModel.wait_box]?@"0":self.countModel.wait_box];
+            
+            two = [NSString stringWithFormat:@"运输中(%@)",[NSString stringIsNilOrEmpty:self.countModel.transport]?@"0":self.countModel.transport];
+            
+            three = [NSString stringWithFormat:@"已完成(%@)",[NSString stringIsNilOrEmpty:self.countModel.completed]?@"0":self.countModel.completed];
+            
+            self.headTabView.sectionTitles = @[zero,one,two,three];
+
+            
+        }
+        if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
+            //  装箱工登录
+            NSString *zero = @"全部";
+            NSString *one = @"已接单";
+            NSString *two = @"运输中";
+            NSString *three = @"已进港";
+            
+            one = [NSString stringWithFormat:@"已接单(%@)",[NSString stringIsNilOrEmpty:self.countModel.allotted]?@"0":self.countModel.allotted];
+            
+            two = [NSString stringWithFormat:@"运输中(%@)",[NSString stringIsNilOrEmpty:self.countModel.under_way]?@"0":self.countModel.under_way];
+            
+            self.headTabView.sectionTitles = @[zero,one,two,three];
+            
+            
+        }
+    }else {
+        //   未登录
+        NSString *zero = @"全部";
+        NSString *one = @"待提箱";
+        NSString *two = @"运输中";
+        NSString *three = @"已完成";
+        
+        one = [NSString stringWithFormat:@"待提箱(%@)",[NSString stringIsNilOrEmpty:self.countModel.wait_box]?@"0":self.countModel.wait_box];
+        
+        two = [NSString stringWithFormat:@"运输中(%@)",[NSString stringIsNilOrEmpty:self.countModel.transport]?@"0":self.countModel.transport];
+        
+        three = [NSString stringWithFormat:@"已完成(%@)",[NSString stringIsNilOrEmpty:self.countModel.completed]?@"0":self.countModel.completed];
+        
+        self.headTabView.sectionTitles = @[zero,one,two,three];
+        
+    }
+
+}
+
 
 - (void)__setUI{
     
@@ -219,7 +277,13 @@
     if ([ConfigModel getBoolObjectforKey:IsLogin]) {
         if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
             //   司机登录
-
+            [[[JYBAlertView alloc] initWithTitle:@"确定联系平台客服？" message:[ConfigModel getStringforKey:Servicephone] cancelItem:@"取消" sureItem:@"确认" clickAction:^(NSInteger index) {
+                if (index == 1) {
+                    NSString *phoneStr = [NSString stringWithFormat:@"tel://%@",[ConfigModel getStringforKey:Servicephone]];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneStr]];
+                }
+            }] show];
+            
             
         }
         if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
@@ -289,15 +353,12 @@
                 NSString *two = @"运输中";
                 NSString *three = @"已完成";
                 
-                if (![NSString stringIsNilOrEmpty:self.countModel.wait_box]) {
-                    one = [NSString stringWithFormat:@"待提箱(%@)",self.countModel.wait_box];
-                }
-                if (![NSString stringIsNilOrEmpty:self.countModel.transport]) {
-                    two = [NSString stringWithFormat:@"运输中(%@)",self.countModel.transport];
-                }
-                if (![NSString stringIsNilOrEmpty:self.countModel.completed]) {
-                    three = [NSString stringWithFormat:@"已完成(%@)",self.countModel.completed];
-                }
+                one = [NSString stringWithFormat:@"待提箱(%@)",[NSString stringIsNilOrEmpty:self.countModel.wait_box]?@"0":self.countModel.wait_box];
+                
+                two = [NSString stringWithFormat:@"运输中(%@)",[NSString stringIsNilOrEmpty:self.countModel.transport]?@"0":self.countModel.transport];
+                
+                three = [NSString stringWithFormat:@"已完成(%@)",[NSString stringIsNilOrEmpty:self.countModel.completed]?@"0":self.countModel.completed];
+                
                 _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[zero,one,two,three]];
                 
                 
@@ -309,34 +370,28 @@
                 NSString *two = @"运输中";
                 NSString *three = @"已进港";
 
-                if (![NSString stringIsNilOrEmpty:self.countModel.allotted]) {
-                    one = [NSString stringWithFormat:@"已接单(%@)",self.countModel.allotted];
-                }
+                one = [NSString stringWithFormat:@"已接单(%@)",[NSString stringIsNilOrEmpty:self.countModel.allotted]?@"0":self.countModel.allotted];
 
-                if (![NSString stringIsNilOrEmpty:self.countModel.under_way]) {
-                    two = [NSString stringWithFormat:@"运输中(%@)",self.countModel.under_way];
-                }
+                two = [NSString stringWithFormat:@"运输中(%@)",[NSString stringIsNilOrEmpty:self.countModel.under_way]?@"0":self.countModel.under_way];
+
                 _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[zero,one,two,three]];
                 
                 
             }
         }else {
             //   未登录
-            
+            NSString *zero = @"全部";
             NSString *one = @"待提箱";
             NSString *two = @"运输中";
             NSString *three = @"已完成";
             
-            if (![NSString stringIsNilOrEmpty:self.countModel.wait_box]) {
-                one = [NSString stringWithFormat:@"待提箱(%@)",self.countModel.wait_box];
-            }
-            if (![NSString stringIsNilOrEmpty:self.countModel.transport]) {
-                two = [NSString stringWithFormat:@"运输中(%@)",self.countModel.transport];
-            }
-            if (![NSString stringIsNilOrEmpty:self.countModel.completed]) {
-                three = [NSString stringWithFormat:@"已完成(%@)",self.countModel.completed];
-            }
-            _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[one,two,three]];
+            one = [NSString stringWithFormat:@"待提箱(%@)",[NSString stringIsNilOrEmpty:self.countModel.wait_box]?@"0":self.countModel.wait_box];
+            
+            two = [NSString stringWithFormat:@"运输中(%@)",[NSString stringIsNilOrEmpty:self.countModel.transport]?@"0":self.countModel.transport];
+            
+            three = [NSString stringWithFormat:@"已完成(%@)",[NSString stringIsNilOrEmpty:self.countModel.completed]?@"0":self.countModel.completed];
+            
+            _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[zero,one,two,three]];
             
         }
 

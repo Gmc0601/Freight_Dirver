@@ -267,8 +267,8 @@
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                 //TODO
             }];
-            [actionSheet addAction:action1];
             [actionSheet addAction:action2];
+            [actionSheet addAction:action1];
             [actionSheet addAction:cancelAction];
             
             [strongSelf.navigationController presentViewController:actionSheet animated:YES completion:nil];
