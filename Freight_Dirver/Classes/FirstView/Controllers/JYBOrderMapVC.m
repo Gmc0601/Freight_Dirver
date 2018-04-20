@@ -66,19 +66,19 @@
     
     [self.allArr addObject:pointModel];
     
-//    for (JYBOrderBoxAddressModel *addreModel in model.shipment_address) {
-//        JYBStationPointModel *subpointModel = [[JYBStationPointModel alloc] init];
-//        subpointModel.lat = addreModel.lat;
-//        subpointModel.lon = addreModel.lon;
-//        subpointModel.type = 2;
-//
-//        CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:pointModel.lat.floatValue longitude:pointModel.lon.floatValue];
-//        CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude:addreModel.lat.floatValue longitude:addreModel.lon.floatValue];
-//        CLLocationDistance distance = [currentLocation distanceFromLocation:targetLocation];
-//        subpointModel.distance = distance/1000;
-//
-//        [self.allArr addObject:subpointModel];
-//    }
+    for (JYBOrderBoxAddressModel *addreModel in model.shipment_address) {
+        JYBStationPointModel *subpointModel = [[JYBStationPointModel alloc] init];
+        subpointModel.lat = addreModel.lat;
+        subpointModel.lon = addreModel.lon;
+        subpointModel.type = 2;
+
+        CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:pointModel.lat.floatValue longitude:pointModel.lon.floatValue];
+        CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude:addreModel.lat.floatValue longitude:addreModel.lon.floatValue];
+        CLLocationDistance distance = [currentLocation distanceFromLocation:targetLocation];
+        subpointModel.distance = distance/1000;
+
+        [self.allArr addObject:subpointModel];
+    }
     
     for (int i = 0; i<self.allArr.count; i++) {
         JYBStationPointModel *mapModel = [self.allArr objectAtIndex:i];
@@ -96,26 +96,27 @@
     }
     
     
+    if (model.shipment_address.count){
+        JYBStationPointModel *levelModel = [self.allArr objectAtIndex:1];
+        
+        CLLocation *centerlocation = [[CLLocation alloc] initWithLatitude:(model.driver_lat.floatValue + levelModel.lat.floatValue)/2 longitude:(model.driver_lon.floatValue + levelModel.lon.floatValue)/2];
+        [self.mapView setCenterCoordinate:centerlocation.coordinate];
+        [self.mapView setZoomLevel:[self __getLevelWithModel:levelModel] animated:NO];
+        
+        
+    }else{
+        CLLocation *centerlocation = [[CLLocation alloc] initWithLatitude:model.driver_lat.floatValue longitude:model.driver_lon.floatValue];
+        [self.mapView setCenterCoordinate:centerlocation.coordinate];
+        [self.mapView setZoomLevel:12 animated:NO];
+        
+    }
+    
+    
     [self.mapView addAnnotations:self.annotations];
 
 
     
-//
-//    if (model.shipment_address.count){
-//        JYBStationPointModel *levelModel = [self.allArr objectAtIndex:1];
-//
-//        CLLocation *centerlocation = [[CLLocation alloc] initWithLatitude:(model.driver_lat.floatValue + levelModel.lat.floatValue)/2 longitude:(model.driver_lon.floatValue + levelModel.lon.floatValue)/2];
-//        [self.mapView setCenterCoordinate:centerlocation.coordinate];
-//        [self.mapView setZoomLevel:[self __getLevelWithModel:levelModel] animated:NO];
-//
-//
-//    }else{
-        CLLocation *centerlocation = [[CLLocation alloc] initWithLatitude:model.driver_lat.floatValue longitude:model.driver_lon.floatValue];
-        [self.mapView setCenterCoordinate:centerlocation.coordinate];
-        [self.mapView setZoomLevel:12 animated:NO];
 
-//    }
-    
     
     
     

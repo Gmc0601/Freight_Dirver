@@ -159,20 +159,16 @@
 }
 
 - (void)refreshData{
-    if (self.headTabView.selectedSegmentIndex == 0){
-        [self.headTabView setSelectedSegmentIndex:1 animated:NO];
-        [self.pageViewController setViewControllers:@[[self.vcArr objectAtIndex:1]] direction:UIPageViewControllerNavigationDirectionReverse
-                                               animated:NO completion:nil];
-    }else if (self.headTabView.selectedSegmentIndex == 1){
+    if (self.headTabView.selectedSegmentIndex == 1){
         [self.headTabView setSelectedSegmentIndex:2 animated:NO];
         [self.pageViewController setViewControllers:@[[self.vcArr objectAtIndex:2]] direction:UIPageViewControllerNavigationDirectionReverse
+                                               animated:NO completion:nil];
+    }else if (self.headTabView.selectedSegmentIndex == 2){
+        [self.headTabView setSelectedSegmentIndex:3 animated:NO];
+        [self.pageViewController setViewControllers:@[[self.vcArr objectAtIndex:3]] direction:UIPageViewControllerNavigationDirectionReverse
                                            animated:NO completion:nil];
     }else if (self.headTabView.selectedSegmentIndex == 2){
-        if (self.vcArr.count > 3) {
-            [self.headTabView setSelectedSegmentIndex:3 animated:NO];
-            [self.pageViewController setViewControllers:@[[self.vcArr objectAtIndex:2]] direction:UIPageViewControllerNavigationDirectionReverse
-                                               animated:NO completion:nil];
-        }
+
     }
     
 }
@@ -288,7 +284,7 @@
             if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
                 //   司机登录
 
-                
+                NSString *zero = @"全部";
                 NSString *one = @"待提箱";
                 NSString *two = @"运输中";
                 NSString *three = @"已完成";
@@ -302,7 +298,7 @@
                 if (![NSString stringIsNilOrEmpty:self.countModel.completed]) {
                     three = [NSString stringWithFormat:@"已完成(%@)",self.countModel.completed];
                 }
-                _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[one,two,three]];
+                _headTabView = [[HMSegmentedControl alloc] initWithSectionTitles:@[zero,one,two,three]];
                 
                 
             }
@@ -369,6 +365,9 @@
         if ([ConfigModel getBoolObjectforKey:IsLogin]) {
             if ([ConfigModel getBoolObjectforKey:DriverLogin]) {
                 //   司机登录
+                JYBOrderSingleVC *allVC = [[JYBOrderSingleVC alloc] init];
+                allVC.type = JYBOrderTypeAll;
+                
                 JYBOrderSingleVC *WaitTiVC = [[JYBOrderSingleVC alloc] init];
                 WaitTiVC.type = JYBOrderTypeWaitTi;
                 
@@ -379,7 +378,7 @@
                 OverVC.type = JYBOrderTypeOver;
                 
                 
-                _vcArr = @[WaitTiVC,TransingVC,OverVC];
+                _vcArr = @[allVC,WaitTiVC,TransingVC,OverVC];
             }
             if ([ConfigModel getBoolObjectforKey:WorkLogin]) {
                 //  装箱工登录
@@ -401,6 +400,9 @@
         }else {
             //   未登录
             
+            JYBOrderSingleVC *allVC = [[JYBOrderSingleVC alloc] init];
+            allVC.type = JYBOrderTypeAll;
+            
             JYBOrderSingleVC *WaitTiVC = [[JYBOrderSingleVC alloc] init];
             WaitTiVC.type = JYBOrderTypeAllotted;
             
@@ -411,7 +413,7 @@
             OverVC.type = JYBOrderTypeInPort;
             
             
-            _vcArr = @[WaitTiVC,TransingVC,OverVC];
+            _vcArr = @[allVC,WaitTiVC,TransingVC,OverVC];
         }
         
 
