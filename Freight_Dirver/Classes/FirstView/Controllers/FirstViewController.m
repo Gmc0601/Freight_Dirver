@@ -7,7 +7,6 @@
 //
 
 #import "FirstViewController.h"
-
 #import "UserInfoViewController.h"
 #import "HMSegmentedControl.h"
 #import "JYBOrderSingleVC.h"
@@ -15,6 +14,7 @@
 #import "JYBOrderCountModel.h"
 #import <YYKit.h>
 #import "BoxmanMyCenterViewController.h"
+#import "MessageViewController.h"
 
 @interface FirstViewController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
 
@@ -268,7 +268,10 @@
 
 
 - (void)rightAction{
-    
+    // 消息
+    MessageViewController *vc = [[MessageViewController alloc] init];
+    vc.boxman = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //  客服

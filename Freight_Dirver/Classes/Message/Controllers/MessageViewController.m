@@ -135,17 +135,25 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
-    [self addLeftBarButtonWithImage:[UIImage imageNamed:@"nav_icon_kf"] action:@selector(backAction)];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 20)];
-    UIImageView *img = [[UIImageView alloc] initWithFrame:view.frame];
-    img.image = [UIImage imageNamed:@"icon_jyb"];
-    img.contentMode = UIViewContentModeScaleAspectFit;
-    [view addSubview:img];
-    self.navigationItem.titleView = view;
+    
+    if (!self.boxman) {
+        [self addLeftBarButtonWithImage:[UIImage imageNamed:@"nav_icon_kf"] action:@selector(backAction)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 20)];
+        UIImageView *img = [[UIImageView alloc] initWithFrame:view.frame];
+        img.image = [UIImage imageNamed:@"icon_jyb"];
+        img.contentMode = UIViewContentModeScaleAspectFit;
+        [view addSubview:img];
+        self.navigationItem.titleView = view;
+    }else {
+        [self setCustomerTitle:@"消息"];
+    }
+    
 }
 
 - (void)backAction {
-    
+    if (self.boxman) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -245,7 +253,6 @@
         });
         _noUseTableView.tableFooterView = ({
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW,  0)];
-            
             view;
         });
     }
