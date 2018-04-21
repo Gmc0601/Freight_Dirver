@@ -84,7 +84,7 @@ static MainApi *request = nil;
         
         //        NSLog(@"%@==============",jsStr);
         URLString = [NSString stringWithFormat:@"%@%@",BaseApi,URLString];
-        
+        NSLog(@"url:%@  <><> param:%@",URLString, mutArr);
         [self.manager POST:URLString parameters:mutArr progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

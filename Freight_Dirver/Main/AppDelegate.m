@@ -49,8 +49,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [AMapServices sharedServices].apiKey = @"8c3feed239e06c8efdb450c7e1797666";
-
-    
     if (@available(iOS 11.0, *)) {
         UITableView.appearance.estimatedRowHeight = 0;
         UITableView.appearance.estimatedSectionFooterHeight = 0;
@@ -70,8 +68,6 @@
     }else {
         self.window.rootViewController = [ViewController new];
     }
-    
-//    self.window.rootViewController = [[ViewController alloc] init];
     self.window.backgroundColor = [UIColor whiteColor];
     [self initEmoptions];
     [self.window makeKeyAndVisible];

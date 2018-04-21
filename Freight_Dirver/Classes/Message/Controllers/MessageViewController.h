@@ -16,4 +16,6 @@
 
 @interface MessageViewController : BaseViewController
 
+@property (nonatomic) BOOL boxman;
+
 @end

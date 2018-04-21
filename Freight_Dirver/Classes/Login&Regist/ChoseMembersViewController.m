@@ -40,6 +40,7 @@
 
 
 - (void)back:(UIButton *)sender {
+    exit(0);
 //    if (self.backBlock) {
 //        self.backBlock();
 //    }
